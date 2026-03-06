@@ -12,12 +12,12 @@ const C = {
 };
 
 const navLinks = [
-    { label: "Courses", href: "/courses" },
-    { label: "IGCSE School", href: "/igcse-school" },
-    { label: "Tinkering", href: "/tinkering" },
-    { label: "Store", href: "/store" },
-    { label: "Hackathons", href: "/hackathons" },
-    { label: "About", href: "/about" },
+    // { label: "Courses", href: "/courses" },
+    // // { label: "IGCSE School", href: "/igcse-school" },
+    // // { label: "Tinkering", href: "/tinkering" },
+    // // { label: "Store", href: "/store" },
+    // // { label: "Hackathons", href: "/hackathons" },
+    // { label: "About", href: "/about" },
 ];
 
 export default function NavBar() {
@@ -70,7 +70,11 @@ export default function NavBar() {
 
                     {/* Desktop CTA */}
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem" }} className="hidden-mobile">
-                        <Link href="/dashboard" className="nav-link" style={{ fontSize: "0.85rem", color: C.textMuted }}>Dashboard</Link>
+                        <Link href="/courses" className="nav-link">Courses</Link>
+                        <Link href="/about" className="nav-link">About</Link>
+
+
+                        {/*<Link href="/dashboard" className="nav-link" style={{ fontSize: "0.85rem", color: C.textMuted }}>Dashboard</Link>*/}
                         <Link href="/courses">
                             <button className="btn-gold" style={{ padding: "0.6rem 1.4rem", fontSize: "0.82rem", letterSpacing: "0.06em", backgroundColor: C.primaryBlue, color: C.white }}>
                                 Start Learning <ChevronRight size={14} />
