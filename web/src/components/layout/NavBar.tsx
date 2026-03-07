@@ -11,13 +11,17 @@ const C = {
     textMuted: "#6A7081",
 };
 
-const navLinks = [
-    // { label: "Courses", href: "/courses" },
-    // // { label: "IGCSE School", href: "/igcse-school" },
-    // // { label: "Tinkering", href: "/tinkering" },
-    // // { label: "Store", href: "/store" },
-    // // { label: "Hackathons", href: "/hackathons" },
-    // { label: "About", href: "/about" },
+
+// { label: "Courses", href: "/courses" },
+// // { label: "IGCSE School", href: "/igcse-school" },
+// // { label: "Tinkering", href: "/tinkering" },
+// // { label: "Store", href: "/store" },
+// // { label: "Hackathons", href: "/hackathons" },
+// { label: "About", href: "/about" },
+
+const navLinks: { label: string; href: string }[] = [
+    { label: "Courses", href: "/courses" },
+    { label: "About", href: "/about" },
 ];
 
 export default function NavBar() {
@@ -59,14 +63,14 @@ export default function NavBar() {
                         </div>
                     </Link>
 
-                    {/* Desktop nav links */}
+                    {/* Desktop nav links
                     <div style={{ display: "flex", alignItems: "center", gap: "2rem" }} className="hidden-mobile">
                         {navLinks.map(link => (
                             <Link key={link.href} href={link.href} className="nav-link" style={{ color: C.textMuted }}>
                                 {link.label}
                             </Link>
                         ))}
-                    </div>
+                    </div>*/}
 
                     {/* Desktop CTA */}
                     <div style={{ display: "flex", alignItems: "center", gap: "1rem" }} className="hidden-mobile">
