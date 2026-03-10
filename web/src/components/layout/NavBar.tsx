@@ -1,14 +1,16 @@
 "use client";
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { ChevronRight, Menu, X } from "lucide-react";
 
 const C = {
-    primaryBlue: "#0056D2",
+    primaryBlue: "#1F2432",
     navyDark: "#1F2432",
     bgLight: "#F5F7F8",
     white: "#FFFFFF",
     textMuted: "#6A7081",
+    accentGold: "#C5A059",
 };
 
 
@@ -51,16 +53,13 @@ export default function NavBar() {
                 <div className="container-main" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
                     {/* Logo */}
                     <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.75rem", textDecoration: "none" }}>
-                        <div style={{ position: "relative" }}>
-                            <div style={{ width: 38, height: 38, borderRadius: 8, background: C.primaryBlue, display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'Outfit', sans-serif", fontWeight: 700, fontSize: "1.2rem", color: C.white }}>
-                                A
-                            </div>
-                            <div style={{ position: "absolute", bottom: -2, right: -2, width: 10, height: 10, borderRadius: "50%", background: "#FFFFFF", border: `2px solid ${C.primaryBlue}` }} />
-                        </div>
-                        <div>
-                            <div style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700, fontSize: "1.25rem", color: C.navyDark, lineHeight: 1.1 }}>AyaTech</div>
-                            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: "0.58rem", color: C.textMuted, letterSpacing: "0.12em", textTransform: "uppercase" }}>Calicut · Kerala · Global</div>
-                        </div>
+                        <Image
+                            src="/logo.png"
+                            alt="AyaTech Logo"
+                            width={120}
+                            height={40}
+                            style={{ height: "40px", width: "auto" }}
+                        />
                     </Link>
 
                     {/* Desktop nav links
@@ -79,9 +78,9 @@ export default function NavBar() {
 
 
                         {/*<Link href="/dashboard" className="nav-link" style={{ fontSize: "0.85rem", color: C.textMuted }}>Dashboard</Link>*/}
-                        <Link href="/courses">
-                            <button className="btn-gold" style={{ padding: "0.6rem 1.4rem", fontSize: "0.82rem", letterSpacing: "0.06em", backgroundColor: C.primaryBlue, color: C.white }}>
-                                Start Learning <ChevronRight size={14} />
+                        <Link href="https://erp.ayatech.org/apply">
+                            <button className="btn-gold" style={{ padding: "0.6rem 1.4rem", fontSize: "0.82rem", letterSpacing: "0.06em", backgroundColor: "#C5A059", color: "#FFFFFF", borderRadius: "8px" }}>
+                                Apply Now <ChevronRight size={14} />
                             </button>
                         </Link>
                     </div>
@@ -112,8 +111,8 @@ export default function NavBar() {
                             ))}
                         </div>
                         <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-                            <Link href="/courses" onClick={() => setMobileOpen(false)}>
-                                <button className="btn-gold" style={{ width: "100%", justifyContent: "center" }}>Start Learning</button>
+                            <Link href="https://erp.ayatech.org/apply" onClick={() => setMobileOpen(false)}>
+                                <button className="btn-gold" style={{ width: "100%", justifyContent: "center", backgroundColor: "#C5A059", color: "#FFFFFF" }}>Apply Now</button>
                             </Link>
                         </div>
                     </div>

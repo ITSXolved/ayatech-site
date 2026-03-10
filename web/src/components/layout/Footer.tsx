@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import {
     MapPin,
     Mail,
@@ -39,17 +40,15 @@ export default function Footer() {
                 <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
                     {/* Brand */}
                     <div className="lg:col-span-2">
-                        <div className="flex items-center gap-3 mb-4">
-                            <div className="relative">
-                                <div className="w-10 h-10 rounded-lg bg-primary-blue flex items-center justify-center font-display font-bold text-white text-xl">
-                                    A
-                                </div>
-                                <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-white border-2 border-primary-blue" />
-                            </div>
-                            <span className="font-display font-semibold text-2xl text-white">
-                                AyaTech
-                            </span>
-                        </div>
+                        <Link href="/" className="flex items-center gap-3 mb-4">
+                            <Image
+                                src="/logo.png"
+                                alt="AyaTech Logo"
+                                width={120}
+                                height={40}
+                                className="h-10 w-auto"
+                            />
+                        </Link>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
                             Empowering the next generation of innovators through live courses,
                             Cambridge IGCSE pathways, and hands-on maker spaces.
@@ -114,7 +113,7 @@ export default function Footer() {
                             key={i}
                             className="flex items-center gap-2 text-gray-400 text-sm"
                         >
-                            <Icon size={14} className="text-primary-blue shrink-0" />
+                            <Icon size={14} style={{ color: "#1F2432" }} className="shrink-0" />
                             <span>{text}</span>
                         </div>
                     ))}

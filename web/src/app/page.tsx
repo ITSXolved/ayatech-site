@@ -6,21 +6,22 @@ import { ArrowRight, ChevronRight, Zap, BookOpen, Globe, TrendingUp, ShoppingBag
 
 /* ─── Design Tokens ─── */
 const C = {
-  primaryBlue: "#0056D2",
-  primaryBlueHover: "#0046AA",
+  primaryBlue: "#1F2432", // Dark blue from new branding
+  primaryBlueHover: "#171B26",
   navyDark: "#1F2432",
   navyLight: "#2A3142",
   bgLight: "#F5F7F8",
   white: "#FFFFFF",
   textMain: "#1F2432",
   textMuted: "#6A7081",
-  teal300: "#0056D2", // Retained keys, replaced colors
+  accentGold: "#C5A059", // Gold color from AILT screenshot
+  teal300: "#0056D2",
   teal400: "#0056D2",
-  gold300: "#0046AA",
-  gold400: "#0056D2",
+  gold300: "#C5A059",
+  gold400: "#C5A059",
   navy200: "#6A7081",
-  navy400: "#0056D2",
-  navy600: "#0046AA",
+  navy400: "#1F2432",
+  navy600: "#1F2432",
   navy700: "#F5F7F8",
   navy800: "#FFFFFF",
   navy900: "#FFFFFF",
@@ -47,9 +48,9 @@ function useCountUp(target: number, duration = 1800, active = false) {
 
 /* ─── Stats data ─── */
 const stats = [
-  { pre: "", val: 54, suf: "K+", label: "Students by Year 3", dec: false },
-  { pre: "₹", val: 1595, suf: "Cr", label: "3-Year Revenue", dec: true },
-  { pre: "", val: 336, suf: "%", label: "Projected ROI", dec: false },
+  { pre: "", val: 10, suf: "+", label: "Years Excellence", dec: false },
+  { pre: "", val: 500, suf: "+", label: "Global Students", dec: false },
+  { pre: "", val: 98, suf: "%", label: "Placement Rate", dec: false },
   { pre: "", val: 30, suf: "+", label: "Countries Reached", dec: false },
   { pre: "", val: 15, suf: "+", label: "Live Courses", dec: false },
   { pre: "M", val: 7, suf: "", label: "Break-even Month", dec: false },
@@ -90,6 +91,20 @@ const store = [
 export default function Home() {
   const statsRef = useRef<HTMLDivElement>(null);
   const [statsActive, setStatsActive] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  const heroImages = [
+    "/images/home/hero-slide-1.png",
+    "/images/home/hero-slide-2.png",
+    "/images/home/hero-slide-3.png",
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [heroImages.length]);
 
   useEffect(() => {
     const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setStatsActive(true); }, { threshold: 0.3 });
@@ -112,34 +127,27 @@ export default function Home() {
             {/* Left Column: Text */}
             <div style={{ textAlign: "left" }}>
               {/* Eyebrow */}
-              <p className="section-eyebrow" style={{ marginBottom: "1.5rem", display: "inline-block", animation: "fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both" }}>
+              <p className="section-eyebrow" style={{ marginBottom: "1.5rem", display: "inline-block", animation: "fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both", color: C.primaryBlue }}>
                 Calicut · Kerala · Global
               </p>
 
               {/* H1 */}
-              <h1 className="font-display" style={{ fontSize: "clamp(2.5rem,6vw,5.5rem)", fontWeight: 600, lineHeight: 1.05, color: C.navyDark, marginBottom: "1.5rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both", letterSpacing: "-0.02em" }}>
-                Empowering <br className="hidden lg:block" />
-                <span className="text-gradient-primary">Innovation.</span>
-                <br />
-                Building <br className="hidden lg:block" />
-                <span className="text-gradient-primary">Futures.</span>
+              <h1 className="font-display" style={{ fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: 700, lineHeight: 1.1, color: C.navyDark, marginBottom: "1.5rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both", letterSpacing: "-0.01em" }}>
+                Empowering <br />
+                innovative minds <br />
+                <span style={{ color: C.accentGold }}>for sustainable <br /> futures.</span>
               </h1>
-
-              {/* Sub-copy */}
-              <p style={{ color: C.textMuted, fontSize: "clamp(1rem,2vw,1.2rem)", maxWidth: "36rem", marginBottom: "2.5rem", lineHeight: 1.7, animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.4s both" }}>
-                Live courses. Global mentorship. Hands-on maker spaces.
-              </p>
 
               {/* CTAs */}
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem", marginBottom: "3rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.55s both" }}>
-                <Link href="/courses">
-                  <button className="btn-gold" style={{ padding: "1rem 2.5rem", fontSize: "1.1rem", boxShadow: `0 4px 14px 0 rgba(0,86,210,0.39)` }}>
-                    Explore Courses <ArrowRight size={17} />
+                <Link href="https://erp.ayatech.org/apply">
+                  <button className="btn-gold" style={{ padding: "1rem 2rem", fontSize: "1rem", backgroundColor: C.accentGold, color: "#fff", display: "flex", alignItems: "center", gap: "0.5rem", borderRadius: "8px" }}>
+                    Start Application <ArrowRight size={17} />
                   </button>
                 </Link>
-                <Link href="/igcse-school">
-                  <button className="btn-outline" style={{ padding: "1rem 2.5rem", fontSize: "1.1rem" }}>
-                    View IGCSE School <ChevronRight size={17} />
+                <Link href="/courses">
+                  <button className="btn-outline" style={{ padding: "1rem 2rem", fontSize: "1rem", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "8px", color: C.navyDark }}>
+                    Explore Courses
                   </button>
                 </Link>
               </div>
@@ -154,19 +162,60 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Right Column: Dynamic Image */}
-            <div style={{ position: "relative", animation: "fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s both", display: "flex", justifyContent: "center" }}>
-              <div style={{ position: "relative", width: "100%", maxWidth: "600px", borderRadius: "24px", overflow: "hidden", boxShadow: "0 20px 40px -10px rgba(0,86,210,0.2)", border: "1px solid rgba(255,255,255,0.5)" }}>
-                {/* Decorative glow behind image */}
-                <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "120%", height: "120%", background: "radial-gradient(circle, rgba(0,86,210,0.15) 0%, transparent 70%)", zIndex: -1 }}></div>
-                <Image
-                  src="/images/home/hero-cover.jpg"
-                  alt="Students learning outdoors"
-                  width={800}
-                  height={600}
-                  priority
-                  style={{ width: "100%", height: "auto", display: "block", objectFit: "cover" }}
-                />
+            {/* Right Column: Dynamic Image Slider */}
+            <div style={{ position: "relative", animation: "fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s both", display: "flex", justifyContent: "center", width: "100%" }}>
+              {/* Frame Container */}
+              <div style={{ backgroundColor: "#FFFFFF", padding: "12px", borderRadius: "32px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.05)", width: "100%", maxWidth: "560px" }}>
+                <div
+                  className="hero-slider-container"
+                  style={{
+                    position: "relative",
+                    width: "100%",
+                    aspectRatio: "4/3",
+                    borderRadius: "24px",
+                    overflow: "hidden",
+                    backgroundColor: "#f0f0f0", // Placeholder color during load
+                  }}
+                >
+                  {/* Decorative glow behind image */}
+                  <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "120%", height: "120%", background: "radial-gradient(circle, rgba(0,123,255,0.15) 0%, transparent 70%)", zIndex: -1 }}></div>
+
+                  {/* Slider Images */}
+                  <div style={{ display: "flex", transition: "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)", transform: `translateX(-${currentSlide * 100}%)`, height: "100%", width: "100%" }}>
+                    {heroImages.map((src, i) => (
+                      <div key={i} style={{ minWidth: "100%", height: "100%", position: "relative" }}>
+                        <Image
+                          src={src}
+                          alt={`AyaTech slide ${i + 1}`}
+                          fill
+                          priority={i === 0}
+                          style={{ objectFit: "cover" }}
+                          className="shake-on-touch"
+                          sizes="(max-width: 768px) 100vw, 540px"
+                        />
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Slider Dots */}
+                  <div style={{ position: "absolute", bottom: "1.5rem", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "0.5rem", zIndex: 20 }}>
+                    {heroImages.map((_, i) => (
+                      <button
+                        key={i}
+                        onClick={() => setCurrentSlide(i)}
+                        style={{
+                          width: i === currentSlide ? 24 : 8,
+                          height: 8,
+                          borderRadius: 4,
+                          background: i === currentSlide ? C.accentGold : "rgba(255,255,255,0.5)",
+                          border: "none",
+                          cursor: "pointer",
+                          transition: "all 0.3s ease"
+                        }}
+                      />
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -177,19 +226,20 @@ export default function Home() {
           <span className="font-mono-brand" style={{ fontSize: "0.85rem", letterSpacing: "0.2em", color: C.textMuted }}>SCROLL</span>
           <div style={{ width: 1, height: 40, background: `linear-gradient(${C.textMuted}, transparent)` }} />
         </div>
-      </section>
+      </section >
 
       {/* ═══ STATS ═══ */}
-      <section ref={statsRef} style={{ borderTop: "1px solid rgba(0,0,0,0.06)", borderBottom: "1px solid rgba(0,0,0,0.06)", background: C.white, padding: "3.5rem 0" }}>
+      < section ref={statsRef} style={{ borderTop: "1px solid rgba(0,0,0,0.06)", borderBottom: "1px solid rgba(0,0,0,0.06)", background: C.white, padding: "3.5rem 0" }
+      }>
         <div className="container-main">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "2rem", textAlign: "center" }}>
             {stats.map((s, i) => <StatNum key={i} s={s} active={statsActive} delay={i * 100} />)}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ═══ FOUR VERTICALS ═══ */}
-      <section className="section-pad">
+      < section className="section-pad" >
         <div className="container-main">
           <div style={{ textAlign: "center", marginBottom: "4rem" }}>
             <p className="section-eyebrow" style={{ marginBottom: "1rem" }}>Our Ecosystem</p>
@@ -226,10 +276,10 @@ export default function Home() {
             })}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ═══ IGCSE BANNER ═══ */}
-      <section className="section-pad" style={{ paddingTop: 0 }}>
+      < section className="section-pad" style={{ paddingTop: 0 }}>
         <div className="container-main">
           <div style={{ background: `linear-gradient(135deg, ${C.primaryBlue} 0%, ${C.primaryBlueHover} 100%)`, border: `1px solid rgba(0,0,0,0.1)`, borderRadius: 24, padding: "3.5rem", position: "relative", overflow: "hidden", boxShadow: "0 10px 30px -10px rgba(0,86,210,0.3)" }}>
             <div style={{ position: "absolute", top: -80, right: -80, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%)", pointerEvents: "none" }} />
@@ -271,10 +321,10 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ═══ FEATURED COURSES ═══ */}
-      <section className="section-pad">
+      < section className="section-pad" >
         <div className="container-main">
           <div style={{ display: "flex", alignItems: "flex-end", justifyContent: "space-between", gap: "1.5rem", marginBottom: "3rem", flexWrap: "wrap" }}>
             <div>
@@ -313,10 +363,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ═══ TINKERING STORE PREVIEW ═══ */}
-      <section className="section-pad" style={{ paddingTop: 0 }}>
+      < section className="section-pad" style={{ paddingTop: 0 }}>
         <div className="container-main">
           <div style={{ textAlign: "center", marginBottom: "3rem" }}>
             <p className="section-eyebrow" style={{ marginBottom: "0.75rem" }}>Tinkering Store</p>
@@ -347,10 +397,10 @@ export default function Home() {
             <Link href="/store"><button className="btn-outline">Shop All Kits <ArrowRight size={16} /></button></Link>
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ═══ TESTIMONIALS ═══ */}
-      <section className="section-pad">
+      < section className="section-pad" >
         <div className="container-main">
           <div style={{ textAlign: "center", marginBottom: "3rem" }}>
             <p className="section-eyebrow" style={{ marginBottom: "0.75rem" }}>Community</p>
@@ -376,10 +426,10 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section >
 
       {/* ═══ FINAL CTA ═══ */}
-      <section className="section-pad" style={{ paddingTop: 0 }}>
+      < section className="section-pad" style={{ paddingTop: 0 }}>
         <div className="container-main">
           <div style={{ borderRadius: 24, overflow: "hidden", position: "relative", background: C.bgLight, border: "1px solid rgba(0,0,0,0.08)", boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)" }}>
             <div style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse 60% 80% at 20% 50%, rgba(0,86,210,0.04) 0%, transparent 55%), radial-gradient(ellipse 60% 80% at 80% 50%, rgba(0,86,210,0.03) 0%, transparent 55%)", pointerEvents: "none" }} />
@@ -407,7 +457,26 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section >
+      <style jsx global>{`
+        @keyframes shake {
+          0% { transform: translate(1px, 1px) rotate(0deg); }
+          10% { transform: translate(-1px, -2px) rotate(-1deg); }
+          20% { transform: translate(-3px, 0px) rotate(1deg); }
+          30% { transform: translate(3px, 2px) rotate(0deg); }
+          40% { transform: translate(1px, -1px) rotate(1deg); }
+          50% { transform: translate(-1px, 2px) rotate(-1deg); }
+          60% { transform: translate(-3px, 1px) rotate(0deg); }
+          70% { transform: translate(3px, 1px) rotate(-1deg); }
+          80% { transform: translate(-1px, -1px) rotate(1deg); }
+          90% { transform: translate(1px, 2px) rotate(0deg); }
+          100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+        .hero-slider-container:hover .shake-on-touch,
+        .hero-slider-container:active .shake-on-touch {
+          animation: shake 0.5s infinite;
+        }
+      `}</style>
     </>
   );
 }
