@@ -32,26 +32,29 @@ function ApplyForm() {
     e.preventDefault();
     setSubmitting(true);
     
-    // Typically you'd call your backend to create a genuine Razorpay Order ID here
-    // For now we'll simulate the flow and invoke the Razorpay SDK
+    console.log("Starting payment process for:", formData);
     
     // Use a default amount or fetch from course data if available
     const amount = 999; 
     
     setTimeout(async () => {
       try {
+        console.log("Invoking processPayment with amount:", amount);
         await processPayment({
           amount,
-          courseName: formData.course,
+          courseName: formData.course || "General Enrollment",
           userName: formData.name,
-          userEmail: formData.email
+          userEmail: formData.email,
+          userPhone: formData.phone
         });
+
       } catch (err) {
-        console.error("Payment failed", err);
+        console.error("Payment injection failed", err);
       } finally {
         setSubmitting(false);
       }
-    }, 1000);
+    }, 500);
+
   };
 
   return (
