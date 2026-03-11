@@ -28,7 +28,7 @@ export function useRazorpay() {
     }
 
     const options = {
-      key: "rzp_test_SPQax3fcTlaLOa", // Using provided test key
+      key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "", // Use live key from environment variable
       amount: amount * 100, // Amount in paise
       currency: "INR",
       name: "AyaTech",
