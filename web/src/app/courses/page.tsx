@@ -168,7 +168,7 @@ export default function CoursesPage() {
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "1rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
                                             <span className="font-display" style={{ fontSize: "1.6rem", color: C.navyDark }}>{c.price}</span>
                                             <button 
-                                                onClick={() => window.location.href = "/apply"}
+                                                onClick={() => window.location.href = "https://erp.ayatech.org/apply"}
                                                 style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.95rem", color: C.primaryGold, fontWeight: 600, background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}
                                             >
                                                 Enroll Now <ChevronRight size={15} />

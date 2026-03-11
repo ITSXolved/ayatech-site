@@ -75,7 +75,7 @@ export default function NavBar() {
                                 </Link>
                             ))}
                         </div>
-                        <Link href="/apply">
+                        <Link href="https://erp.ayatech.org/apply">
                             <button className="btn-gold" style={{ padding: "0.6rem 1.4rem", fontSize: "0.82rem", letterSpacing: "0.06em", background: "linear-gradient(135deg, #c2a055 0%, #a68940 100%)", color: "#FFFFFF", borderRadius: "8px", border: "none" }}>
                                 Apply Now <ChevronRight size={14} />
                             </button>
@@ -108,7 +108,7 @@ export default function NavBar() {
                             ))}
                         </div>
                         <div style={{ marginTop: "1.5rem", paddingTop: "1.5rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-                            <Link href="/apply" onClick={() => setMobileOpen(false)}>
+                            <Link href="https://erp.ayatech.org/apply" onClick={() => setMobileOpen(false)}>
                                 <button className="btn-gold" style={{ width: "100%", justifyContent: "center", backgroundColor: "#C5A059", color: "#FFFFFF" }}>Apply Now</button>
                             </Link>
                         </div>
