@@ -5,7 +5,7 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.text();
     const signature = req.headers.get("x-razorpay-signature");
-    const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET || "ayatech_secret_123";
+    const webhookSecret = process.env.RAZORPAY_WEBHOOK_SECRET || "ayatech_secret_5001";
 
     if (!signature) {
       return NextResponse.json({ error: "No signature" }, { status: 400 });

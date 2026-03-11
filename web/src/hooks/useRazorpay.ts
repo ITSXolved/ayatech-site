@@ -33,7 +33,7 @@ export function useRazorpay() {
       currency: "INR",
       name: "AyaTech",
       description: `Enrollment for ${courseName}`,
-      image: "/favicon.ico", // Or AyaTech logo
+      image: "https://ayatech.org/logo_transparent.png", // Full URL works best for Razorpay checkout
       order_id: orderId, // Optional server-side order ID
       handler: function (response: any) {
         alert(`Payment successful! ID: ${response.razorpay_payment_id}`);

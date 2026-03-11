@@ -13,10 +13,10 @@ import {
 const links = {
     programs: [
         { label: "Online Courses", href: "/courses" },
-        { label: "IGCSE School", href: "/igcse-school" },
-        { label: "Tinkering Centres", href: "/tinkering" },
+        // { label: "IGCSE School", href: "/igcse-school" },
+        // { label: "Tinkering Centres", href: "/tinkering" },
         { label: "Entrepreneurship Centre", href: "/gvedc" },
-        { label: "Hackathons", href: "/hackathons" },
+        // { label: "Hackathons", href: "/hackathons" },
     ],
     company: [
         { label: "About AyaTech", href: "/about" },
@@ -25,7 +25,7 @@ const links = {
         { label: "Press Kit", href: "/press" },
     ],
     resources: [
-        { label: "Tinkering Store", href: "/store" },
+        // { label: "Tinkering Store", href: "/store" },
         { label: "Student Dashboard", href: "/dashboard" },
         { label: "Blog", href: "/blog" },
         { label: "FAQs", href: "/faq" },
@@ -42,24 +42,17 @@ export default function Footer() {
                     <div className="lg:col-span-2">
                         <Link href="/" className="flex items-center gap-3 mb-4">
                             <Image
-<<<<<<< HEAD
-                                src="/logo_v3.png"
+                                src="/logo_transparent.png"
                                 alt="AyaTech Logo"
                                 width={120}
                                 height={40}
                                 className="h-10 w-auto"
-=======
-                                src="/logo.png"
-                                alt="AyaTech Logo"
-                                width={160}
-                                height={54}
-                                className="h-12 w-auto"
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
+                                style={{ mixBlendMode: 'multiply' }}
                             />
                         </Link>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
-                            Empowering the next generation of innovators through live courses,
-                            Cambridge IGCSE pathways, and hands-on maker spaces.
+                            Empowering the next generation of innovators through live courses
+                            and world-class technical mentorship.
                         </p>
                         <div className="flex gap-3">
                             {[
@@ -121,11 +114,7 @@ export default function Footer() {
                             key={i}
                             className="flex items-center gap-2 text-gray-400 text-sm"
                         >
-<<<<<<< HEAD
                             <Icon size={14} className="shrink-0 text-gold-400 opacity-80" />
-=======
-                            <Icon size={14} style={{ color: "#1F2432" }} className="shrink-0" />
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                             <span>{text}</span>
                         </div>
                     ))}

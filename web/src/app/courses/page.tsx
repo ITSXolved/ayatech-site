@@ -1,9 +1,9 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronRight, Clock, Filter } from "lucide-react";
-<<<<<<< HEAD
+import { ChevronRight, Clock, Filter, Loader2 } from "lucide-react";
 import { useRazorpay } from "@/hooks/useRazorpay";
+import { fetchLMSCourses, CanvasCourse } from "@/lib/lms";
 
 const C = {
     primaryGold: "#c2a055",
@@ -22,26 +22,6 @@ const C = {
     navy400: "#1a202c",
     navy600: "#1a202c",
     navy700: "#f9fafb",
-=======
-
-const C = {
-    primaryBlue: "#0056D2",
-    primaryBlueHover: "#0046AA",
-    navyDark: "#1F2432",
-    navyLight: "#2A3142",
-    bgLight: "#F5F7F8",
-    white: "#FFFFFF",
-    textMain: "#1F2432",
-    textMuted: "#6A7081",
-    teal300: "#0056D2",
-    teal400: "#0056D2",
-    gold300: "#0046AA",
-    gold400: "#0056D2",
-    navy200: "#6A7081",
-    navy400: "#0056D2",
-    navy600: "#0046AA",
-    navy700: "#F5F7F8",
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
     navy800: "#FFFFFF",
     navy900: "#FFFFFF",
     navy950: "#FFFFFF",
@@ -66,30 +46,53 @@ const allCourses = [
 ];
 
 const levelColors: Record<string, { text: string; bg: string; border: string }> = {
-<<<<<<< HEAD
     Beginner: { text: C.primaryGold, bg: "rgba(194,160,85,0.1)", border: "rgba(194,160,85,0.25)" },
     Intermediate: { text: C.primaryGold, bg: "rgba(194,160,85,0.08)", border: "rgba(194,160,85,0.2)" },
     Advanced: { text: "#f87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.2)" },
     Educators: { text: C.textMuted, bg: "rgba(75,85,99,0.08)", border: "rgba(75,85,99,0.15)" },
     "All Levels": { text: C.textMuted, bg: "rgba(75,85,99,0.08)", border: "rgba(75,85,99,0.15)" },
-=======
-    Beginner: { text: C.primaryBlue, bg: "rgba(0,86,210,0.1)", border: "rgba(0,86,210,0.25)" },
-    Intermediate: { text: C.primaryBlue, bg: "rgba(0,86,210,0.08)", border: "rgba(0,86,210,0.2)" },
-    Advanced: { text: "#f87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.2)" },
-    Educators: { text: C.textMuted, bg: "rgba(106,112,129,0.08)", border: "rgba(106,112,129,0.15)" },
-    "All Levels": { text: C.textMuted, bg: "rgba(106,112,129,0.08)", border: "rgba(106,112,129,0.15)" },
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
 };
 
 const cats = ["All", "AI", "Coding", "Design", "Hardware"];
 
 export default function CoursesPage() {
     const [active, setActive] = useState("All");
-<<<<<<< HEAD
+    const [lmsCourses, setLmsCourses] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
     const { processPayment } = useRazorpay();
-=======
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
-    const filtered = active === "All" ? allCourses : allCourses.filter(c => c.cat === active);
+
+    useEffect(() => {
+        async function loadCourses() {
+            try {
+                const data = await fetchLMSCourses();
+                if (data && data.length > 0) {
+                    const mapped = data.map((c: CanvasCourse, i: number) => ({
+                        id: String(c.id).slice(-2),
+                        title: c.name,
+                        duration: "Self-Paced / Mentor Led", // Default since Canvas might not have this in a standard field
+                        price: "Contact for Price", // Default
+                        level: "All Levels",
+                        format: "LMS Integrated",
+                        live: c.workflow_state === "available" || c.workflow_state === "published",
+                        cat: "Technology", // Default
+                        originalId: c.id
+                    }));
+                    setLmsCourses(mapped);
+                } else {
+                    setLmsCourses(allCourses); // Fallback to static
+                }
+            } catch (err) {
+                console.error(err);
+                setLmsCourses(allCourses);
+            } finally {
+                setLoading(false);
+            }
+        }
+        loadCourses();
+    }, []);
+
+    const displayCourses = lmsCourses.length > 0 ? lmsCourses : allCourses;
+    const filtered = active === "All" ? displayCourses : displayCourses.filter(c => c.cat === active);
 
     return (
         <>
@@ -115,11 +118,7 @@ export default function CoursesPage() {
                 <div className="container-main" style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
                     <Filter size={14} color={C.textMuted} style={{ marginRight: "0.25rem" }} />
                     {cats.map(cat => (
-<<<<<<< HEAD
                         <button key={cat} onClick={() => setActive(cat)} style={{ padding: "0.35rem 1rem", borderRadius: 100, fontSize: "0.85rem", fontWeight: 500, cursor: "pointer", border: "1px solid", transition: "all 0.25s", background: active === cat ? C.primaryGold : "transparent", color: active === cat ? C.white : C.textMuted, borderColor: active === cat ? C.primaryGold : "rgba(0,0,0,0.1)" }}>
-=======
-                        <button key={cat} onClick={() => setActive(cat)} style={{ padding: "0.35rem 1rem", borderRadius: 100, fontSize: "0.85rem", fontWeight: 500, cursor: "pointer", border: "1px solid", transition: "all 0.25s", background: active === cat ? C.primaryBlue : "transparent", color: active === cat ? C.white : C.textMuted, borderColor: active === cat ? C.primaryBlue : "rgba(0,0,0,0.1)" }}>
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                             {cat}
                         </button>
                     ))}
@@ -128,82 +127,70 @@ export default function CoursesPage() {
             </div>
 
             {/* Courses grid */}
-            <section style={{ padding: "3rem 0 5rem" }}>
+            <section style={{ padding: "3rem 0 5rem", minHeight: "400px" }}>
                 <div className="container-main">
-                    <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1.25rem" }}>
-                        {filtered.map((c, i) => {
-                            const lc = levelColors[c.level] ?? levelColors["All Levels"];
-                            return (
-                                <div key={c.id} className="course-card" style={{ padding: "1.75rem", animation: `fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s both` }}>
-                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
-<<<<<<< HEAD
-                                        <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,86,210,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "0.9rem", color: C.primaryGold }}>
-=======
-                                        <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,86,210,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "0.9rem", color: C.primaryBlue }}>
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
-                                            {c.id}
+                    {loading ? (
+                        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", padding: "5rem 0", color: C.primaryGold }}>
+                            <Loader2 size={40} className="animate-spin" style={{ marginBottom: "1rem" }} />
+                            <p className="font-display" style={{ fontSize: "1.2rem" }}>Loading live courses from LMS...</p>
+                        </div>
+                    ) : (
+                        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(300px, 1fr))", gap: "1.25rem" }}>
+                            {filtered.map((c, i) => {
+                                const lc = levelColors[c.level] ?? levelColors["All Levels"];
+                                return (
+                                    <div key={c.id + i} className="course-card" style={{ padding: "1.75rem", animation: `fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s both` }}>
+                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
+                                            <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,86,210,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "0.9rem", color: C.primaryGold }}>
+                                                {c.id}
+                                            </div>
+                                            {c.live ? (
+                                                <span className="badge-live">Live</span>
+                                            ) : (
+                                                <span className="font-mono-brand" style={{ fontSize: "0.68rem", color: C.navyDark, border: `1px solid rgba(0,0,0,0.1)`, padding: "0.15rem 0.5rem", borderRadius: 100 }}>Hybrid</span>
+                                            )}
                                         </div>
-                                        {c.live ? (
-                                            <span className="badge-live">Live</span>
-                                        ) : (
-                                            <span className="font-mono-brand" style={{ fontSize: "0.68rem", color: C.navyDark, border: `1px solid rgba(0,0,0,0.1)`, padding: "0.15rem 0.5rem", borderRadius: 100 }}>Hybrid</span>
-                                        )}
-                                    </div>
 
-                                    <span style={{ fontSize: "0.85rem", padding: "0.2rem 0.65rem", borderRadius: 100, background: lc.bg, border: `1px solid ${lc.border}`, color: lc.text, display: "inline-block", marginBottom: "0.75rem", fontFamily: "'JetBrains Mono',monospace" }}>
-                                        {c.level}
-                                    </span>
-
-                                    <h3 className="font-display" style={{ color: C.navyDark, fontSize: "1.1rem", lineHeight: 1.4, marginBottom: "0.75rem" }}>{c.title}</h3>
-
-                                    <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.25rem" }}>
-                                        <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontSize: "0.85rem", color: C.textMuted }}>
-                                            <Clock size={11} /> {c.duration}
+                                        <span style={{ fontSize: "0.85rem", padding: "0.2rem 0.65rem", borderRadius: 100, background: lc.bg, border: `1px solid ${lc.border}`, color: lc.text, display: "inline-block", marginBottom: "0.75rem", fontFamily: "'JetBrains Mono',monospace" }}>
+                                            {c.level}
                                         </span>
-                                        <span style={{ width: 1, height: 14, background: "rgba(0,0,0,0.1)", alignSelf: "center" }} />
-                                        <span style={{ fontSize: "0.85rem", color: C.textMuted }}>{c.format}</span>
-                                    </div>
 
-                                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "1rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
-                                        <span className="font-display" style={{ fontSize: "1.6rem", color: C.navyDark }}>{c.price}</span>
-<<<<<<< HEAD
-                                        <button 
-                                            onClick={() => processPayment({ 
-                                                amount: parseInt(c.price.replace(/[^\d]/g, '')), 
-                                                courseName: c.title 
-                                            })}
-                                            style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.95rem", color: C.primaryGold, fontWeight: 600, background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}
-                                        >
-=======
-                                        <button style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.95rem", color: C.primaryBlue, fontWeight: 600, background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}>
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
-                                            Enroll Now <ChevronRight size={15} />
-                                        </button>
+                                        <h3 className="font-display" style={{ color: C.navyDark, fontSize: "1.1rem", lineHeight: 1.4, marginBottom: "0.75rem" }}>{c.title}</h3>
+
+                                        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem", marginBottom: "1.25rem" }}>
+                                            <span style={{ display: "flex", alignItems: "center", gap: "0.25rem", fontSize: "0.85rem", color: C.textMuted }}>
+                                                <Clock size={11} /> {c.duration}
+                                            </span>
+                                            <span style={{ width: 1, height: 14, background: "rgba(0,0,0,0.1)", alignSelf: "center" }} />
+                                            <span style={{ fontSize: "0.85rem", color: C.textMuted }}>{c.format}</span>
+                                        </div>
+
+                                        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "1rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
+                                            <span className="font-display" style={{ fontSize: "1.6rem", color: C.navyDark }}>{c.price}</span>
+                                            <button 
+                                                onClick={() => window.location.href = "/apply"}
+                                                style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.95rem", color: C.primaryGold, fontWeight: 600, background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}
+                                            >
+                                                Enroll Now <ChevronRight size={15} />
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                            );
-                        })}
-                    </div>
+                                );
+                            })}
+                        </div>
+                    )}
                 </div>
             </section>
 
             {/* Bottom CTA */}
             <section style={{ paddingBottom: "5rem" }}>
                 <div className="container-main" style={{ textAlign: "center" }}>
-<<<<<<< HEAD
                     <div style={{ display: "inline-block", background: `linear-gradient(135deg, ${C.primaryGold} 0%, ${C.primaryGoldHover} 100%)`, border: "1px solid rgba(0,0,0,0.1)", borderRadius: 24, padding: "3rem 4rem", maxWidth: "42rem", width: "100%", boxShadow: "0 10px 30px -10px rgba(0,86,210,0.3)" }}>
-=======
-                    <div style={{ display: "inline-block", background: `linear-gradient(135deg, ${C.primaryBlue} 0%, ${C.primaryBlueHover} 100%)`, border: "1px solid rgba(0,0,0,0.1)", borderRadius: 24, padding: "3rem 4rem", maxWidth: "42rem", width: "100%", boxShadow: "0 10px 30px -10px rgba(0,86,210,0.3)" }}>
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                         <h3 className="font-display" style={{ fontSize: "1.8rem", color: "#fff", marginBottom: "0.75rem" }}>
                             Not sure which course to pick?
                         </h3>
                         <p style={{ color: "rgba(255,255,255,0.85)", marginBottom: "1.5rem", fontSize: "1.05rem" }}>Talk to our mentors and get a personalised recommendation.</p>
-<<<<<<< HEAD
                         <button className="btn-gold" style={{ backgroundColor: "#FFFFFF", color: C.primaryGold }}>Book Free Consultation <ChevronRight size={16} /></button>
-=======
-                        <button className="btn-gold" style={{ backgroundColor: "#FFFFFF", color: C.primaryBlue }}>Book Free Consultation <ChevronRight size={16} /></button>
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                     </div>
                 </div>
             </section>

@@ -1,12 +1,7 @@
-<<<<<<< HEAD
 "use client";
 import Link from "next/link";
 import { ArrowRight, ShoppingBag, Package, ChevronRight } from "lucide-react";
 import { useRazorpay } from "@/hooks/useRazorpay";
-=======
-import Link from "next/link";
-import { ArrowRight, ShoppingBag, Package, ChevronRight } from "lucide-react";
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
 
 const categories = [
     { name: "Tinkering Kits", icon: "🎒", desc: "Grade 5–8 IGCSE kits with full project guides", count: "4 kits" },
@@ -45,10 +40,7 @@ const featured = [
 ];
 
 export default function StorePage() {
-<<<<<<< HEAD
     const { processPayment } = useRazorpay();
-=======
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
     return (
         <>
             {/* Hero */}
@@ -96,7 +88,6 @@ export default function StorePage() {
                                         <span className="font-display text-2xl font-semibold text-gold-300">{item.price}</span>
                                         <span className="text-navy-200 text-sm">{item.period}</span>
                                     </div>
-<<<<<<< HEAD
                                     <button 
                                         onClick={() => processPayment({ 
                                             amount: parseInt(item.price.replace(/[^\d]/g, '')), 
@@ -105,10 +96,6 @@ export default function StorePage() {
                                         className="btn-gold py-2 px-5 text-sm"
                                     >
                                         Buy Now <ChevronRight size={14} />
-=======
-                                    <button className="btn-gold py-2 px-5 text-sm">
-                                        Add to Cart <ChevronRight size={14} />
->>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                                     </button>
                                 </div>
                             </div>
