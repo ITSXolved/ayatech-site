@@ -67,12 +67,12 @@ const phases = [
 
 /* ─── Courses ─── */
 const courses = [
-  { id: "01", title: "Intro to Python Programming", duration: "10 Days", price: "₹999", level: "Beginner", live: true },
-  { id: "02", title: "Vibe Coding: Build Apps with AI", duration: "15 Days", price: "₹1,499", level: "Beginner", live: true },
-  { id: "03", title: "Web Development Bootcamp", duration: "30 Days", price: "₹2,499", level: "Beginner", live: true },
-  { id: "04", title: "AI Tools Masterclass", duration: "5 Days", price: "₹999", level: "All Levels", live: true },
-  { id: "05", title: "UI/UX Design Fundamentals", duration: "15 Days", price: "₹1,999", level: "Intermediate", live: true },
-  { id: "06", title: "Mobile App Dev (Flutter)", duration: "30 Days", price: "₹2,499", level: "Intermediate", live: true },
+  { id: "01", title: "Intro to Python Programming", duration: "10 Days", price: "₹999", amount: 999, level: "Beginner", live: true },
+  { id: "02", title: "Vibe Coding: Build Apps with AI", duration: "15 Days", price: "₹1,499", amount: 1499, level: "Beginner", live: true },
+  { id: "03", title: "Web Development Bootcamp", duration: "30 Days", price: "₹2,499", amount: 2499, level: "Beginner", live: true },
+  { id: "04", title: "AI Tools Masterclass", duration: "5 Days", price: "₹999", amount: 999, level: "All Levels", live: true },
+  { id: "05", title: "UI/UX Design Fundamentals", duration: "15 Days", price: "₹1,999", amount: 1999, level: "Intermediate", live: true },
+  { id: "06", title: "Mobile App Dev (Flutter)", duration: "30 Days", price: "₹2,499", amount: 2499, level: "Intermediate", live: true },
 ];
 
 /* ─── Testimonials ─── */
@@ -179,7 +179,7 @@ export default function Home() {
 
               {/* CTAs */}
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem", marginBottom: "3rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.55s both" }}>
-                <Link href="https://erp.ayatech.org/apply">
+                <Link href="/apply">
                   <button className="btn-gold" style={{ padding: "1rem 2rem", fontSize: "1rem", backgroundColor: C.accentGold, color: "#fff", display: "flex", alignItems: "center", gap: "0.5rem", borderRadius: "8px" }}>
                     Start Application <ArrowRight size={17} />
                   </button>
@@ -369,7 +369,7 @@ export default function Home() {
                   <p style={{ fontSize: "0.95rem", color: C.textMuted, marginBottom: "1.25rem" }}>⏱ {c.duration}</p>
                   <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "1rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
                     <span className="font-display" style={{ fontSize: "1.6rem", color: C.navyDark }}>{c.price}</span>
-                    <Link href="https://erp.ayatech.org/apply">
+                    <Link href={`/apply?course=${encodeURIComponent(c.title)}&amount=${c.amount || 999}`}>
                       <button style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "1.05rem", color: C.primaryBlue, fontWeight: 600, background: "none", border: "none", cursor: "pointer" }}>
                         Enroll <ChevronRight size={15} />
                       </button>

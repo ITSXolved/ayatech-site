@@ -28,21 +28,21 @@ const C = {
 };
 
 const allCourses = [
-    { id: "01", title: "Intro to Python Programming", duration: "10 Days", price: "₹999", level: "Beginner", format: "Live + Recorded", live: true, cat: "Coding" },
-    { id: "02", title: "Vibe Coding: Build Apps with AI", duration: "15 Days", price: "₹1,499", level: "Beginner", format: "Live Guided", live: true, cat: "AI" },
-    { id: "03", title: "Web Development Bootcamp", duration: "30 Days", price: "₹2,499", level: "Beginner", format: "Live + Projects", live: true, cat: "Coding" },
-    { id: "04", title: "AI Tools Masterclass for Students", duration: "5 Days", price: "₹999", level: "All Levels", format: "Live Workshop", live: true, cat: "AI" },
-    { id: "05", title: "AI-Powered Video Creation & Editing", duration: "10 Days", price: "₹1,499", level: "Intermediate", format: "Live + Recorded", live: true, cat: "AI" },
-    { id: "06", title: "Teaching AI: Educators' Toolkit", duration: "7 Days", price: "₹1,299", level: "Educators", format: "Live Guided", live: true, cat: "AI" },
-    { id: "07", title: "Graphic Design with Canva & AI", duration: "7 Days", price: "₹999", level: "Beginner", format: "Live + Recorded", live: true, cat: "Design" },
-    { id: "08", title: "UI/UX Design Fundamentals", duration: "15 Days", price: "₹1,999", level: "Intermediate", format: "Live + Projects", live: true, cat: "Design" },
-    { id: "09", title: "Mobile App Development (Flutter)", duration: "30 Days", price: "₹2,499", level: "Intermediate", format: "Live Guided", live: true, cat: "Coding" },
-    { id: "10", title: "Arduino & IoT for Beginners", duration: "15 Days", price: "₹1,999", level: "Beginner", format: "Hybrid", live: false, cat: "Hardware" },
-    { id: "11", title: "Data Science with Python", duration: "20 Days", price: "₹2,499", level: "Intermediate", format: "Live + Recorded", live: true, cat: "AI" },
-    { id: "12", title: "Prompt Engineering & ChatGPT", duration: "5 Days", price: "₹999", level: "All Levels", format: "Live Workshop", live: true, cat: "AI" },
-    { id: "13", title: "Robotics Programming Fundamentals", duration: "20 Days", price: "₹2,499", level: "Advanced", format: "Hybrid", live: false, cat: "Hardware" },
-    { id: "14", title: "Cybersecurity Essentials", duration: "10 Days", price: "₹1,499", level: "Intermediate", format: "Live + Labs", live: true, cat: "Coding" },
-    { id: "15", title: "Blockchain & Web3 Basics", duration: "10 Days", price: "₹1,999", level: "Intermediate", format: "Live Guided", live: true, cat: "Coding" },
+    { id: "01", title: "Intro to Python Programming", duration: "10 Days", price: "₹999", amount: 999, level: "Beginner", format: "Live + Recorded", live: true, cat: "Coding" },
+    { id: "02", title: "Vibe Coding: Build Apps with AI", duration: "15 Days", price: "₹1,499", amount: 1499, level: "Beginner", format: "Live Guided", live: true, cat: "AI" },
+    { id: "03", title: "Web Development Bootcamp", duration: "30 Days", price: "₹2,499", amount: 2499, level: "Beginner", format: "Live + Projects", live: true, cat: "Coding" },
+    { id: "04", title: "AI Tools Masterclass for Students", duration: "5 Days", price: "₹999", amount: 999, level: "All Levels", format: "Live Workshop", live: true, cat: "AI" },
+    { id: "05", title: "AI-Powered Video Creation & Editing", duration: "10 Days", price: "₹1,499", amount: 1499, level: "Intermediate", format: "Live + Recorded", live: true, cat: "AI" },
+    { id: "06", title: "Teaching AI: Educators' Toolkit", duration: "7 Days", price: "₹1,299", amount: 1299, level: "Educators", format: "Live Guided", live: true, cat: "AI" },
+    { id: "07", title: "Graphic Design with Canva & AI", duration: "7 Days", price: "₹999", amount: 999, level: "Beginner", format: "Live + Recorded", live: true, cat: "Design" },
+    { id: "08", title: "UI/UX Design Fundamentals", duration: "15 Days", price: "₹1,999", amount: 1999, level: "Intermediate", format: "Live + Projects", live: true, cat: "Design" },
+    { id: "09", title: "Mobile App Development (Flutter)", duration: "30 Days", price: "₹2,499", amount: 2499, level: "Intermediate", format: "Live Guided", live: true, cat: "Coding" },
+    { id: "10", title: "Arduino & IoT for Beginners", duration: "15 Days", price: "₹1,999", amount: 1999, level: "Beginner", format: "Hybrid", live: false, cat: "Hardware" },
+    { id: "11", title: "Data Science with Python", duration: "20 Days", price: "₹2,499", amount: 2499, level: "Intermediate", format: "Live + Recorded", live: true, cat: "AI" },
+    { id: "12", title: "Prompt Engineering & ChatGPT", duration: "5 Days", price: "₹999", amount: 999, level: "All Levels", format: "Live Workshop", live: true, cat: "AI" },
+    { id: "13", title: "Robotics Programming Fundamentals", duration: "20 Days", price: "₹2,499", amount: 2499, level: "Advanced", format: "Hybrid", live: false, cat: "Hardware" },
+    { id: "14", title: "Cybersecurity Essentials", duration: "10 Days", price: "₹1,499", amount: 1499, level: "Intermediate", format: "Live + Labs", live: true, cat: "Coding" },
+    { id: "15", title: "Blockchain & Web3 Basics", duration: "10 Days", price: "₹1,999", amount: 1999, level: "Intermediate", format: "Live Guided", live: true, cat: "Coding" },
 ];
 
 const levelColors: Record<string, { text: string; bg: string; border: string }> = {
@@ -167,12 +167,13 @@ export default function CoursesPage() {
 
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "1rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
                                             <span className="font-display" style={{ fontSize: "1.6rem", color: C.navyDark }}>{c.price}</span>
-                                            <button 
-                                                onClick={() => window.location.href = "https://erp.ayatech.org/apply"}
-                                                style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.95rem", color: C.primaryGold, fontWeight: 600, background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}
-                                            >
-                                                Enroll Now <ChevronRight size={15} />
-                                            </button>
+                                            <Link href={`/apply?course=${encodeURIComponent(c.title)}&amount=${c.amount || 999}`}>
+                                                <button
+                                                    style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.95rem", color: C.primaryGold, fontWeight: 600, background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}
+                                                >
+                                                    Enroll Now <ChevronRight size={15} />
+                                                </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 );

@@ -1,6 +1,7 @@
 "use client";
 
-import { useCallback } from 'react';
+import { useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 declare global {
   interface Window {
@@ -9,57 +10,133 @@ declare global {
 }
 
 export function useRazorpay() {
-  const processPayment = useCallback(async ({ 
-    amount, 
-    orderId, 
-    courseName,
-    userName = "Student",
-    userEmail = "student@ayatech.org",
-    userPhone = ""
-  }: { 
-    amount: number; 
-    orderId?: string; 
-    courseName: string;
-    userName?: string;
-    userEmail?: string;
-    userPhone?: string;
-  }) => {
+  const router = useRouter();
 
-    if (!window.Razorpay) {
-      alert("Razorpay SDK not loaded. Please try again.");
-      return;
-    }
+  const processPayment = useCallback(
+    async ({
+      amount,
+      courseName,
+      userName = "Student",
+      userEmail = "",
+      userPhone = "",
+    }: {
+      amount: number;
+      courseName: string;
+      userName?: string;
+      userEmail?: string;
+      userPhone?: string;
+    }) => {
+      if (!window.Razorpay) {
+        alert("Payment gateway is loading. Please wait a moment and try again.");
+        return;
+      }
 
-    const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "";
-    console.log("Initializing Razorpay with Key ID length:", keyId.length);
-    if (keyId.startsWith("rzp_test")) console.warn("Using Razorpay TEST key on live site!");
-    
-    const options = {
-      key: keyId, // Use live key from environment variable
-      amount: amount * 100, // Amount in paise
-      currency: "INR",
-      name: "AyaTech",
-      description: `Enrollment for ${courseName}`,
-      image: "https://ayatech.org/logo_transparent.png", // Full URL works best for Razorpay checkout
-      order_id: orderId, // Optional server-side order ID
-      handler: function (response: any) {
-        alert(`Payment successful! ID: ${response.razorpay_payment_id}`);
-        // Here you would typically call your backend to verify the payment
-      },
-      prefill: {
-        name: userName,
-        email: userEmail,
-        contact: userPhone,
-      },
+      // Step 1: Create a Razorpay order on the server
+      let orderId = "";
+      let applicationId = "";
 
-      theme: {
-        color: "#c2a055", // AILT Gold
-      },
-    };
+      try {
+        const res = await fetch("/api/create-order", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ amount, courseName, userName, userEmail, userPhone }),
+        });
 
-    const rzp = new window.Razorpay(options);
-    rzp.open();
-  }, []);
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.error || "Failed to create order");
+        }
+
+        const data = await res.json();
+        orderId = data.orderId;
+        applicationId = data.applicationId || "";
+        console.log("Razorpay order created:", orderId);
+      } catch (err: any) {
+        console.error("Order creation failed:", err);
+        alert("Could not initiate payment: " + err.message);
+        return;
+      }
+
+      // Step 2: Open Razorpay checkout
+      const keyId = process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || "";
+
+      const options = {
+        key: keyId,
+        amount: amount * 100,
+        currency: "INR",
+        name: "AyaTech",
+        description: `Enrollment: ${courseName}`,
+        image: "/logo_transparent.png",
+        order_id: orderId,
+
+        // Step 3: Server-side signature verification on success
+        handler: async function (response: {
+          razorpay_payment_id: string;
+          razorpay_order_id: string;
+          razorpay_signature: string;
+        }) {
+          try {
+            const verifyRes = await fetch("/api/verify-payment", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_signature: response.razorpay_signature,
+                applicationId,
+                amount,
+              }),
+            });
+
+            const verifyData = await verifyRes.json();
+
+            if (verifyRes.ok && verifyData.success) {
+              // Step 4: Redirect to success page
+              router.push(
+                `/payment-success?paymentId=${response.razorpay_payment_id}&course=${encodeURIComponent(courseName)}&name=${encodeURIComponent(userName)}`
+              );
+            } else {
+              alert("Payment verification failed. Please contact support with your payment ID: " + response.razorpay_payment_id);
+            }
+          } catch (err) {
+            console.error("Verification error:", err);
+            // Payment went through but verification call failed — still redirect with warning
+            router.push(
+              `/payment-success?paymentId=${response.razorpay_payment_id}&course=${encodeURIComponent(courseName)}&name=${encodeURIComponent(userName)}&warn=1`
+            );
+          }
+        },
+
+        prefill: {
+          name: userName,
+          email: userEmail,
+          contact: userPhone,
+        },
+
+        theme: {
+          color: "#c2a055",
+        },
+
+        modal: {
+          ondismiss: function () {
+            console.log("Payment modal dismissed by user");
+          },
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+
+      rzp.on("payment.failed", function (response: any) {
+        console.error("Payment failed:", response.error);
+        alert(
+          `Payment failed: ${response.error.description || "Unknown error"}. Please try again.`
+        );
+      });
+
+      rzp.open();
+    },
+    [router]
+  );
 
   return { processPayment };
 }
