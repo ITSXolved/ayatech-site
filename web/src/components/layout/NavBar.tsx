@@ -62,7 +62,7 @@ export default function NavBar() {
                             alt="AyaTech Logo"
                             width={120}
                             height={40}
-                            style={{ height: "40px", width: "auto", mixBlendMode: "multiply" }}
+                            style={{ height: "42px", width: "auto" }}
                         />
                     </Link>
 

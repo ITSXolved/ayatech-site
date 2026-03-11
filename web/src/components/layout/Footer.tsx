@@ -40,15 +40,16 @@ export default function Footer() {
                 <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
                     {/* Brand */}
                     <div className="lg:col-span-2">
-                        <Link href="/" className="flex items-center gap-3 mb-4">
-                            <Image
-                                src="/logo_transparent.png"
-                                alt="AyaTech Logo"
-                                width={120}
-                                height={40}
-                                className="h-10 w-auto"
-                                style={{ mixBlendMode: 'multiply' }}
-                            />
+                        <Link href="/" className="flex items-center mb-4">
+                            <div style={{ background: '#FFFFFF', padding: '0.5rem 1rem', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
+                                <Image
+                                    src="/logo_transparent.png"
+                                    alt="AyaTech Logo"
+                                    width={110}
+                                    height={36}
+                                    className="h-8 w-auto"
+                                />
+                            </div>
                         </Link>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
                             Empowering the next generation of innovators through live courses

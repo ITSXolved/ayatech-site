@@ -23,4 +23,4 @@ def make_white_transparent(image_path, output_path, tolerance=240):
         sys.exit(1)
 
 if __name__ == "__main__":
-    make_white_transparent("c:/Users/ASUS/Downloads/ayatech-site-main/ayatech-site-main/web/public/logo_v3.png", "c:/Users/ASUS/Downloads/ayatech-site-main/ayatech-site-main/web/public/logo_transparent.png", 230)
+    make_white_transparent("c:/Users/ASUS/Downloads/ayatech-site-main/ayatech-site-main/web/public/logo_v3.png", "c:/Users/ASUS/Downloads/ayatech-site-main/ayatech-site-main/web/public/logo_transparent.png", 250)
