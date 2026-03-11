@@ -56,9 +56,9 @@ export default function NavBar() {
                         <Image
                             src="/logo.png"
                             alt="AyaTech Logo"
-                            width={120}
-                            height={40}
-                            style={{ height: "40px", width: "auto" }}
+                            width={160}
+                            height={54}
+                            style={{ height: "54px", width: "auto" }}
                         />
                     </Link>
 

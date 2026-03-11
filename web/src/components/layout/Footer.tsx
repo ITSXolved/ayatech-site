@@ -44,9 +44,9 @@ export default function Footer() {
                             <Image
                                 src="/logo.png"
                                 alt="AyaTech Logo"
-                                width={120}
-                                height={40}
-                                className="h-10 w-auto"
+                                width={160}
+                                height={54}
+                                className="h-12 w-auto"
                             />
                         </Link>
                         <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
