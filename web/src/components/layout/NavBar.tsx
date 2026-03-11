@@ -75,7 +75,7 @@ export default function NavBar() {
                                 </Link>
                             ))}
                         </div>
-                        <Link href="https://erp.ayatech.org/apply">
+                        <Link href="/apply">
                             <button className="btn-gold" style={{ padding: "0.6rem 1.4rem", fontSize: "0.82rem", letterSpacing: "0.06em", background: "linear-gradient(135deg, #c2a055 0%, #a68940 100%)", color: "#FFFFFF", borderRadius: "8px", border: "none" }}>
                                 Apply Now <ChevronRight size={14} />
                             </button>
