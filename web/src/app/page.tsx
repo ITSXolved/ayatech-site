@@ -6,6 +6,7 @@ import { ArrowRight, ChevronRight, Zap, BookOpen, Globe, TrendingUp, ShoppingBag
 
 /* ─── Design Tokens ─── */
 const C = {
+<<<<<<< HEAD
   primaryBlue: "#c2a055", // AILT Gold
   primaryBlueHover: "#a68940",
   navyDark: "#1a202c",
@@ -23,6 +24,25 @@ const C = {
   navy400: "#1a202c",
   navy600: "#1a202c",
   navy700: "#f9fafb",
+=======
+  primaryBlue: "#1F2432", // Dark blue from new branding
+  primaryBlueHover: "#171B26",
+  navyDark: "#1F2432",
+  navyLight: "#2A3142",
+  bgLight: "#F5F7F8",
+  white: "#FFFFFF",
+  textMain: "#1F2432",
+  textMuted: "#6A7081",
+  accentGold: "#C5A059", // Gold color from AILT screenshot
+  teal300: "#0056D2",
+  teal400: "#0056D2",
+  gold300: "#C5A059",
+  gold400: "#C5A059",
+  navy200: "#6A7081",
+  navy400: "#1F2432",
+  navy600: "#1F2432",
+  navy700: "#F5F7F8",
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
   navy800: "#FFFFFF",
   navy900: "#FFFFFF",
   navy950: "#FFFFFF",
@@ -115,17 +135,27 @@ export default function Home() {
   return (
     <>
       {/* ═══ HERO ═══ */}
+<<<<<<< HEAD
       <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse 80% 60% at 50% -10%, #FFFFFF 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 85% 70%, rgba(194, 160, 85,0.05) 0%, transparent 60%), ${C.bgLight}`, backgroundImage: "linear-gradient(rgba(194, 160, 85, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(194, 160, 85, 0.03) 1px, transparent 1px)", backgroundSize: "64px 64px, 64px 64px, auto, auto" }}>
 
         {/* Decorative rings (lighter) */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 700, borderRadius: "50%", border: `1px solid rgba(194, 160, 85, 0.06)`, pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 500, height: 500, borderRadius: "50%", border: `1px solid rgba(194, 160, 85, 0.08)`, pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(194,160,85,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
+=======
+      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse 80% 60% at 50% -10%, #FFFFFF 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 85% 70%, rgba(0,86,210,0.05) 0%, transparent 60%), ${C.bgLight}`, backgroundImage: "linear-gradient(rgba(0,86,210,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,86,210,0.03) 1px, transparent 1px)", backgroundSize: "64px 64px, 64px 64px, auto, auto" }}>
+
+        {/* Decorative rings (lighter) */}
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 700, borderRadius: "50%", border: `1px solid rgba(0,86,210,0.06)`, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 500, height: 500, borderRadius: "50%", border: `1px solid rgba(0,86,210,0.08)`, pointerEvents: "none" }} />
+        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(0,86,210,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
 
         <div className="container-main" style={{ paddingTop: "9rem", paddingBottom: "6rem", position: "relative", zIndex: 10 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left Column: Text */}
             <div style={{ textAlign: "left" }}>
+<<<<<<< HEAD
               {/* Admissions Badge */}
               <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", marginBottom: "1.5rem", animation: "fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both" }}>
                 <div style={{ background: "rgba(179, 142, 61, 0.1)", border: "1px solid rgba(179, 142, 61, 0.2)", padding: "0.25rem 0.75rem", borderRadius: "100px", display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -136,6 +166,12 @@ export default function Home() {
                   Calicut · Kerala · Global
                 </p>
               </div>
+=======
+              {/* Eyebrow */}
+              <p className="section-eyebrow" style={{ marginBottom: "1.5rem", display: "inline-block", animation: "fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.1s both", color: C.primaryBlue }}>
+                Calicut · Kerala · Global
+              </p>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
 
               {/* H1 */}
               <h1 className="font-display" style={{ fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: 700, lineHeight: 1.1, color: C.navyDark, marginBottom: "1.5rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both", letterSpacing: "-0.01em" }}>
@@ -171,6 +207,7 @@ export default function Home() {
             {/* Right Column: Dynamic Image Slider */}
             <div style={{ position: "relative", animation: "fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s both", display: "flex", justifyContent: "center", width: "100%" }}>
               {/* Frame Container */}
+<<<<<<< HEAD
               <div style={{ position: "relative", backgroundColor: "#FFFFFF", padding: "12px", borderRadius: "32px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.05)", width: "100%", maxWidth: "560px" }}>
                 {/* Floating Cards (Sticky Note Feature) - Moved outside overflow:hidden */}
                 <div className="hidden md:block">
@@ -204,6 +241,9 @@ export default function Home() {
                     delay="1.5s"
                   />
                 </div>
+=======
+              <div style={{ backgroundColor: "#FFFFFF", padding: "12px", borderRadius: "32px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.05)", width: "100%", maxWidth: "560px" }}>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                 <div
                   className="hero-slider-container"
                   style={{
@@ -216,6 +256,7 @@ export default function Home() {
                   }}
                 >
                   {/* Decorative glow behind image */}
+<<<<<<< HEAD
                   <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "120%", height: "120%", background: "radial-gradient(circle, rgba(194,160,85, 0.1) 0%, transparent 70%)", zIndex: -1 }}></div>
 
                   {/* Hero Image Container with Tilt (AILT Style) */}
@@ -244,6 +285,25 @@ export default function Home() {
                         ))}
                       </div>
                     </div>
+=======
+                  <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "120%", height: "120%", background: "radial-gradient(circle, rgba(0,123,255,0.15) 0%, transparent 70%)", zIndex: -1 }}></div>
+
+                  {/* Slider Images */}
+                  <div style={{ display: "flex", transition: "transform 0.7s cubic-bezier(0.4, 0, 0.2, 1)", transform: `translateX(-${currentSlide * 100}%)`, height: "100%", width: "100%" }}>
+                    {heroImages.map((src, i) => (
+                      <div key={i} style={{ minWidth: "100%", height: "100%", position: "relative" }}>
+                        <Image
+                          src={src}
+                          alt={`AyaTech slide ${i + 1}`}
+                          fill
+                          priority={i === 0}
+                          style={{ objectFit: "cover" }}
+                          className="shake-on-touch"
+                          sizes="(max-width: 768px) 100vw, 540px"
+                        />
+                      </div>
+                    ))}
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                   </div>
 
                   {/* Slider Dots */}
@@ -347,7 +407,11 @@ export default function Home() {
                 </p>
                 <div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
                   <Link href="/igcse-school">
+<<<<<<< HEAD
                     <button className="btn-gold" style={{ backgroundColor: "#FFFFFF", color: C.navyDark }}>Learn More <ArrowRight size={16} /></button>
+=======
+                    <button className="btn-gold" style={{ backgroundColor: "#FFFFFF", color: C.primaryBlue }}>Learn More <ArrowRight size={16} /></button>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                   </Link>
                   <button className="btn-outline" style={{ borderColor: "#FFFFFF", color: "#FFFFFF" }}>Register Interest</button>
                 </div>
@@ -392,7 +456,11 @@ export default function Home() {
             {courses.map((c, i) => (
               <div key={i} className="course-card" style={{ padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
+<<<<<<< HEAD
                   <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(194, 160, 85, 0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "1rem", color: C.primaryBlue }}>
+=======
+                  <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,86,210,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono', monospace", fontWeight: 700, fontSize: "1rem", color: C.primaryBlue }}>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                     {c.id}
                   </div>
                   {c.live && <span className="badge-live">Live</span>}
@@ -427,10 +495,17 @@ export default function Home() {
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: "1.25rem", marginBottom: "2.5rem" }}>
             {store.map((item, i) => (
               <div key={i} className="phase-card" style={{ padding: "2rem" }}>
+<<<<<<< HEAD
                 <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(194, 160, 85, 0.1)", border: "1px solid rgba(194, 160, 85, 0.2)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.25rem" }}>
                   <ShoppingBag size={22} color={C.primaryBlue} />
                 </div>
                 <span className="font-mono-brand" style={{ fontSize: "0.85rem", color: C.primaryBlue, backgroundColor: "rgba(194, 160, 85, 0.05)", border: `1px solid rgba(194, 160, 85, 0.2)`, padding: "0.2rem 0.6rem", borderRadius: 100, display: "inline-block", marginBottom: "0.75rem" }}>{item.tag}</span>
+=======
+                <div style={{ width: 48, height: 48, borderRadius: 12, background: "rgba(0,86,210,0.1)", border: "1px solid rgba(0,86,210,0.2)", display: "flex", alignItems: "center", justifyContent: "center", marginBottom: "1.25rem" }}>
+                  <ShoppingBag size={22} color={C.primaryBlue} />
+                </div>
+                <span className="font-mono-brand" style={{ fontSize: "0.85rem", color: C.primaryBlue, backgroundColor: "rgba(0,86,210,0.05)", border: `1px solid rgba(0,86,210,0.2)`, padding: "0.2rem 0.6rem", borderRadius: 100, display: "inline-block", marginBottom: "0.75rem" }}>{item.tag}</span>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                 <h3 className="font-display" style={{ color: C.navyDark, marginBottom: "0.5rem", fontSize: "1.3rem" }}>{item.title}</h3>
                 <p style={{ color: C.textMuted, fontSize: "1.05rem", lineHeight: 1.6, marginBottom: "1.5rem" }}>{item.desc}</p>
                 <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "1.25rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
@@ -493,7 +568,11 @@ export default function Home() {
               </p>
               <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "1rem", flexWrap: "wrap" }}>
                 <Link href="/courses">
+<<<<<<< HEAD
                   <button className="btn-gold" style={{ padding: "1rem 3rem", fontSize: "1.15rem", boxShadow: "0 4px 14px 0 rgba(194, 160, 85, 0.39)" }}>
+=======
+                  <button className="btn-gold" style={{ padding: "1rem 3rem", fontSize: "1.15rem", boxShadow: "0 4px 14px 0 rgba(0,86,210,0.39)" }}>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                     Explore Courses <ArrowRight size={18} />
                   </button>
                 </Link>
@@ -523,6 +602,7 @@ export default function Home() {
         }
         .hero-slider-container:hover .shake-on-touch,
         .hero-slider-container:active .shake-on-touch {
+<<<<<<< HEAD
           /* Animation removed as per user request */
         }
         @keyframes floating {
@@ -537,12 +617,16 @@ export default function Home() {
           0% { transform: scale(0.95); opacity: 0.5; }
           50% { transform: scale(1); opacity: 1; }
           100% { transform: scale(0.95); opacity: 0.5; }
+=======
+          animation: shake 0.5s infinite;
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
         }
       `}</style>
     </>
   );
 }
 
+<<<<<<< HEAD
 /* ─── FloatingCard Component ─── */
 function FloatingCard({ icon, title, subtitle, style, delay = "0s" }: { icon: React.ReactNode; title: string; subtitle: string; style: React.CSSProperties; delay?: string }) {
   return (
@@ -576,6 +660,8 @@ function FloatingCard({ icon, title, subtitle, style, delay = "0s" }: { icon: Re
   );
 }
 
+=======
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
 /* ─── StatNum Component ─── */
 function StatNum({ s, active, delay }: { s: typeof stats[0]; active: boolean; delay: number }) {
   const n = useCountUp(s.val, 1800, active);

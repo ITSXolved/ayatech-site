@@ -5,12 +5,21 @@ import Image from "next/image";
 import { ChevronRight, Menu, X } from "lucide-react";
 
 const C = {
+<<<<<<< HEAD
     primaryBlue: "#c2a055",
     navyDark: "#1a202c",
     bgLight: "#f9fafb",
     white: "#FFFFFF",
     textMuted: "#4b5563",
     accentGold: "#c2a055",
+=======
+    primaryBlue: "#1F2432",
+    navyDark: "#1F2432",
+    bgLight: "#F5F7F8",
+    white: "#FFFFFF",
+    textMuted: "#6A7081",
+    accentGold: "#C5A059",
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
 };
 
 
@@ -23,10 +32,13 @@ const C = {
 
 const navLinks: { label: string; href: string }[] = [
     { label: "Courses", href: "/courses" },
+<<<<<<< HEAD
     { label: "IGCSE School", href: "/igcse-school" },
     { label: "Tinkering", href: "/tinkering" },
     { label: "Store", href: "/store" },
     { label: "Hackathons", href: "/hackathons" },
+=======
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
     { label: "About", href: "/about" },
 ];
 
@@ -58,6 +70,7 @@ export default function NavBar() {
                     {/* Logo */}
                     <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.75rem", textDecoration: "none" }}>
                         <Image
+<<<<<<< HEAD
                             src="/logo_v3.png"
                             alt="AyaTech Logo"
                             width={120}
@@ -67,12 +80,24 @@ export default function NavBar() {
                     </Link>
 
                     {/* Desktop nav links */}
+=======
+                            src="/logo.png"
+                            alt="AyaTech Logo"
+                            width={160}
+                            height={54}
+                            style={{ height: "54px", width: "auto" }}
+                        />
+                    </Link>
+
+                    {/* Desktop nav links
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                     <div style={{ display: "flex", alignItems: "center", gap: "2rem" }} className="hidden-mobile">
                         {navLinks.map(link => (
                             <Link key={link.href} href={link.href} className="nav-link" style={{ color: C.textMuted }}>
                                 {link.label}
                             </Link>
                         ))}
+<<<<<<< HEAD
                     </div>
 
                     {/* Desktop CTA */}
@@ -80,6 +105,19 @@ export default function NavBar() {
                         {/*<Link href="/dashboard" className="nav-link" style={{ fontSize: "0.85rem", color: C.textMuted }}>Dashboard</Link>*/}
                         <Link href="https://erp.ayatech.org/apply">
                             <button className="btn-gold" style={{ padding: "0.6rem 1.4rem", fontSize: "0.82rem", letterSpacing: "0.06em", background: "linear-gradient(135deg, #c2a055 0%, #a68940 100%)", color: "#FFFFFF", borderRadius: "8px", border: "none" }}>
+=======
+                    </div>*/}
+
+                    {/* Desktop CTA */}
+                    <div style={{ display: "flex", alignItems: "center", gap: "1rem" }} className="hidden-mobile">
+                        <Link href="/courses" className="nav-link">Courses</Link>
+                        <Link href="/about" className="nav-link">About</Link>
+
+
+                        {/*<Link href="/dashboard" className="nav-link" style={{ fontSize: "0.85rem", color: C.textMuted }}>Dashboard</Link>*/}
+                        <Link href="https://erp.ayatech.org/apply">
+                            <button className="btn-gold" style={{ padding: "0.6rem 1.4rem", fontSize: "0.82rem", letterSpacing: "0.06em", backgroundColor: "#C5A059", color: "#FFFFFF", borderRadius: "8px" }}>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                                 Apply Now <ChevronRight size={14} />
                             </button>
                         </Link>

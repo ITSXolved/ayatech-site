@@ -35,7 +35,10 @@ export default function RootLayout({
     <html lang="en">
       <head />
       <body>
+<<<<<<< HEAD
         <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
+=======
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
         <NavBar />
         <main>{children}</main>
         <Footer />

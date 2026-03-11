@@ -2,6 +2,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { ChevronRight, Clock, Filter } from "lucide-react";
+<<<<<<< HEAD
 import { useRazorpay } from "@/hooks/useRazorpay";
 
 const C = {
@@ -21,6 +22,26 @@ const C = {
     navy400: "#1a202c",
     navy600: "#1a202c",
     navy700: "#f9fafb",
+=======
+
+const C = {
+    primaryBlue: "#0056D2",
+    primaryBlueHover: "#0046AA",
+    navyDark: "#1F2432",
+    navyLight: "#2A3142",
+    bgLight: "#F5F7F8",
+    white: "#FFFFFF",
+    textMain: "#1F2432",
+    textMuted: "#6A7081",
+    teal300: "#0056D2",
+    teal400: "#0056D2",
+    gold300: "#0046AA",
+    gold400: "#0056D2",
+    navy200: "#6A7081",
+    navy400: "#0056D2",
+    navy600: "#0046AA",
+    navy700: "#F5F7F8",
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
     navy800: "#FFFFFF",
     navy900: "#FFFFFF",
     navy950: "#FFFFFF",
@@ -45,18 +66,29 @@ const allCourses = [
 ];
 
 const levelColors: Record<string, { text: string; bg: string; border: string }> = {
+<<<<<<< HEAD
     Beginner: { text: C.primaryGold, bg: "rgba(194,160,85,0.1)", border: "rgba(194,160,85,0.25)" },
     Intermediate: { text: C.primaryGold, bg: "rgba(194,160,85,0.08)", border: "rgba(194,160,85,0.2)" },
     Advanced: { text: "#f87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.2)" },
     Educators: { text: C.textMuted, bg: "rgba(75,85,99,0.08)", border: "rgba(75,85,99,0.15)" },
     "All Levels": { text: C.textMuted, bg: "rgba(75,85,99,0.08)", border: "rgba(75,85,99,0.15)" },
+=======
+    Beginner: { text: C.primaryBlue, bg: "rgba(0,86,210,0.1)", border: "rgba(0,86,210,0.25)" },
+    Intermediate: { text: C.primaryBlue, bg: "rgba(0,86,210,0.08)", border: "rgba(0,86,210,0.2)" },
+    Advanced: { text: "#f87171", bg: "rgba(248,113,113,0.08)", border: "rgba(248,113,113,0.2)" },
+    Educators: { text: C.textMuted, bg: "rgba(106,112,129,0.08)", border: "rgba(106,112,129,0.15)" },
+    "All Levels": { text: C.textMuted, bg: "rgba(106,112,129,0.08)", border: "rgba(106,112,129,0.15)" },
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
 };
 
 const cats = ["All", "AI", "Coding", "Design", "Hardware"];
 
 export default function CoursesPage() {
     const [active, setActive] = useState("All");
+<<<<<<< HEAD
     const { processPayment } = useRazorpay();
+=======
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
     const filtered = active === "All" ? allCourses : allCourses.filter(c => c.cat === active);
 
     return (
@@ -83,7 +115,11 @@ export default function CoursesPage() {
                 <div className="container-main" style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
                     <Filter size={14} color={C.textMuted} style={{ marginRight: "0.25rem" }} />
                     {cats.map(cat => (
+<<<<<<< HEAD
                         <button key={cat} onClick={() => setActive(cat)} style={{ padding: "0.35rem 1rem", borderRadius: 100, fontSize: "0.85rem", fontWeight: 500, cursor: "pointer", border: "1px solid", transition: "all 0.25s", background: active === cat ? C.primaryGold : "transparent", color: active === cat ? C.white : C.textMuted, borderColor: active === cat ? C.primaryGold : "rgba(0,0,0,0.1)" }}>
+=======
+                        <button key={cat} onClick={() => setActive(cat)} style={{ padding: "0.35rem 1rem", borderRadius: 100, fontSize: "0.85rem", fontWeight: 500, cursor: "pointer", border: "1px solid", transition: "all 0.25s", background: active === cat ? C.primaryBlue : "transparent", color: active === cat ? C.white : C.textMuted, borderColor: active === cat ? C.primaryBlue : "rgba(0,0,0,0.1)" }}>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                             {cat}
                         </button>
                     ))}
@@ -100,7 +136,11 @@ export default function CoursesPage() {
                             return (
                                 <div key={c.id} className="course-card" style={{ padding: "1.75rem", animation: `fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s both` }}>
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
+<<<<<<< HEAD
                                         <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,86,210,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "0.9rem", color: C.primaryGold }}>
+=======
+                                        <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,86,210,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "0.9rem", color: C.primaryBlue }}>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                                             {c.id}
                                         </div>
                                         {c.live ? (
@@ -126,6 +166,7 @@ export default function CoursesPage() {
 
                                     <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "1rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
                                         <span className="font-display" style={{ fontSize: "1.6rem", color: C.navyDark }}>{c.price}</span>
+<<<<<<< HEAD
                                         <button 
                                             onClick={() => processPayment({ 
                                                 amount: parseInt(c.price.replace(/[^\d]/g, '')), 
@@ -133,6 +174,9 @@ export default function CoursesPage() {
                                             })}
                                             style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.95rem", color: C.primaryGold, fontWeight: 600, background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}
                                         >
+=======
+                                        <button style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.95rem", color: C.primaryBlue, fontWeight: 600, background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                                             Enroll Now <ChevronRight size={15} />
                                         </button>
                                     </div>
@@ -146,12 +190,20 @@ export default function CoursesPage() {
             {/* Bottom CTA */}
             <section style={{ paddingBottom: "5rem" }}>
                 <div className="container-main" style={{ textAlign: "center" }}>
+<<<<<<< HEAD
                     <div style={{ display: "inline-block", background: `linear-gradient(135deg, ${C.primaryGold} 0%, ${C.primaryGoldHover} 100%)`, border: "1px solid rgba(0,0,0,0.1)", borderRadius: 24, padding: "3rem 4rem", maxWidth: "42rem", width: "100%", boxShadow: "0 10px 30px -10px rgba(0,86,210,0.3)" }}>
+=======
+                    <div style={{ display: "inline-block", background: `linear-gradient(135deg, ${C.primaryBlue} 0%, ${C.primaryBlueHover} 100%)`, border: "1px solid rgba(0,0,0,0.1)", borderRadius: 24, padding: "3rem 4rem", maxWidth: "42rem", width: "100%", boxShadow: "0 10px 30px -10px rgba(0,86,210,0.3)" }}>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                         <h3 className="font-display" style={{ fontSize: "1.8rem", color: "#fff", marginBottom: "0.75rem" }}>
                             Not sure which course to pick?
                         </h3>
                         <p style={{ color: "rgba(255,255,255,0.85)", marginBottom: "1.5rem", fontSize: "1.05rem" }}>Talk to our mentors and get a personalised recommendation.</p>
+<<<<<<< HEAD
                         <button className="btn-gold" style={{ backgroundColor: "#FFFFFF", color: C.primaryGold }}>Book Free Consultation <ChevronRight size={16} /></button>
+=======
+                        <button className="btn-gold" style={{ backgroundColor: "#FFFFFF", color: C.primaryBlue }}>Book Free Consultation <ChevronRight size={16} /></button>
+>>>>>>> e21efb43fe3df5b84ea13a10e50b72907f0c5a5f
                     </div>
                 </div>
             </section>
