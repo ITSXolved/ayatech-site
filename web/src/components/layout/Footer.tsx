@@ -109,7 +109,7 @@ export default function Footer() {
                         },
                         {
                             Icon: Phone,
-                            text: "+91 xxx xxxx xxxx",
+                            text: "+91 9037665777",
                         },
                     ].map(({ Icon, text }, i) => (
                         <div

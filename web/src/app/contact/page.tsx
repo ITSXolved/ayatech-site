@@ -33,7 +33,7 @@ export default function ContactUs() {
                 <div>
                   <h3 className="font-bold text-[#1a202c] mb-1">Call Us</h3>
                   <p className="text-sm text-[#6A7081] mb-2">Mon-Sat, 9:00 AM to 6:00 PM IST</p>
-                  <p className="text-[#c2a055] font-semibold">+91 95626 17067</p>
+                  <p className="text-[#c2a055] font-semibold">+91 9037665777</p>
                 </div>
               </div>
 
