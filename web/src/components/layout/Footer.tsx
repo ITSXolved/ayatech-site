@@ -20,6 +20,7 @@ const links = {
     ],
     company: [
         { label: "About AyaTech", href: "/about" },
+        { label: "Contact Us", href: "/contact" },
         { label: "Our Mentors", href: "/about#mentors" },
         { label: "Careers", href: "/careers" },
         { label: "Press Kit", href: "/press" },
@@ -130,6 +131,12 @@ export default function Footer() {
                         </Link>
                         <Link href="/terms" className="hover:text-white transition-colors">
                             Terms of Use
+                        </Link>
+                        <Link href="/refund-policy" className="hover:text-white transition-colors">
+                            Refund Policy
+                        </Link>
+                        <Link href="/shipping-policy" className="hover:text-white transition-colors">
+                            Shipping Policy
                         </Link>
                     </div>
                 </div>

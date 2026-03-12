@@ -179,7 +179,7 @@ export default function Home() {
 
               {/* CTAs */}
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem", marginBottom: "3rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.55s both" }}>
-                <Link href="/apply">
+                <Link href="https://erp.ayatech.org/apply">
                   <button className="btn-gold" style={{ padding: "1rem 2rem", fontSize: "1rem", backgroundColor: C.accentGold, color: "#fff", display: "flex", alignItems: "center", gap: "0.5rem", borderRadius: "8px" }}>
                     Start Application <ArrowRight size={17} />
                   </button>

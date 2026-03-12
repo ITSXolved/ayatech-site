@@ -167,7 +167,7 @@ export default function CoursesPage() {
 
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", paddingTop: "1rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}>
                                             <span className="font-display" style={{ fontSize: "1.6rem", color: C.navyDark }}>{c.price}</span>
-                                            <Link href={`/apply?course=${encodeURIComponent(c.title)}&amount=${c.amount || 999}`}>
+                                            <Link href={`https://erp.ayatech.org/apply?course=${encodeURIComponent(c.title)}&amount=${c.amount || 999}`}>
                                                 <button
                                                     style={{ display: "flex", alignItems: "center", gap: "0.3rem", fontSize: "0.95rem", color: C.primaryGold, fontWeight: 600, background: "none", border: "none", cursor: "pointer", transition: "color 0.2s" }}
                                                 >
