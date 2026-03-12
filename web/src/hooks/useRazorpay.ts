@@ -19,12 +19,14 @@ export function useRazorpay() {
       userName = "Student",
       userEmail = "",
       userPhone = "",
+      grade = "",
     }: {
       amount: number;
       courseName: string;
       userName?: string;
       userEmail?: string;
       userPhone?: string;
+      grade?: string;
     }) => {
       if (!window.Razorpay) {
         alert("Payment gateway is loading. Please wait a moment and try again.");
@@ -39,7 +41,7 @@ export function useRazorpay() {
         const res = await fetch("/api/create-order", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ amount, courseName, userName, userEmail, userPhone }),
+          body: JSON.stringify({ amount, courseName, userName, userEmail, userPhone, grade }),
         });
 
         if (!res.ok) {

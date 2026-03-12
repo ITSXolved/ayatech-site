@@ -3,7 +3,7 @@ import { supabaseAdmin } from "@/lib/supabase";
 
 export async function POST(req: NextRequest) {
   try {
-    const { amount, courseName, userName, userEmail, userPhone } = await req.json();
+    const { amount, courseName, userName, userEmail, userPhone, grade } = await req.json();
 
     if (!amount || !userEmail || !userName) {
       return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
@@ -55,6 +55,7 @@ export async function POST(req: NextRequest) {
         student_name: userName,
         email: userEmail,
         phone: userPhone || "",
+        class: grade || "",
         status: "Pending",
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),

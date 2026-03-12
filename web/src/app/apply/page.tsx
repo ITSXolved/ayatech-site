@@ -1,8 +1,8 @@
-"use client";
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRazorpay } from "@/hooks/useRazorpay";
-import { ArrowRight, Loader2, Lock, ShieldCheck } from "lucide-react";
+import { ArrowRight, Loader2, Lock, ShieldCheck, ChevronDown } from "lucide-react";
+import { fetchLMSCourses, CanvasCourse } from "@/lib/lms";
 
 const C = {
   primaryGold: "#c2a055",
@@ -13,8 +13,24 @@ const C = {
   border: "rgba(0,0,0,0.09)",
 };
 
-// Course price lookup — matches courses page
-const COURSE_PRICES: Record<string, number> = {
+const GRADE_OPTIONS = [
+  "Class 1 - 4",
+  "Class 5",
+  "Class 6",
+  "Class 7",
+  "Class 8",
+  "Class 9",
+  "Class 10",
+  "Class 11",
+  "Class 12",
+  "Undergraduate",
+  "Postgraduate",
+  "Working Professional",
+  "Other"
+];
+
+// Fallback pricing for common courses if LMS doesn't provide price
+const FALLBACK_PRICES: Record<string, number> = {
   "Intro to Python Programming": 999,
   "Vibe Coding: Build Apps with AI": 1499,
   "Web Development Bootcamp": 2499,
@@ -24,12 +40,6 @@ const COURSE_PRICES: Record<string, number> = {
   "Graphic Design with Canva & AI": 999,
   "UI/UX Design Fundamentals": 1999,
   "Mobile App Development (Flutter)": 2499,
-  "Arduino & IoT for Beginners": 1999,
-  "Data Science with Python": 2499,
-  "Prompt Engineering & ChatGPT": 999,
-  "Robotics Programming Fundamentals": 2499,
-  "Cybersecurity Essentials": 1499,
-  "Blockchain & Web3 Basics": 1999,
 };
 
 function ApplyForm() {
@@ -37,27 +47,45 @@ function ApplyForm() {
   const courseParam = searchParams.get("course") || "";
   const amountParam = parseInt(searchParams.get("amount") || "0", 10);
 
+  const [courses, setCourses] = useState<CanvasCourse[]>([]);
+  const [loadingCourses, setLoadingCourses] = useState(true);
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     course: courseParam || "",
+    grade: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
 
   const { processPayment } = useRazorpay();
 
+  useEffect(() => {
+    async function getCourses() {
+      try {
+        const data = await fetchLMSCourses();
+        setCourses(data || []);
+      } catch (err) {
+        console.error("Failed to load courses:", err);
+      } finally {
+        setLoadingCourses(false);
+      }
+    }
+    getCourses();
+  }, []);
+
   const getAmount = () => {
-    if (amountParam > 0) return amountParam;
-    return COURSE_PRICES[formData.course] || 999;
+    if (amountParam > 0 && formData.course === courseParam) return amountParam;
+    return FALLBACK_PRICES[formData.course] || 999;
   };
 
   const handlePayment = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
 
-    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim()) {
+    if (!formData.name.trim() || !formData.email.trim() || !formData.phone.trim() || !formData.grade) {
       setError("Please fill in all required fields.");
       return;
     }
@@ -76,6 +104,7 @@ function ApplyForm() {
         userName: formData.name,
         userEmail: formData.email,
         userPhone: formData.phone,
+        grade: formData.grade, // Pass grade to Razorpay order creation
       });
     } catch (err: any) {
       console.error("Payment initiation failed:", err);
@@ -86,6 +115,19 @@ function ApplyForm() {
   };
 
   const amount = getAmount();
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    padding: "0.85rem",
+    borderRadius: "10px",
+    border: `1.5px solid ${C.border}`,
+    fontSize: "1rem",
+    outline: "none",
+    color: C.navyDark,
+    boxSizing: "border-box",
+    appearance: "none",
+    backgroundColor: "#fff",
+  };
 
   return (
     <section
@@ -100,7 +142,7 @@ function ApplyForm() {
     >
       <div
         style={{
-          maxWidth: "500px",
+          maxWidth: "520px",
           width: "100%",
           backgroundColor: C.white,
           borderRadius: "28px",
@@ -131,42 +173,60 @@ function ApplyForm() {
             className="font-display"
             style={{ fontSize: "2rem", color: C.navyDark, lineHeight: 1.2, marginBottom: "0.5rem" }}
           >
-            Complete your{" "}
-            <span style={{ color: C.primaryGold }}>Registration</span>
+            Admission <span style={{ color: C.primaryGold }}>Form</span>
           </h1>
-          {formData.course && (
-            <p style={{ fontSize: "0.95rem", color: C.textMuted }}>
-              Enrolling for:{" "}
-              <strong style={{ color: C.navyDark }}>{formData.course}</strong>
-            </p>
-          )}
+          <p style={{ fontSize: "0.95rem", color: C.textMuted }}>
+            Enter your details to proceed with the enrollment.
+          </p>
         </div>
 
         {/* Form */}
         <form onSubmit={handlePayment} style={{ display: "flex", flexDirection: "column", gap: "1.1rem" }}>
-          {/* Course */}
-          <div>
+          
+          {/* LMS Course Dropdown */}
+          <div style={{ position: "relative" }}>
             <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: C.navyDark, marginBottom: "0.45rem" }}>
-              Course Name
+              Select Desired Course <span style={{ color: "#ef4444" }}>*</span>
             </label>
-            <input
-              type="text"
+            <select
               value={formData.course}
               onChange={(e) => setFormData({ ...formData, course: e.target.value })}
-              placeholder="e.g. Intro to Python Programming"
               required
-              style={{
-                width: "100%",
-                padding: "0.85rem",
-                borderRadius: "10px",
-                border: `1.5px solid ${C.border}`,
-                backgroundColor: C.bgLight,
-                color: C.navyDark,
-                fontSize: "1rem",
-                outline: "none",
-                boxSizing: "border-box",
-              }}
-            />
+              style={inputStyle}
+            >
+              <option value="">-- Choose a Course --</option>
+              {loadingCourses ? (
+                <option disabled>Loading LMS courses...</option>
+              ) : (
+                courses.map(c => (
+                  <option key={c.id} value={c.name}>{c.name}</option>
+                ))
+              )}
+              {/* Fallback internal list if LMS is empty or loading failed */}
+              {courses.length === 0 && Object.keys(FALLBACK_PRICES).map(c => (
+                <option key={c} value={c}>{c}</option>
+              ))}
+            </select>
+            <ChevronDown size={18} style={{ position: "absolute", right: "1rem", top: "2.6rem", pointerEvents: "none", color: C.textMuted }} />
+          </div>
+
+          {/* Grade Dropdown */}
+          <div style={{ position: "relative" }}>
+            <label style={{ display: "block", fontSize: "0.875rem", fontWeight: 600, color: C.navyDark, marginBottom: "0.45rem" }}>
+              Current Class/Grade <span style={{ color: "#ef4444" }}>*</span>
+            </label>
+            <select
+              value={formData.grade}
+              onChange={(e) => setFormData({ ...formData, grade: e.target.value })}
+              required
+              style={inputStyle}
+            >
+              <option value="">-- Select Grade --</option>
+              {GRADE_OPTIONS.map(g => (
+                <option key={g} value={g}>{g}</option>
+              ))}
+            </select>
+            <ChevronDown size={18} style={{ position: "absolute", right: "1rem", top: "2.6rem", pointerEvents: "none", color: C.textMuted }} />
           </div>
 
           {/* Full Name */}
@@ -176,20 +236,11 @@ function ApplyForm() {
             </label>
             <input
               type="text"
-              placeholder="John Doe"
+              placeholder="Full name of the student"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               required
-              style={{
-                width: "100%",
-                padding: "0.85rem",
-                borderRadius: "10px",
-                border: `1.5px solid ${C.border}`,
-                fontSize: "1rem",
-                outline: "none",
-                color: C.navyDark,
-                boxSizing: "border-box",
-              }}
+              style={inputStyle}
             />
           </div>
 
@@ -200,20 +251,11 @@ function ApplyForm() {
             </label>
             <input
               type="email"
-              placeholder="john@example.com"
+              placeholder="email@example.com"
               value={formData.email}
               onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               required
-              style={{
-                width: "100%",
-                padding: "0.85rem",
-                borderRadius: "10px",
-                border: `1.5px solid ${C.border}`,
-                fontSize: "1rem",
-                outline: "none",
-                color: C.navyDark,
-                boxSizing: "border-box",
-              }}
+              style={inputStyle}
             />
           </div>
 
@@ -228,16 +270,7 @@ function ApplyForm() {
               value={formData.phone}
               onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               required
-              style={{
-                width: "100%",
-                padding: "0.85rem",
-                borderRadius: "10px",
-                border: `1.5px solid ${C.border}`,
-                fontSize: "1rem",
-                outline: "none",
-                color: C.navyDark,
-                boxSizing: "border-box",
-              }}
+              style={inputStyle}
             />
           </div>
 
@@ -267,9 +300,10 @@ function ApplyForm() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              marginTop: "0.5rem"
             }}
           >
-            <span style={{ fontSize: "0.9rem", color: C.textMuted, fontWeight: 500 }}>Amount to Pay</span>
+            <span style={{ fontSize: "0.9rem", color: C.textMuted, fontWeight: 500 }}>Enrollment Fee</span>
             <span
               className="font-display"
               style={{ fontSize: "1.7rem", color: C.navyDark, letterSpacing: "-0.02em" }}
@@ -307,7 +341,7 @@ function ApplyForm() {
               </>
             ) : (
               <>
-                Pay ₹{amount.toLocaleString("en-IN")} Securely <ArrowRight size={18} />
+                Confirm and Pay ₹{amount.toLocaleString("en-IN")} <ArrowRight size={18} />
               </>
             )}
           </button>
