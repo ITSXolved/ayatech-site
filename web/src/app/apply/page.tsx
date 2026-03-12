@@ -3,7 +3,13 @@ import { useState, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRazorpay } from "@/hooks/useRazorpay";
 import { ArrowRight, Loader2, Lock, ShieldCheck, ChevronDown } from "lucide-react";
-import { fetchLMSCourses, CanvasCourse } from "@/lib/lms";
+
+// Course type from our API route
+interface CourseItem {
+  id: number;
+  name: string;
+  amount?: number;
+}
 
 const C = {
   primaryGold: "#c2a055",
@@ -48,7 +54,7 @@ function ApplyForm() {
   const courseParam = searchParams.get("course") || "";
   const amountParam = parseInt(searchParams.get("amount") || "0", 10);
 
-  const [courses, setCourses] = useState<CanvasCourse[]>([]);
+  const [courses, setCourses] = useState<CourseItem[]>([]);
   const [loadingCourses, setLoadingCourses] = useState(true);
 
   const [formData, setFormData] = useState({
@@ -66,7 +72,10 @@ function ApplyForm() {
   useEffect(() => {
     async function getCourses() {
       try {
-        const data = await fetchLMSCourses();
+        // Fetch from our server-side API route — has access to CANVAS_API_TOKEN
+        const res = await fetch("/api/courses");
+        if (!res.ok) throw new Error("Failed to load courses");
+        const data: CourseItem[] = await res.json();
         setCourses(data || []);
       } catch (err) {
         console.error("Failed to load courses:", err);
@@ -78,7 +87,12 @@ function ApplyForm() {
   }, []);
 
   const getAmount = () => {
+    // Priority 1: URL param (from direct enrollment link)
     if (amountParam > 0 && formData.course === courseParam) return amountParam;
+    // Priority 2: Amount from the fetched API course list
+    const apiCourse = courses.find(c => c.name === formData.course);
+    if (apiCourse?.amount && apiCourse.amount > 0) return apiCourse.amount;
+    // Priority 3: Static fallback map
     return FALLBACK_PRICES[formData.course] || 999;
   };
 
