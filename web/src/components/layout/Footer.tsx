@@ -126,10 +126,10 @@ export default function Footer() {
                 <div className="border-t border-white/10 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
                     <p>© 2026 AyaTech. All rights reserved. Professional Theme.</p>
                     <div className="flex gap-4">
-                        <Link href="/privacy" className="hover:text-white transition-colors">
+                        <Link href="/privacy-policy" className="hover:text-white transition-colors">
                             Privacy Policy
                         </Link>
-                        <Link href="/terms" className="hover:text-white transition-colors">
+                        <Link href="/terms-and-conditions" className="hover:text-white transition-colors">
                             Terms of Use
                         </Link>
                         <Link href="/refund-policy" className="hover:text-white transition-colors">
