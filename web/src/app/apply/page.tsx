@@ -1,3 +1,4 @@
+"use client";
 import { useState, Suspense, useEffect } from "react";
 import { useSearchParams } from "next/navigation";
 import { useRazorpay } from "@/hooks/useRazorpay";
