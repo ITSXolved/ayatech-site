@@ -6,10 +6,10 @@ import { ChevronRight, Menu, X } from "lucide-react";
 
 const C = {
     primaryBlue: "#c2a055",
-    navyDark: "#e6edf3",
-    bgLight: "#0d1117",
-    white: "#161b22",
-    textMuted: "#8b949e",
+    navyDark: "#1a202c",
+    bgLight: "#f9fafb",
+    white: "#FFFFFF",
+    textMuted: "#4b5563",
     accentGold: "#c2a055",
 };
 
@@ -47,11 +47,11 @@ export default function NavBar() {
                 transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)",
                 padding: scrolled ? "0.75rem 0" : "1.25rem 0",
                 ...(scrolled ? {
-                    backdropFilter: "blur(16px) saturate(180%)",
-                    WebkitBackdropFilter: "blur(16px) saturate(180%)",
-                    background: "rgba(13,17,23,0.92)",
-                    borderBottom: "1px solid rgba(255,255,255,0.07)",
-                    boxShadow: "0 4px 24px rgba(0,0,0,0.5)"
+                    backdropFilter: "blur(12px) saturate(180%)",
+                    WebkitBackdropFilter: "blur(12px) saturate(180%)",
+                    background: "rgba(255,255,255,0.95)",
+                    borderBottom: "1px solid rgba(0,0,0,0.08)",
+                    boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)"
                 } : { background: "transparent" }),
             }}>
                 <div className="container-main" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>

@@ -1,93 +1,132 @@
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 /* ─── Tailwind v4 Theme Tokens ─── */
 @theme {
-  --color-primary-gold: #c2a055;
-  --color-gold-hover:   #d4b06a;
-  --color-navy-dark:    #0d1117;
-  --color-navy-light:   #161b22;
-  --color-bg-light:     #0d1117;
-  --color-surface-white:#161b22;
-  --color-text-main:    #e6edf3;
-  --color-text-muted:   #8b949e;
-  --color-navy-950:     #0d1117;
-  --color-navy-900:     #161b22;
-  --color-gold-400:     #c2a055;
-  --color-gold-300:     #d4b06a;
-  --color-teal-400:     #c2a055;
+  /* Colors */
+  --color-primary-gold: #b38e3d; /* Darkened from #c2a055 for better contrast */
+  --color-gold-hover: #96752f;
+  --color-navy-dark: #1a202c;
+  --color-navy-light: #2a3441;
+  --color-bg-light: #f9fafb;
+  --color-surface-white: #FFFFFF;
+  --color-text-main: #1f2937;
+  --color-text-muted: #4b5563;
+  --color-navy-950: #1a202c;
+  /* Remapped */
+  --color-navy-900: #2a3441;
+  /* Remapped */
+  --color-gold-400: #c2a055;
+  /* Remapped to primary gold for accents */
+  --color-gold-300: #a68940;
+  /* Remapped to primary gold hov for accents */
+  --color-teal-400: #c2a055;
+  /* Remapped */
 
-  --font-display:    'Outfit', system-ui, sans-serif;
-  --font-body:       'Outfit', system-ui, sans-serif;
+  /* Fonts */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  /* Consider dropping if Coursera style strictly wants sans */
+  --font-body: 'Outfit', system-ui, sans-serif;
   --font-mono-brand: 'JetBrains Mono', monospace;
 
-  --animate-spin-slow:      spin 8s linear infinite;
-  --animate-pulse-primary:  pulsePrimary 2s ease-in-out infinite;
-  --animate-float:          float 6s ease-in-out infinite;
-  --animate-fade-up:        fadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  /* Animation */
+  --animate-spin-slow: spin 8s linear infinite;
+  --animate-pulse-primary: pulsePrimary 2s ease-in-out infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-fade-up: fadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ─── Keyframes ─── */
 @keyframes pulsePrimary {
-  0%, 100% { box-shadow: 0 0 0 0   rgba(194, 160, 85, 0.4); }
-  50%       { box-shadow: 0 0 0 12px rgba(194, 160, 85, 0);   }
+
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(0, 86, 210, 0.4);
+  }
+
+  50% {
+    box-shadow: 0 0 0 12px rgba(0, 86, 210, 0);
+  }
 }
 
 @keyframes fadeUp {
-  0%   { opacity: 0; transform: translateY(24px); }
-  100% { opacity: 1; transform: translateY(0);    }
+  0% {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0);     }
-  50%       { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1;   }
-  50%       { opacity: 0.4; }
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.4;
+  }
 }
 
 @keyframes shimmer {
-  0%   { background-position: -200% 0; }
-  100% { background-position:  200% 0; }
+  0% {
+    background-position: -200% 0;
+  }
+
+  100% {
+    background-position: 200% 0;
+  }
 }
 
-/* ─── CSS Custom Properties — Dark Mode ─── */
+/* ─── Legacy CSS Custom Properties (for inline style compatibility) ─── */
 :root {
-  --navy-950: #0d1117;
-  --navy-900: #161b22;
-  --navy-800: #21262d;
-  --navy-700: #30363d;
+  --navy-950: #1a202c;
+  --navy-900: #2a3441;
+  --navy-800: #2a3441;
+  --navy-700: #1a202c;
   --navy-600: #c2a055;
   --navy-400: #c2a055;
-  --navy-200: #8b949e;
+  --navy-200: #f9fafb;
   --gold-400: #c2a055;
-  --gold-300: #d4b06a;
-  --gold-200: #e8c98a;
+  --gold-300: #a68940;
+  --gold-200: #c2a055;
   --teal-400: #c2a055;
-  --teal-300: #d4b06a;
+  --teal-300: #a68940;
   --ease: cubic-bezier(0.16, 1, 0.3, 1);
-
-  --bg-primary:    #0d1117;
-  --bg-secondary:  #161b22;
-  --bg-card:       #21262d;
-  --text-primary:  #e6edf3;
-  --text-muted:    #8b949e;
-  --border-color:  rgba(255, 255, 255, 0.08);
 }
 
 /* ─── Base Reset ─── */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
 html {
   scroll-behavior: smooth;
-  background-color: var(--bg-primary);
+  background-color: #F5F7F8;
 }
 
 body {
-  background-color: var(--bg-primary);
-  color: var(--text-primary);
+  background-color: #FFFFFF;
+  color: #1F2432;
   font-family: 'Outfit', system-ui, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
@@ -96,35 +135,56 @@ body {
 }
 
 ::selection {
-  background: rgba(194, 160, 85, 0.25);
-  color: #fff;
+  background: rgba(194, 160, 85, 0.2);
+  color: #1a202c;
 }
 
-::-webkit-scrollbar       { width: 6px; }
-::-webkit-scrollbar-track { background: var(--bg-primary); }
-::-webkit-scrollbar-thumb { background: #30363d; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #c2a055; }
+::-webkit-scrollbar {
+  width: 6px;
+}
 
-/* ─── Utility Classes ─── */
+::-webkit-scrollbar-track {
+  background: #f9fafb;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C4C4C4;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #c2a055;
+}
+
+/* ─── Typography Utility Classes ─── */
 @layer utilities {
+  .font-display {
+    font-family: 'Outfit', system-ui, sans-serif;
+    /* Adjusted to standard sans for coursera look */
+    font-weight: 700;
+  }
 
-  .font-display    { font-family: 'Outfit', system-ui, sans-serif; font-weight: 700; }
-  .font-mono-brand { font-family: 'JetBrains Mono', monospace; }
+  .font-mono-brand {
+    font-family: 'JetBrains Mono', monospace;
+  }
 
+  /* Gradient text */
   .text-gradient-primary {
-    background: linear-gradient(135deg, #c2a055 0%, #d4b06a 50%, #c2a055 100%);
+    background: linear-gradient(135deg, #c2a055 0%, #a68940 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
   .text-gradient-teal {
-    background: linear-gradient(135deg, #c2a055 0%, #d4b06a 100%);
+    background: linear-gradient(135deg, #c2a055 0%, #a68940 100%);
+    /* Remapped to primary */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
 
+  /* Layout helpers */
   .container-main {
     max-width: 1280px;
     margin: 0 auto;
@@ -137,15 +197,17 @@ body {
     padding-bottom: 5rem;
   }
 
+  /* Section eyebrow label */
   .section-eyebrow {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.85rem;
+    font-size: 0.95rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: #c2a055;
     font-weight: 600;
   }
 
+  /* Stat number */
   .stat-number {
     font-family: 'Outfit', system-ui, sans-serif;
     font-size: clamp(3rem, 6vw, 5.5rem);
@@ -154,31 +216,154 @@ body {
     line-height: 1;
   }
 
-  /* ── Backgrounds ── */
+  /* Backgrounds */
   .mesh-gradient {
-    background: linear-gradient(180deg, #0d1117 0%, #161b22 100%);
+    /* Clean, soft white/grey background */
+    background: linear-gradient(180deg, #f9fafb 0%, #FFFFFF 100%);
   }
 
   .geo-grid {
     background-image:
-      linear-gradient(rgba(194, 160, 85, 0.04) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(194, 160, 85, 0.04) 1px, transparent 1px);
+      linear-gradient(rgba(194, 160, 85, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(194, 160, 85, 0.03) 1px, transparent 1px);
     background-size: 64px 64px;
-    background-color: #0d1117;
+    background-color: #FFFFFF;
   }
 
-  /* ── Navigation ── */
+  /* Glassmorphism nav - adjusted for light theme */
   .glass-nav {
-    backdrop-filter: blur(16px) saturate(180%);
-    -webkit-backdrop-filter: blur(16px) saturate(180%);
-    background: rgba(13, 17, 23, 0.88);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
+    background: rgba(255, 255, 255, 0.95);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    /* Subtle border */
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
   }
 
+  /* Card styles */
+  .phase-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+    /* Slight shadow */
+  }
+
+  .phase-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #c2a055;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .phase-card:hover::before {
+    opacity: 1;
+  }
+
+  .phase-card:hover {
+    border-color: rgba(194, 160, 85, 0.2);
+    box-shadow: 0 12px 24px -4px rgba(194, 160, 85, 0.1);
+    transform: translateY(-4px);
+  }
+
+  .course-card {
+    background: #FFFFFF;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  }
+
+  .course-card:hover {
+    border-color: rgba(194, 160, 85, 0.3);
+    box-shadow: 0 12px 24px -4px rgba(194, 160, 85, 0.15);
+    transform: translateY(-3px);
+  }
+
+  .teal-card {
+    /* Repurposing to a highlighted primary card */
+    background: linear-gradient(135deg, #c2a055 0%, #a68940 100%);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    color: #FFFFFF;
+  }
+
+  /* Buttons */
+  .btn-gold {
+    /* Keeping class name for compatibility, changing style to primary gold */
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: #c2a055;
+    color: #FFFFFF;
+    font-weight: 600;
+    font-family: 'Outfit', system-ui, sans-serif;
+    letter-spacing: 0.02em;
+    font-size: 1rem;
+    padding: 0.75rem 2rem;
+    border-radius: 4px;
+    /* Coursera style is slightly less rounded */
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    text-decoration: none;
+  }
+
+  .btn-gold:hover {
+    background-color: #a68940;
+    box-shadow: 0 4px 12px rgba(194, 160, 85, 0.2);
+  }
+
+  .btn-outline:hover {
+    background-color: rgba(194, 160, 85, 0.05);
+    color: #a68940;
+    border-color: #a68940;
+  }
+
+  /* Badge */
+  .badge-live {
+    background: rgba(194, 160, 85, 0.1);
+    border: 1px solid rgba(194, 160, 85, 0.2);
+    color: #c2a055;
+    font-family: 'Outfit', system-ui, sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    padding: 0.25rem 0.75rem;
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .badge-live::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: #c2a055;
+    border-radius: 50%;
+    animation: pulsePrimary 2s infinite;
+  }
+
+  /* Trust strip */
+  .trust-strip {
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+    background: #f9fafb;
+  }
+
+  /* Nav links */
   .nav-link {
     position: relative;
-    color: #8b949e;
+    color: #6A7081;
     text-decoration: none;
     font-size: 1rem;
     font-weight: 500;
@@ -188,157 +373,37 @@ body {
   .nav-link::after {
     content: '';
     position: absolute;
-    bottom: -6px; left: 0;
-    width: 0; height: 2px;
-    background: #c2a055;
-    transition: width 0.25s ease-in-out;
-  }
-
-  .nav-link:hover        { color: #e6edf3; }
-  .nav-link:hover::after { width: 100%; }
-
-  /* ── Cards ── */
-  .phase-card {
-    background: #21262d;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  }
-
-  .phase-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0;
+    bottom: -6px;
+    left: 0;
+    width: 0;
     height: 2px;
-    background: linear-gradient(90deg, #c2a055, #d4b06a);
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-
-  .phase-card:hover::before { opacity: 1; }
-
-  .phase-card:hover {
-    border-color: rgba(194, 160, 85, 0.25);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(194, 160, 85, 0.1);
-    transform: translateY(-4px);
-  }
-
-  .course-card {
-    background: #21262d;
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 12px;
-    transition: all 0.3s ease;
-    overflow: hidden;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  }
-
-  .course-card:hover {
-    border-color: rgba(194, 160, 85, 0.3);
-    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(194, 160, 85, 0.15);
-    transform: translateY(-3px);
-  }
-
-  .teal-card {
-    background: linear-gradient(135deg, #c2a055 0%, #a68940 100%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    color: #fff;
-  }
-
-  /* ── Buttons ── */
-  .btn-gold {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: linear-gradient(135deg, #c2a055 0%, #a68940 100%);
-    color: #fff;
-    font-weight: 600;
-    font-family: 'Outfit', system-ui, sans-serif;
-    letter-spacing: 0.02em;
-    font-size: 1rem;
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    cursor: pointer;
-    transition: all 0.25s ease;
-    text-decoration: none;
-    box-shadow: 0 4px 14px rgba(194, 160, 85, 0.25);
-  }
-
-  .btn-gold:hover {
-    background: linear-gradient(135deg, #d4b06a 0%, #c2a055 100%);
-    box-shadow: 0 6px 20px rgba(194, 160, 85, 0.4);
-    transform: translateY(-1px);
-  }
-
-  .btn-outline {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    background: transparent;
-    color: #e6edf3;
-    font-weight: 600;
-    font-family: 'Outfit', system-ui, sans-serif;
-    font-size: 1rem;
-    padding: 0.75rem 2rem;
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    cursor: pointer;
-    transition: all 0.25s ease;
-    text-decoration: none;
-  }
-
-  .btn-outline:hover {
-    background: rgba(194, 160, 85, 0.08);
-    border-color: rgba(194, 160, 85, 0.4);
-    color: #c2a055;
-  }
-
-  /* ── Badges ── */
-  .badge-live {
-    background: rgba(194, 160, 85, 0.12);
-    border: 1px solid rgba(194, 160, 85, 0.3);
-    color: #d4b06a;
-    font-family: 'Outfit', system-ui, sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
-    padding: 0.2rem 0.65rem;
-    border-radius: 100px;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-  }
-
-  .badge-live::before {
-    content: '';
-    width: 6px; height: 6px;
     background: #c2a055;
-    border-radius: 50%;
-    animation: pulsePrimary 2s infinite;
+    transition: width 0.2s ease-in-out;
   }
 
-  /* ── Other ── */
-  .trust-strip {
-    border-top:    1px solid rgba(255, 255, 255, 0.06);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-    background: #161b22;
+  .nav-link:hover {
+    color: #1F2432;
   }
 
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  /* Check list item */
   .check-item {
     display: flex;
     align-items: flex-start;
     gap: 0.75rem;
-    color: #e6edf3;
+    color: #1F2432;
     line-height: 1.5;
   }
 
   .check-dot {
-    width: 20px; height: 20px; min-width: 20px;
-    background: rgba(194, 160, 85, 0.12);
-    border: 1px solid rgba(194, 160, 85, 0.3);
+    width: 20px;
+    height: 20px;
+    min-width: 20px;
+    background: rgba(194, 160, 85, 0.1);
+    border: 1px solid rgba(194, 160, 85, 0.2);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -348,27 +413,49 @@ body {
     color: #c2a055;
   }
 
+  /* Footer */
   .footer-bg {
-    background: #080c10;
-    border-top: 1px solid rgba(255, 255, 255, 0.06);
-    color: #e6edf3;
+    background: #1F2432;
+    /* Very dark slate/navy for footer */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    color: #FFFFFF;
   }
 
+  /* Divider */
   .divider-primary {
-    width: 60px; height: 4px;
-    background: linear-gradient(90deg, #c2a055, #d4b06a);
+    width: 60px;
+    height: 4px;
+    background: #c2a055;
     border-radius: 2px;
   }
 
-  /* ── Animation helpers ── */
-  .animate-pulse-primary { animation: pulsePrimary 2s ease-in-out infinite; }
-  .animate-spin-slow     { animation: spin 8s linear infinite; }
-  .animate-float         { animation: float 4s ease-in-out infinite; }
+  /* Animations */
+  .animate-pulse-primary {
+    animation: pulsePrimary 2s ease-in-out infinite;
+  }
+
+  .animate-spin-slow {
+    animation: spin 8s linear infinite;
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
 }
 
 /* ─── Responsive ─── */
 @media (max-width: 768px) {
-  .section-pad    { padding-top: 3rem; padding-bottom: 3rem; }
-  .container-main { padding-left: 1.25rem; padding-right: 1.25rem; }
-  .floating-element { animation: float 4s ease-in-out infinite; }
+  .section-pad {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+  }
+
+  .container-main {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .floating-element {
+    animation: float 4s ease-in-out infinite;
+  }
 }
