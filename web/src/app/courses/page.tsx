@@ -7,24 +7,24 @@ import { fetchLMSCourses, CanvasCourse } from "@/lib/lms";
 
 const C = {
     primaryGold: "#c2a055",
-    primaryGoldHover: "#a68940",
-    navyDark: "#1a202c",
-    navyLight: "#2d3748",
-    bgLight: "#f9fafb",
-    white: "#FFFFFF",
-    textMain: "#1a202c",
-    textMuted: "#4b5563",
+    primaryGoldHover: "#d4b06a",
+    navyDark: "#e6edf3",
+    navyLight: "#cdd9e5",
+    bgLight: "#0d1117",
+    white: "#161b22",
+    textMain: "#e6edf3",
+    textMuted: "#8b949e",
     teal300: "#c2a055",
     teal400: "#c2a055",
     gold300: "#c2a055",
     gold400: "#a68940",
-    navy200: "#4b5563",
-    navy400: "#1a202c",
-    navy600: "#1a202c",
-    navy700: "#f9fafb",
-    navy800: "#FFFFFF",
-    navy900: "#FFFFFF",
-    navy950: "#FFFFFF",
+    navy200: "#8b949e",
+    navy400: "#c2a055",
+    navy600: "#161b22",
+    navy700: "#0d1117",
+    navy800: "#0d1117",
+    navy900: "#0d1117",
+    navy950: "#0d1117",
 };
 
 const allCourses = [
@@ -97,7 +97,7 @@ export default function CoursesPage() {
     return (
         <>
             {/* Hero */}
-            <section style={{ paddingTop: "8rem", paddingBottom: "5rem", background: `radial-gradient(ellipse 80% 60% at 50% -20%, #FFFFFF 0%, transparent 70%), ${C.bgLight}`, backgroundImage: "linear-gradient(rgba(0,86,210,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,86,210,0.03) 1px, transparent 1px)", backgroundSize: "64px 64px, 64px 64px, auto, auto", textAlign: "center" }}>
+            <section style={{ paddingTop: "8rem", paddingBottom: "5rem", background: `radial-gradient(ellipse 80% 60% at 50% -20%, rgba(33,38,45,0.9) 0%, transparent 70%), #0d1117`, backgroundImage: "linear-gradient(rgba(194,160,85,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(194,160,85,0.03) 1px, transparent 1px)", backgroundSize: "64px 64px, 64px 64px, auto, auto", textAlign: "center" }}>
                 <div className="container-main">
                     <p className="section-eyebrow" style={{ marginBottom: "1rem", display: "inline-block", animation: "fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) both" }}>
                         15+ Expert-Led Programs

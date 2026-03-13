@@ -7,26 +7,26 @@ import { fetchLMSCourses, CanvasCourse } from "@/lib/lms";
 
 /* ─── Design Tokens ─── */
 const C = {
-  primaryBlue: "#c2a055", // AILT Gold
-  primaryBlueHover: "#a68940",
-  navyDark: "#1a202c",
-  navyLight: "#2a3441",
-  bgLight: "#f9fafb",
-  white: "#FFFFFF",
-  textMain: "#1f2937",
-  textMuted: "#4b5563",
+  primaryBlue: "#c2a055",
+  primaryBlueHover: "#d4b06a",
+  navyDark: "#e6edf3",
+  navyLight: "#cdd9e5",
+  bgLight: "#0d1117",
+  white: "#161b22",
+  textMain: "#e6edf3",
+  textMuted: "#8b949e",
   accentGold: "#c2a055",
   teal300: "#c2a055",
   teal400: "#c2a055",
   gold300: "#c2a055",
   gold400: "#c2a055",
-  navy200: "#4b5563",
-  navy400: "#1a202c",
-  navy600: "#1a202c",
-  navy700: "#f9fafb",
-  navy800: "#FFFFFF",
-  navy900: "#FFFFFF",
-  navy950: "#FFFFFF",
+  navy200: "#8b949e",
+  navy400: "#c2a055",
+  navy600: "#161b22",
+  navy700: "#0d1117",
+  navy800: "#0d1117",
+  navy900: "#0d1117",
+  navy950: "#0d1117",
 };
 
 /* ─── Count-up hook ─── */
@@ -148,7 +148,7 @@ export default function Home() {
   return (
     <>
       {/* ═══ HERO ═══ */}
-      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse 80% 60% at 50% -20%, #FFFFFF 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 85% 70%, rgba(194, 160, 85,0.05) 0%, transparent 60%), ${C.bgLight}`, backgroundImage: "linear-gradient(rgba(194, 160, 85, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(194, 160, 85, 0.03) 1px, transparent 1px)", backgroundSize: "64px 64px, 64px 64px, auto, auto" }}>
+      <section style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", position: "relative", overflow: "hidden", background: `radial-gradient(ellipse 80% 60% at 50% -20%, rgba(33,38,45,0.8) 0%, transparent 70%), radial-gradient(ellipse 60% 50% at 85% 70%, rgba(194,160,85,0.05) 0%, transparent 60%), #0d1117`, backgroundImage: "linear-gradient(rgba(194, 160, 85, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(194, 160, 85, 0.03) 1px, transparent 1px)", backgroundSize: "64px 64px, 64px 64px, auto, auto" }}>
 
         {/* Decorative rings (lighter) */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 700, borderRadius: "50%", border: `1px solid rgba(194, 160, 85, 0.06)`, pointerEvents: "none" }} />
@@ -311,7 +311,7 @@ export default function Home() {
             </section>
 
       {/* ═══ STATS ═══ */}
-      <section ref={statsRef} style={{ borderTop: "1px solid rgba(0,0,0,0.06)", borderBottom: "1px solid rgba(0,0,0,0.06)", background: C.white, padding: "3.5rem 0" }}>
+      <section ref={statsRef} style={{ borderTop: "1px solid rgba(255,255,255,0.06)", borderBottom: "1px solid rgba(255,255,255,0.06)", background: "#161b22", padding: "3.5rem 0" }}>
         <div className="container-main">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))", gap: "2rem", textAlign: "center" }}>
             {stats.map((s, i) => <StatNum key={i} s={s} active={statsActive} delay={i * 100} />)}

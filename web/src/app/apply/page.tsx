@@ -13,11 +13,11 @@ interface CourseItem {
 
 const C = {
   primaryGold: "#c2a055",
-  navyDark: "#1a202c",
-  bgLight: "#f9fafb",
-  textMuted: "#4b5563",
-  white: "#ffffff",
-  border: "rgba(0,0,0,0.09)",
+  navyDark: "#e6edf3",
+  bgLight: "#0d1117",
+  textMuted: "#8b949e",
+  white: "#161b22",
+  border: "rgba(255,255,255,0.09)",
 };
 
 const GRADE_OPTIONS = [
