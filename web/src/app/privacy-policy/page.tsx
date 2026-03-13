@@ -19,7 +19,7 @@ export default function PrivacyPolicy() {
             <section>
               <h2 className="text-xl font-bold text-[#1a202c]">1. Introduction</h2>
               <p>
-                AyaTech ("we," "us," or "our"), operated by <strong>Nawazin Moral Edu LLP</strong>, is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share information about you when you visit our website at <Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link> or its subdomains (including <Link href="https://erp.ayatech.org" className="text-[#c2a055]">erp.ayatech.org</Link>), and use our services.
+                AyaTech ("we," "us," or "our"), operated by <strong>AYATECH TECHNICAL SCHOOL LLP</strong>, is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and share information about you when you visit our website at <Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link> or its subdomains (including <Link href="https://erp.ayatech.org" className="text-[#c2a055]">erp.ayatech.org</Link>), and use our services.
               </p>
             </section>
 
@@ -77,9 +77,9 @@ export default function PrivacyPolicy() {
                 If you have any questions about this Privacy Policy, please contact us at:
               </p>
               <p className="mt-2">
-                <strong>Nawazin Moral Edu LLP</strong><br />
+                <strong>AYATECH TECHNICAL SCHOOL LLP</strong><br />
                 Calicut (Kozhikode), Kerala, India<br />
-                Email: <Link href="mailto:nawazinmoral@gmail.com" className="text-[#c2a055]">nawazinmoral@gmail.com</Link>
+                Email: <Link href="mailto:ayatectechnicalschool@gmail.com" className="text-[#c2a055]">ayatectechnicalschool@gmail.com</Link>
               </p>
             </section>
           </div>

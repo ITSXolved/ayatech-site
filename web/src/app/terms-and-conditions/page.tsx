@@ -19,7 +19,7 @@ export default function TermsAndConditions() {
             <section>
               <h2 className="text-xl font-bold text-[#1a202c]">1. Agreement to Terms</h2>
               <p>
-                By accessing or using the AyaTech website (<Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link>) and our services, you agree to be bound by these Terms and Conditions. Our services are operated by <strong>Nawazin Moral Edu LLP</strong>. If you do not agree to these terms, please do not use our services.
+                By accessing or using the AyaTech website (<Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link>) and our services, you agree to be bound by these Terms and Conditions. Our services are operated by <strong>AYATECH TECHNICAL SCHOOL LLP</strong>. If you do not agree to these terms, please do not use our services.
               </p>
             </section>
 
@@ -42,7 +42,7 @@ export default function TermsAndConditions() {
             <section>
               <h2 className="text-xl font-bold text-[#1a202c]">4. Intellectual Property</h2>
               <p>
-                All content provided on AyaTech, including but not limited to course materials, videos, logos, text, and graphics, is the property of Nawazin Moral Edu LLP or its licensors and is protected by copyright and other intellectual property laws. You are granted a limited, non-exclusive license to access the materials for your personal, non-commercial educational use.
+                All content provided on AyaTech, including but not limited to course materials, videos, logos, text, and graphics, is the property of AYATECH TECHNICAL SCHOOL LLP or its licensors and is protected by copyright and other intellectual property laws. You are granted a limited, non-exclusive license to access the materials for your personal, non-commercial educational use.
               </p>
             </section>
 
@@ -60,7 +60,7 @@ export default function TermsAndConditions() {
             <section>
               <h2 className="text-xl font-bold text-[#1a202c]">6. Limitation of Liability</h2>
               <p>
-                To the maximum extent permitted by law, Nawazin Moral Edu LLP shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services.
+                To the maximum extent permitted by law, AYATECH TECHNICAL SCHOOL LLP shall not be liable for any indirect, incidental, special, consequential, or punitive damages resulting from your use of or inability to use our services.
               </p>
             </section>
 
@@ -91,9 +91,9 @@ export default function TermsAndConditions() {
                 For any questions regarding these Terms, please contact:
               </p>
               <p className="mt-2">
-                <strong>Nawazin Moral Edu LLP</strong><br />
+                <strong>AYATECH TECHNICAL SCHOOL LLP</strong><br />
                 Address: Calicut (Kozhikode), Kerala, India<br />
-                Email: <Link href="mailto:nawazinmoral@gmail.com" className="text-[#c2a055]">nawazinmoral@gmail.com</Link>
+                Email: <Link href="mailto:ayatectechnicalschool@gmail.com" className="text-[#c2a055]">ayatectechnicalschool@gmail.com</Link>
               </p>
             </section>
           </div>

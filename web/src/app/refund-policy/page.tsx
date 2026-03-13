@@ -19,7 +19,7 @@ export default function RefundPolicy() {
             <section>
               <h2 className="text-xl font-bold text-[#1a202c]">1. Introduction</h2>
               <p>
-                At AyaTech, we want to ensure that our students are satisfied with the educational experience we provide. This policy outlines our refund and cancellation procedures for all courses and programs offered through <Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link>, operated by <strong>Nawazin Moral Edu LLP</strong>.
+                At AyaTech, we want to ensure that our students are satisfied with the educational experience we provide. This policy outlines our refund and cancellation procedures for all courses and programs offered through <Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link>, operated by <strong>AYATECH TECHNICAL SCHOOL LLP</strong>.
               </p>
             </section>
 
@@ -44,7 +44,7 @@ export default function RefundPolicy() {
             <section>
               <h2 className="text-xl font-bold text-[#1a202c]">4. Refund Process</h2>
               <p>
-                To request a refund, please send an email to <Link href="mailto:nawazinmoral@gmail.com" className="text-[#c2a055]">nawazinmoral@gmail.com</Link> with your name, course details, and reason for the request. 
+                To request a refund, please send an email to <Link href="mailto:ayatectechnicalschool@gmail.com" className="text-[#c2a055]">ayatectechnicalschool@gmail.com</Link> with your name, course details, and reason for the request. 
               </p>
               <p>
                 Once approved, refunds will be processed within 5-7 working days and will be credited back to the original payment method used during enrollment.
@@ -64,9 +64,9 @@ export default function RefundPolicy() {
                 For any questions regarding our Refund and Cancellation Policy, please contact:
               </p>
               <p className="mt-2">
-                <strong>Nawazin Moral Edu LLP</strong><br />
+                <strong>AYATECH TECHNICAL SCHOOL LLP</strong><br />
                 Address: Calicut (Kozhikode), Kerala, India<br />
-                Email: <Link href="mailto:nawazinmoral@gmail.com" className="text-[#c2a055]">nawazinmoral@gmail.com</Link>
+                Email: <Link href="mailto:ayatectechnicalschool@gmail.com" className="text-[#c2a055]">ayatectechnicalschool@gmail.com</Link>
               </p>
             </section>
           </div>

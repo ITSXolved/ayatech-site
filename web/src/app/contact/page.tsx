@@ -22,7 +22,7 @@ export default function ContactUs() {
                 <div>
                   <h3 className="font-bold text-[#1a202c] mb-1">Email Us</h3>
                   <p className="text-sm text-[#6A7081] mb-2">For support, enrollment help, or corporate queries.</p>
-                  <Link href="mailto:nawazinmoral@gmail.com" className="text-[#c2a055] font-semibold">nawazinmoral@gmail.com</Link>
+                  <Link href="mailto:ayatectechnicalschool@gmail.com" className="text-[#c2a055] font-semibold">ayatectechnicalschool@gmail.com</Link>
                 </div>
               </div>
 
@@ -44,7 +44,7 @@ export default function ContactUs() {
                 <div>
                   <h3 className="font-bold text-[#1a202c] mb-1">Our Location</h3>
                   <p className="text-sm text-[#6A7081]">
-                    <strong>Nawazin Moral Edu LLP</strong><br />
+                    <strong>AYATECH TECHNICAL SCHOOL LLP</strong><br />
                     Calicut (Kozhikode), Kerala, India
                   </p>
                 </div>
