@@ -24,7 +24,7 @@ export async function POST(req: NextRequest) {
         Authorization: "Basic " + Buffer.from(`${keyId}:${keySecret}`).toString("base64"),
       },
       body: JSON.stringify({
-        amount: amount * 100, // paise
+        amount: 100, // TEMPORARY 1 RUPEE TEST (100 paise = 1 INR)
         currency: "INR",
         receipt: `rcpt_${Date.now()}`,
         notes: {
