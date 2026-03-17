@@ -17,9 +17,12 @@ export default function TermsAndConditions() {
           
           <div className="prose prose-slate max-w-none text-[#1f2937] space-y-6">
             <section>
-              <h2 className="text-xl font-bold text-[#1a202c]">1. Agreement to Terms</h2>
+              <h2 className="text-xl font-bold text-[#1a202c]">1. Introduction</h2>
               <p>
-                By accessing or using the AyaTech website (<Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link>) and our services, you agree to be bound by these Terms and Conditions. Our services are operated by <strong>AYATECH TECHNICAL SCHOOL LLP</strong>. If you do not agree to these terms, please do not use our services.
+                Welcome to AyaTech! These Terms and Conditions govern your use of <Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link> and all associated services, courses, and digital products provided by <strong>AYADI CLOUDVERSITY LLP</strong> (referred to as "AyaTech," "we," "us," or "our").
+              </p>
+              <p>
+                By enrolling in any of our courses or using our platform, you agree to comply with and be bound by these terms. If you disagree with any part of these terms, please do not use our services.
               </p>
             </section>
 
@@ -86,13 +89,13 @@ export default function TermsAndConditions() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-[#1a202c]">10. Contact Information</h2>
+              <h2 className="text-xl font-bold text-[#1a202c]">9. Contact Us</h2>
               <p>
-                For any questions regarding these Terms, please contact:
+                If you have any questions or concerns regarding these Terms and Conditions, please contact us at:
               </p>
               <p className="mt-2">
-                <strong>AYATECH TECHNICAL SCHOOL LLP</strong><br />
-                Address: Calicut (Kozhikode), Kerala, India<br />
+                <strong>AYADI CLOUDVERSITY LLP</strong><br />
+                Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032<br />
                 Email: <Link href="mailto:ayatectechnicalschool@gmail.com" className="text-[#c2a055]">ayatectechnicalschool@gmail.com</Link>
               </p>
             </section>

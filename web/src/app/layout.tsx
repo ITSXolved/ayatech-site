@@ -17,6 +17,11 @@ export const metadata: Metadata = {
     "Kerala edtech",
     "Calicut",
   ],
+  icons: {
+    icon: "/logo_transparent.png",
+    shortcut: "/logo_transparent.png",
+    apple: "/logo_transparent.png",
+  },
   openGraph: {
     title: "AyaTech — Empowering Innovation. Building Futures.",
     description:

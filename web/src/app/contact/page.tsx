@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Mail, Phone, MapPin, Clock } from "lucide-react";
+import { ArrowLeft, Mail, Phone, MapPin, Clock, ChevronRight } from "lucide-react";
 
 export default function ContactUs() {
   return (
@@ -33,9 +33,29 @@ export default function ContactUs() {
                 <div>
                   <h3 className="font-bold text-[#1a202c] mb-1">Call Us</h3>
                   <p className="text-sm text-[#6A7081] mb-2">Mon-Sat, 9:00 AM to 6:00 PM IST</p>
-                  <p className="text-[#c2a055] font-semibold">+91 9037665777</p>
+                  <a href="tel:09037985004" className="text-[#c2a055] font-semibold hover:underline">090379 85004</a>
                 </div>
               </div>
+
+              {/* New Consultation Section */}
+              <div className="flex items-start gap-4">
+                <div className="w-12 h-12 rounded-xl bg-rgba(194, 160, 85, 0.1) flex items-center justify-center shrink-0 border border-rgba(194,160,85,0.2)">
+                  <Phone className="text-[#c2a055]" size={20} /> {/* Reusing Phone icon, or could use a new one */}
+                </div>
+                <div>
+                  <h3 className="font-bold text-[#1a202c] mb-1">Book Free Consultation</h3>
+                  <p className="text-sm text-[#6A7081] mb-2">Talk to our mentors and get a personalised recommendation.</p>
+                  <a 
+                      href="https://wa.me/919037985004" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 py-2 px-4 bg-[#c2a055] text-white rounded-lg font-bold hover:bg-[#a68940] transition-colors shadow-sm text-sm"
+                  >
+                      Book Free Consultation <ChevronRight size={16} />
+                  </a>
+                </div>
+              </div>
+              {/* End New Consultation Section */}
 
               <div className="flex items-start gap-4">
                 <div className="w-12 h-12 rounded-xl bg-rgba(194, 160, 85, 0.1) flex items-center justify-center shrink-0 border border-rgba(194,160,85,0.2)">
@@ -43,10 +63,15 @@ export default function ContactUs() {
                 </div>
                 <div>
                   <h3 className="font-bold text-[#1a202c] mb-1">Our Location</h3>
-                  <p className="text-sm text-[#6A7081]">
-                    <strong>AYATECH TECHNICAL SCHOOL LLP</strong><br />
-                    Calicut (Kozhikode), Kerala, India
-                  </p>
+                  <a 
+                    href="https://maps.google.com/?q=Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-[#6A7081] hover:text-[#c2a055] transition-colors"
+                  >
+                    <strong>AYADI CLOUDVERSITY LLP</strong><br />
+                    Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032
+                  </a>
                 </div>
               </div>
               

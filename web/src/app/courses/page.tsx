@@ -191,7 +191,13 @@ export default function CoursesPage() {
                             Not sure which course to pick?
                         </h3>
                         <p style={{ color: "rgba(255,255,255,0.85)", marginBottom: "1.5rem", fontSize: "1.05rem" }}>Talk to our mentors and get a personalised recommendation.</p>
-                        <button className="btn-gold" style={{ backgroundColor: "#FFFFFF", color: C.primaryGold }}>Book Free Consultation <ChevronRight size={16} /></button>
+                        <a 
+                            href="https://wa.me/919037985004" 
+                            target="_blank" 
+                            rel="noopener noreferrer"
+                        >
+                            <button className="btn-gold" style={{ backgroundColor: "#FFFFFF", color: C.primaryGold }}>Book Free Consultation <ChevronRight size={16} /></button>
+                        </a>
                     </div>
                 </div>
             </section>

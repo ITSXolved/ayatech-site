@@ -143,7 +143,7 @@ export default function AboutPage() {
                             </p>
                             <div className="flex items-center gap-2 text-sm" style={{ color: "rgba(255,255,255,0.9)" }}>
                                 <MapPin size={16} />
-                                Calicut (Kozhikode), Kerala, India
+                                Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032
                             </div>
                         </div>
                         <div className="shrink-0 grid grid-cols-2 gap-3">

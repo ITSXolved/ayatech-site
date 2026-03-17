@@ -13,7 +13,8 @@ export default function ShippingPolicy() {
         
         <div className="bg-white rounded-2xl p-8 md:p-12 shadow-sm border border-black/5">
           <h1 className="font-display text-4xl font-bold text-[#1a202c] mb-4">Shipping and Delivery Policy</h1>
-          <p className="text-[#6A7081] mb-8">Last Updated: {lastUpdated}</p>
+          <p className="text-[#6A7081] mb-8">This Shipping & Delivery Policy is part of our Terms and Conditions ("Terms") and should be therefore read alongside our main Terms: <Link href="https://ayatech.org/terms-and-conditions" className="text-[#c2a055]">https://ayatech.org/terms-and-conditions</Link></p>
+          <p className="text-[#6A7081] mb-8">Please carefully review our Shipping & Delivery Policy when purchasing our products. This policy will apply to any order you place with us.</p>
           
           <div className="prose prose-slate max-w-none text-[#1f2937] space-y-6">
             <section>
@@ -54,13 +55,13 @@ export default function ShippingPolicy() {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-[#1a202c]">5. Contact Us</h2>
+              <h2 className="text-xl font-bold text-[#1a202c]">HOW CAN YOU CONTACT US ABOUT THIS POLICY?</h2>
               <p>
-                If you haven't received your course access or physical kit within the specified timeline, please contact:
+                If you have any further questions or comments, you may contact us by:
               </p>
               <p className="mt-2">
-                <strong>AYATECH TECHNICAL SCHOOL LLP</strong><br />
-                Address: Calicut (Kozhikode), Kerala, India<br />
+                <strong>AYADI CLOUDVERSITY LLP</strong><br />
+                Address: Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032<br />
                 Email: <Link href="mailto:ayatectechnicalschool@gmail.com" className="text-[#c2a055]">ayatectechnicalschool@gmail.com</Link>
               </p>
             </section>

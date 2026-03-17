@@ -19,7 +19,7 @@ export default function RefundPolicy() {
             <section>
               <h2 className="text-xl font-bold text-[#1a202c]">1. Introduction</h2>
               <p>
-                At AyaTech, we want to ensure that our students are satisfied with the educational experience we provide. This policy outlines our refund and cancellation procedures for all courses and programs offered through <Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link>, operated by <strong>AYATECH TECHNICAL SCHOOL LLP</strong>.
+                At AyaTech, we want to ensure that our students are satisfied with the educational experience we provide. This policy outlines our refund and cancellation procedures for all courses and programs offered through <Link href="https://ayatech.org" className="text-[#c2a055]">https://ayatech.org</Link>, operated by <strong>AYADI CLOUDVERSITY LLP</strong>.
               </p>
             </section>
 
@@ -64,8 +64,8 @@ export default function RefundPolicy() {
                 For any questions regarding our Refund and Cancellation Policy, please contact:
               </p>
               <p className="mt-2">
-                <strong>AYATECH TECHNICAL SCHOOL LLP</strong><br />
-                Address: Calicut (Kozhikode), Kerala, India<br />
+                <strong>AYADI CLOUDVERSITY LLP</strong><br />
+                Address: Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032<br />
                 Email: <Link href="mailto:ayatectechnicalschool@gmail.com" className="text-[#c2a055]">ayatectechnicalschool@gmail.com</Link>
               </p>
             </section>

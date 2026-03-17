@@ -22,6 +22,7 @@ const C = {
 // { label: "About", href: "/about" },
 
 const navLinks: { label: string; href: string }[] = [
+    { label: "Home", href: "/" },
     { label: "Courses", href: "/courses" },
     // { label: "IGCSE School", href: "/igcse-school" },
     // { label: "Tinkering", href: "/tinkering" },
@@ -67,17 +68,17 @@ export default function NavBar() {
                     </Link>
 
                     {/* Right side nav + CTA */}
-                    <div style={{ display: "flex", alignItems: "center", gap: "2.5rem" }} className="hidden-mobile">
-                        <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: "2rem" }} className="hidden-mobile">
+                        <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
                             {navLinks.map(link => (
-                                <Link key={link.href} href={link.href} className="nav-link" style={{ color: C.textMuted }}>
+                                <Link key={link.href} href={link.href} className="nav-link" style={{ color: C.textMuted, fontSize: "0.95rem", fontWeight: 500 }}>
                                     {link.label}
                                 </Link>
                             ))}
                         </div>
                         <Link href="/apply">
-                            <button className="btn-gold" style={{ padding: "0.6rem 1.4rem", fontSize: "0.82rem", letterSpacing: "0.06em", background: "linear-gradient(135deg, #c2a055 0%, #a68940 100%)", color: "#FFFFFF", borderRadius: "8px", border: "none" }}>
-                                Apply Now <ChevronRight size={14} />
+                            <button className="btn-gold" style={{ padding: "0.6rem 1.5rem", fontSize: "0.9rem", fontWeight: 600, backgroundColor: "#c2a055", color: "#FFFFFF", borderRadius: "8px", border: "none", cursor: "pointer" }}>
+                                Apply Now
                             </button>
                         </Link>
                     </div>

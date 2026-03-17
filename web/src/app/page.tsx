@@ -160,32 +160,31 @@ export default function Home() {
             {/* Left Column: Text */}
             <div style={{ textAlign: "left" }}>
               {/* Admissions Badge */}
-              <div style={{ display: "flex", gap: "0.75rem", alignItems: "center", marginBottom: "1.5rem", animation: "fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both" }}>
-                <div style={{ background: "rgba(179, 142, 61, 0.1)", border: "1px solid rgba(179, 142, 61, 0.2)", padding: "0.25rem 0.75rem", borderRadius: "100px", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#b38e3d", animation: "pulse 2s infinite" }}></div>
-                  <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "#b38e3d", textTransform: "uppercase", letterSpacing: "0.05em" }}>Admission Open 2026</span>
+              <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "2rem", animation: "fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both" }}>
+                <div style={{ background: "#ffffff", border: "1px solid #e5e7eb", padding: "0.35rem 1rem", borderRadius: "100px", display: "flex", alignItems: "center", gap: "0.5rem", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
+                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#c2a055" }}></div>
+                  <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "#6b7280" }}>Admission Open 2026</span>
                 </div>
-                <p className="section-eyebrow" style={{ color: C.textMuted, margin: 0 }}>
-                  Calicut · Kerala · Global
+                <p className="section-eyebrow" style={{ color: C.textMuted, margin: 0, fontWeight: 600, letterSpacing: "0.05em", fontSize: "0.75rem" }}>
+                  CALICUT · KERALA · GLOBAL
                 </p>
               </div>
 
               {/* H1 */}
-              <h1 className="font-display" style={{ fontSize: "clamp(2.5rem,6vw,4.5rem)", fontWeight: 700, lineHeight: 1.1, color: C.navyDark, marginBottom: "1.5rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both", letterSpacing: "-0.01em" }}>
-                Empowering <br />
-                innovative minds <br />
-                <span style={{ color: C.accentGold }}>for sustainable <br /> futures.</span>
+              <h1 className="font-display" style={{ fontSize: "clamp(2.5rem,5.5vw,4rem)", fontWeight: 800, lineHeight: 1.15, color: C.navyDark, marginBottom: "2.5rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both", letterSpacing: "-0.02em" }}>
+                Empowering <br className="hidden md:block" />innovative minds <br />
+                <span style={{ color: C.accentGold }}>for sustainable <br className="hidden md:block" />futures.</span>
               </h1>
 
               {/* CTAs */}
               <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem", marginBottom: "3rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.55s both" }}>
                 <Link href="/apply">
-                  <button className="btn-gold" style={{ padding: "1rem 2rem", fontSize: "1rem", backgroundColor: C.accentGold, color: "#fff", display: "flex", alignItems: "center", gap: "0.5rem", borderRadius: "8px" }}>
-                    Start Application <ArrowRight size={17} />
+                  <button className="btn-gold" style={{ padding: "0.875rem 1.75rem", fontSize: "0.95rem", backgroundColor: "#0f172a", color: "#fff", display: "flex", alignItems: "center", gap: "0.5rem", borderRadius: "8px", border: "none" }}>
+                    Start Application <ArrowRight size={16} color="#fff" />
                   </button>
                 </Link>
                 <Link href="/courses">
-                  <button className="btn-outline" style={{ padding: "1rem 2rem", fontSize: "1rem", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "8px", color: C.navyDark }}>
+                  <button className="btn-outline" style={{ padding: "0.875rem 1.75rem", fontSize: "0.95rem", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "8px", color: C.navyDark, backgroundColor: "transparent" }}>
                     Explore Courses
                   </button>
                 </Link>
@@ -238,26 +237,20 @@ export default function Home() {
                   />
                 </div>
                 <div
-                  className="hero-slider-container"
+                  className="hero-slider-container shadow-2xl"
                   style={{
                     position: "relative",
                     width: "100%",
                     aspectRatio: "4/3",
-                    borderRadius: "24px",
+                    borderRadius: "2rem",
                     overflow: "hidden",
                     backgroundColor: "#f0f0f0", // Placeholder color during load
                   }}
                 >
-                  {/* Decorative glow behind image */}
-                  <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: "120%", height: "120%", background: "radial-gradient(circle, rgba(194,160,85, 0.1) 0%, transparent 70%)", zIndex: -1 }}></div>
-
-                  {/* Hero Image Container with Tilt (AILT Style) */}
                   <div
                     className="relative w-full h-full"
-                    style={{ transition: "all 0.7s ease-out" }}
+                    style={{ transition: "all 0.4s ease-out" }}
                   >
-                    <div className="absolute inset-0 bg-white p-2 rounded-[2.5rem] shadow-2xl skew-y-1 rotate-1 hover:rotate-0 hover:skew-y-0 transition-all duration-700 ease-out z-10 overflow-hidden">
-                      <div className="relative w-full h-full rounded-3xl overflow-hidden bg-gray-100">
                         {heroImages.map((img, i) => (
                           <div
                             key={i}
@@ -272,11 +265,9 @@ export default function Home() {
                               style={{ objectFit: "cover" }}
                               sizes="(max-width: 768px) 100vw, 540px"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
+                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
                           </div>
                         ))}
-                      </div>
-                    </div>
                   </div>
 
                   {/* Slider Dots */}

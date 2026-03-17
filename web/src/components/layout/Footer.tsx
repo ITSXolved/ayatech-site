@@ -8,6 +8,7 @@ import {
     Instagram,
     Linkedin,
     Youtube,
+    Facebook,
 } from "lucide-react";
 
 const links = {
@@ -58,14 +59,17 @@ export default function Footer() {
                         </p>
                         <div className="flex gap-3">
                             {[
-                                { Icon: Twitter, href: "#" },
-                                { Icon: Instagram, href: "#" },
-                                { Icon: Linkedin, href: "#" },
-                                { Icon: Youtube, href: "#" },
+                                { Icon: Instagram, href: "https://www.instagram.com/ayadicloudversity/?hl=en" },
+                                { Icon: Facebook, href: "https://www.facebook.com/people/Ayadi-Cloudversity/61573185167388/" },
+                                { Icon: Youtube, href: "https://www.youtube.com/channel/UCXbWhD_Cw4i7atIDJjGttaQ" },
+                                // { Icon: Twitter, href: "#" },
+                                // { Icon: Linkedin, href: "#" },
                             ].map(({ Icon, href }, i) => (
                                 <a
                                     key={i}
                                     href={href}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
                                     className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-white/30 transition-all"
                                 >
                                     <Icon size={15} />
@@ -101,24 +105,28 @@ export default function Footer() {
                     {[
                         {
                             Icon: MapPin,
-                            text: "Calicut (Kozhikode), Kerala, India",
+                            text: "Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032",
+                            href: "https://maps.google.com/?q=Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032"
                         },
                         {
                             Icon: Mail,
-                            text: "hello@ayatech.in",
+                            text: "ayatectechnicalschool@gmail.com",
+                            href: "mailto:ayatectechnicalschool@gmail.com"
                         },
                         {
                             Icon: Phone,
-                            text: "+91 9037665777",
+                            text: "090379 85004",
+                            href: "tel:09037985004"
                         },
-                    ].map(({ Icon, text }, i) => (
-                        <div
+                    ].map(({ Icon, text, href }, i) => (
+                        <a
                             key={i}
-                            className="flex items-center gap-2 text-gray-400 text-sm"
+                            href={href}
+                            className="flex items-center gap-2 text-gray-400 text-sm hover:text-white transition-colors"
                         >
                             <Icon size={14} className="shrink-0 text-gold-400 opacity-80" />
                             <span>{text}</span>
-                        </div>
+                        </a>
                     ))}
                 </div>
 

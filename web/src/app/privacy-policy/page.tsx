@@ -77,8 +77,8 @@ export default function PrivacyPolicy() {
                 If you have any questions about this Privacy Policy, please contact us at:
               </p>
               <p className="mt-2">
-                <strong>AYATECH TECHNICAL SCHOOL LLP</strong><br />
-                Calicut (Kozhikode), Kerala, India<br />
+                <strong>AYADI CLOUDVERSITY LLP</strong><br />
+                Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032<br />
                 Email: <Link href="mailto:ayatectechnicalschool@gmail.com" className="text-[#c2a055]">ayatectechnicalschool@gmail.com</Link>
               </p>
             </section>
