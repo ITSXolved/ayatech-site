@@ -9,6 +9,7 @@ import {
     Linkedin,
     Youtube,
     Facebook,
+    ChevronRight,
 } from "lucide-react";
 
 const links = {
@@ -100,6 +101,25 @@ export default function Footer() {
                     ))}
                 </div>
 
+                {/* New Consultation Section */}
+                <div className="flex items-start gap-4 mb-10"> {/* Added margin-bottom for spacing */}
+                    <div className="w-12 h-12 rounded-xl bg-[rgba(194,160,85,0.1)] flex items-center justify-center shrink-0 border border-[rgba(194,160,85,0.2)]">
+                        <Phone className="text-[#c2a055]" size={20} />
+                    </div>
+                    <div>
+                        <h3 className="font-bold text-white mb-1">Book Free Consultation</h3> {/* Changed text color to white for dark background */}
+                        <p className="text-sm text-gray-400 mb-2">Talk to our mentors and get a personalised recommendation.</p> {/* Changed text color to gray-400 */}
+                        <a
+                            href="https://wa.me/919037665777"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center gap-2 py-2 px-4 bg-[#c2a055] text-white rounded-lg font-bold hover:bg-[#a68940] transition-colors shadow-sm text-sm"
+                        >
+                            Book Free Consultation <ChevronRight size={16} />
+                        </a>
+                    </div>
+                </div>
+
                 {/* Contact strip */}
                 <div className="border-t border-white/10 py-6 grid grid-cols-1 md:grid-cols-3 gap-4">
                     {[
@@ -115,8 +135,8 @@ export default function Footer() {
                         },
                         {
                             Icon: Phone,
-                            text: "090379 85004",
-                            href: "tel:09037985004"
+                            text: "9037665777",
+                            href: "tel:9037665777"
                         },
                     ].map(({ Icon, text, href }, i) => (
                         <a

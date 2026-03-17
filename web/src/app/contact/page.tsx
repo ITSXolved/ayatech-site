@@ -33,7 +33,7 @@ export default function ContactUs() {
                 <div>
                   <h3 className="font-bold text-[#1a202c] mb-1">Call Us</h3>
                   <p className="text-sm text-[#6A7081] mb-2">Mon-Sat, 9:00 AM to 6:00 PM IST</p>
-                  <a href="tel:09037985004" className="text-[#c2a055] font-semibold hover:underline">090379 85004</a>
+                  <a href="tel:9037665777" className="text-[#c2a055] font-semibold hover:underline">9037665777</a>
                 </div>
               </div>
 
@@ -46,7 +46,7 @@ export default function ContactUs() {
                   <h3 className="font-bold text-[#1a202c] mb-1">Book Free Consultation</h3>
                   <p className="text-sm text-[#6A7081] mb-2">Talk to our mentors and get a personalised recommendation.</p>
                   <a 
-                      href="https://wa.me/919037985004" 
+                      href="https://wa.me/919037665777" 
                       target="_blank" 
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 py-2 px-4 bg-[#c2a055] text-white rounded-lg font-bold hover:bg-[#a68940] transition-colors shadow-sm text-sm"
