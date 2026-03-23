@@ -47,7 +47,6 @@ const FALLBACK_PRICES: Record<string, number> = {
   "Graphic Design with Canva & AI": 999,
   "UI/UX Design Fundamentals": 1999,
   "Mobile App Development (Flutter)": 2499,
-  "₹1 Live Test Payment": 1,
 };
 
 function ApplyForm() {
@@ -218,9 +217,8 @@ function ApplyForm() {
                   <option key={c.id} value={c.name}>{c.name}</option>
                 ))
               )}
-              {/* Test and Fallback internal list */}
-              <option value="₹1 Live Test Payment">₹1 Live Test Payment</option>
-              {courses.length === 0 && Object.keys(FALLBACK_PRICES).filter(c => c !== "₹1 Live Test Payment").map(c => (
+              {/* Fallback internal list */}
+              {courses.length === 0 && Object.keys(FALLBACK_PRICES).map(c => (
                 <option key={c} value={c}>{c}</option>
               ))}
             </select>
