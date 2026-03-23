@@ -65,8 +65,7 @@ export async function POST(req: NextRequest) {
 
     if (appError) {
       console.error("Error creating application:", appError);
-      // Don't fail — still return order so payment can proceed
-      // The webhook will handle recording if needed
+      return NextResponse.json({ error: "Supabase app insert failed", details: appError }, { status: 500 });
     }
 
     // 3. Pre-create payment record as 'Pending'
