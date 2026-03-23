@@ -1,6 +1,66 @@
 # Dependencies
 node_modules/
-.pnp
+.pnporting ERP Application Form
+hi
+
+Hi! 👋 Welcome back!
+
+I can see you've been working on the Ezra Creations / AyaTech project — a Next.js site with Razorpay payments and Supabase integration. Your last session involved live payment integration testing.
+
+How can I help you today? Are you continuing with that, or is there something new you'd like to work on?
+
+ayatech site
+
+Let me explore the project structure to get a clear picture of what's there.
+
+Analyzed
+c:\Users\ASUS\Downloads\ayatech-site-main\ayatech-site-main
+Analyzed
+c:\Users\ASUS\Downloads\ayatech-site-main\ayatech-site-main\web
+Analyzed
+c:\Users\ASUS\Downloads\ayatech-site-main\ayatech-site-main\ayatech-erp
+Analyzed
+c:\Users\ASUS\Downloads\ayatech-site-main\ayatech-site-main\ayatech-site
+Analyzed
+c:\Users\ASUS\Downloads\ayatech-site-main\ayatech-site-main\web\src
+Analyzed
+c:\Users\ASUS\Downloads\ayatech-site-main\ayatech-site-main\ayatech-erp\src
+Analyzed
+c:\Users\ASUS\Downloads\ayatech-site-main\ayatech-site-main\web\src\app
+Analyzed
+c:\Users\ASUS\Downloads\ayatech-site-main\ayatech-site-main\ayatech-erp\src\app
+Here's a clear overview of the AyaTech Site project structure:
+
+📁 Project Structure
+The repo has 3 main sub-projects inside ayatech-site-main/:
+
+Folder	Purpose	Status
+web/	Main public website (Next.js)	✅ Active — has Razorpay, Supabase, courses, apply, dashboard
+ayatech-erp/	ERP/Admin portal (Next.js)	✅ Active — auth, admin, apply, dashboard
+ayatech-site/	Old site	⚠️ Empty
+admission-ai/	AI admission helper	🔬 Experimental
+web/ App Routes
+/ — Home page
+/apply — Application form
+/courses — Courses listing
+/store — Store
+/dashboard — User dashboard
+/payment-success — Post-payment page
+/test-one-rupee — Live payment test page
+/gvedc, /igcse-school, /hackathons, /tinkering — Special pages
+ayatech-erp/ App Routes
+/login, /register, /forgot-password — Auth
+/dashboard — ERP Dashboard
+/admin — Admin panel
+/apply — ERP application form
+What would you like to work on? For example:
+
+🐛 Fix a bug or issue
+✨ Add a new feature or page
+🎨 UI/UX improvements
+🔗 Integrate HRM or other modules
+🚀 Deploy or fix production issues
+
 .pnp.js
 
 # Build
