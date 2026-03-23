@@ -32,7 +32,7 @@ function CheckoutContent() {
             script.onload = () => {
                 const options = {
                     key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-                    amount: parseInt(amount),
+                    amount: parseInt(amount) * 100,
                     currency: 'INR',
                     name: 'Ayatech Technical School',
                     description: `Payment for ${courseName || 'Course'}`,
@@ -44,7 +44,7 @@ function CheckoutContent() {
                                 paymentId: response.razorpay_payment_id,
                                 signature: response.razorpay_signature,
                                 applicationId: applicationId || '',
-                                amount: parseInt(amount)
+                                amount: parseInt(amount) * 100
                             });
 
                             if (result.success) {
