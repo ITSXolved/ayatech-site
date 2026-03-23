@@ -191,23 +191,25 @@ export default function ApplicationForm({
                     );
 
                     if (verification.error) {
-                        setErrorMessage(verification.error);
-                    } else {
-                        window.location.href = `/payment-success?paymentId=${response.razorpay_payment_id}&course=${encodeURIComponent(selectedCourse?.name || '')}&name=${encodeURIComponent(formData.student_name)}`;
-                    }
-                } catch (err) {
-                    console.error("Verification error:", err);
-                    setErrorMessage("Payment verification failed. Please contact support.");
-                }
-            },
+            key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
+            amount: order.amount,
+            currency: order.currency,
+            name: 'Ayatech Technical School',
+            description: `Payment for ${selectedCourse.name}`,
+            order_id: order.id,
+            callback_url: "https://ayatech.org/api/verify-payment",
+            redirect: true,
             prefill: {
                 name: formData.student_name,
                 email: formData.email,
-                contact: formData.phone
+                contact: formData.phone,
+            },
+            notes: {
+                applicationId: order.applicationId,
             },
             theme: {
-                color: "#c2a055"
-            }
+                color: '#4F46E5',
+            },
         };
 
         const rzp = new (window as unknown as { Razorpay: new (opts: typeof options) => { open: () => void; on: (event: string, cb: (r: { error: { description: string } }) => void) => void } }).Razorpay(options);
