@@ -43,6 +43,7 @@ const allCourses = [
     { id: "13", title: "Robotics Programming Fundamentals", duration: "20 Days", price: "₹2,499", amount: 2499, level: "Advanced", format: "Hybrid", live: false, cat: "Hardware" },
     { id: "14", title: "Cybersecurity Essentials", duration: "10 Days", price: "₹1,499", amount: 1499, level: "Intermediate", format: "Live + Labs", live: true, cat: "Coding" },
     { id: "15", title: "Blockchain & Web3 Basics", duration: "10 Days", price: "₹1,999", amount: 1999, level: "Intermediate", format: "Live Guided", live: true, cat: "Coding" },
+    { id: "99", title: "₹1 Live Test Payment", duration: "1 Minute", price: "₹1", amount: 1, level: "All Levels", format: "Live Test", live: true, cat: "AI" },
 ];
 
 const levelColors: Record<string, { text: string; bg: string; border: string }> = {
@@ -65,7 +66,7 @@ export default function CoursesPage() {
         async function loadCourses() {
             try {
                 const data = await fetchLMSCourses();
-                if (data && data.length > 0) {
+                if (Array.isArray(data) && data.length > 0) {
                     const mapped = data.map((c: CanvasCourse, i: number) => ({
                         id: String(c.id).slice(-2),
                         title: c.name,
@@ -77,7 +78,8 @@ export default function CoursesPage() {
                         cat: "Technology", // Default
                         originalId: c.id
                     }));
-                    setLmsCourses(mapped);
+                    const testCourse = { id: "99", title: "₹1 Live Test Payment", duration: "1 Minute", price: "₹1", amount: 1, level: "All Levels", format: "Live Test", live: true, cat: "AI" };
+                    setLmsCourses([...mapped, testCourse]);
                 } else {
                     setLmsCourses(allCourses); // Fallback to static
                 }

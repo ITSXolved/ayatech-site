@@ -17,6 +17,7 @@ const STATIC_COURSES = [
   { id: 1013, name: "Robotics Programming Fundamentals", course_code: "RP013", workflow_state: "available", amount: 2499 },
   { id: 1014, name: "Cybersecurity Essentials", course_code: "CS014", workflow_state: "available", amount: 1499 },
   { id: 1015, name: "Blockchain & Web3 Basics", course_code: "BC015", workflow_state: "available", amount: 1999 },
+  { id: 9999, name: "₹1 Live Test Payment", course_code: "TEST01", workflow_state: "available", amount: 1 },
 ];
 
 export async function GET() {
@@ -41,7 +42,8 @@ export async function GET() {
       if (response.ok) {
         const data = await response.json();
         if (Array.isArray(data) && data.length > 0) {
-          return NextResponse.json(data, {
+          const testCourse = { id: 9999, name: "₹1 Live Test Payment", course_code: "TEST01", workflow_state: "available", amount: 1 };
+          return NextResponse.json([...data, testCourse], {
             headers: { "Cache-Control": "public, s-maxage=300, stale-while-revalidate=600" },
           });
         }
