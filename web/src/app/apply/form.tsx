@@ -306,11 +306,11 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
                                     }}
                                 >
                                     <div className="flex items-center gap-3">
-                                        <div style={{ 
-                                            width: '10px', 
-                                            height: '10px', 
-                                            borderRadius: '50%', 
-                                            background: formData.course_id === course.id ? '#4f46e5' : '#233554' 
+                                        <div style={{
+                                            width: '10px',
+                                            height: '10px',
+                                            borderRadius: '50%',
+                                            background: formData.course_id === course.id ? '#4f46e5' : '#233554'
                                         }} />
                                         <div>
                                             <div style={{ color: '#e6f1ff', fontWeight: 600, fontSize: '15px' }}>{course.name}</div>
