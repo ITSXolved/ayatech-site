@@ -5,8 +5,11 @@ import { useRouter } from 'next/navigation'
 import { createRazorpayOrder, verifyRazorpayPayment } from './razorpay-actions'
 import { saveApplicationDraft, getMentorReferrer } from './actions'
 import { useDebounce } from '@/hooks/use-debounce'
-import { Loader2, CheckCircle2, ChevronRight, GraduationCap, Phone, Mail, User, BookOpen, UserCheck, Calendar } from 'lucide-react'
+import { Loader2, CheckCircle2, ChevronRight, GraduationCap, Phone, Mail, User, BookOpen, UserCheck, Calendar } from 'lucide-center-icons'
 import Script from 'next/script'
+
+// Use simpler icons since some might not be in lucide-react default
+import { CheckCircle, Info } from 'lucide-react'
 
 interface Course {
     id: string
@@ -103,7 +106,7 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
             const selectedCourse = courses.find(c => c.id === formData.course_id)
             if (!selectedCourse) return
 
-            // 1. Save and get app ID
+            // 1. Save final application and get ID
             const appResponse = await saveApplicationDraft(formData)
             const appId = (appResponse as any)?.id
 
@@ -121,7 +124,7 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
             // 3. Redirect to whitelisted domain for payment
             const queryParams = new URLSearchParams({
                 order_id: orderResult.orderId,
-                amount: (orderResult.amount / 100).toString(),
+                amount: (orderResult.amount / 100).toString(), // Pass in Rupees
                 application_id: appId,
                 name: formData.student_name,
                 email: formData.email,
@@ -129,7 +132,7 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
                 course_name: selectedCourse.name
             });
 
-            window.location.href = `https://ayatech.org/checkout?${queryParams.toString()}`;
+            window.location.href = `https://nawazinedu.com/checkout?${queryParams.toString()}`;;
         } catch (err: any) {
             console.error("Payment setup error:", err)
             setErrorMessage(err.message || "Failed to initialize payment. Try again.")
@@ -144,17 +147,28 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
         })
         : courses
 
+    const selectedCourse = courses.find(c => c.id === formData.course_id)
+
     return (
         <div className="w-full max-w-2xl mx-auto" style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}>
+            {/* Card Header */}
             <div style={{ background: '#06101e', padding: '28px 32px', borderBottom: '1px solid rgba(255,255,255,0.06)' }}>
                 <div className="flex justify-between items-start">
                     <div>
-                        <h2 style={{ color: '#e6f1ff', fontSize: '24px', fontWeight: 700, margin: 0 }}>Course Application</h2>
-                        <p style={{ color: '#8892b0', marginTop: '4px', fontSize: '14px' }}>Fill out the form below to begin your journey.</p>
+                        <h2 style={{ color: '#e6f1ff', fontSize: '24px', fontWeight: 700, margin: 0, letterSpacing: '-0.02em' }}>
+                            Course Application
+                        </h2>
+                        <p style={{ color: '#8892b0', marginTop: '4px', fontSize: '14px' }}>
+                            Fill out the form below to begin your journey.
+                        </p>
+                    </div>
+                    <div style={{ background: 'rgba(79, 70, 229, 0.15)', color: '#818cf8', padding: '6px 12px', borderRadius: '20px', fontSize: '12px', fontWeight: 600 }}>
+                        {saveStatus === 'saving' ? 'Autosaving...' : 'Changes Saved'}
                     </div>
                 </div>
             </div>
 
+            {/* Card Body */}
             <div style={{ background: '#0b192e', padding: '32px' }}>
                 {errorMessage && (
                     <div className="mb-6 p-4 rounded-xl border border-red-500/50 bg-red-500/10 text-red-400 text-sm">
@@ -164,49 +178,94 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
 
                 <form onSubmit={handleSubmit} className="space-y-6">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Student Name */}
                         <div className="space-y-2">
-                            <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6' }}>Full Name</label>
+                            <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                Full Name
+                            </label>
                             <input
                                 required
                                 type="text"
                                 placeholder="Enter your full name"
                                 value={formData.student_name}
                                 onChange={(e) => setFormData({ ...formData, student_name: e.target.value })}
-                                style={{ width: '100%', background: '#112240', border: '1px solid #233554', borderRadius: '10px', padding: '12px 16px', color: '#e6f1ff' }}
+                                style={{
+                                    width: '100%',
+                                    background: '#112240',
+                                    border: '1px solid #233554',
+                                    borderRadius: '10px',
+                                    padding: '12px 16px',
+                                    color: '#e6f1ff',
+                                    outline: 'none',
+                                }}
                             />
                         </div>
 
+                        {/* Email Address */}
                         <div className="space-y-2">
-                            <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6' }}>Email ID</label>
+                            <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                Email ID
+                            </label>
                             <input
                                 required
                                 type="email"
                                 placeholder="yourname@gmail.com"
                                 value={formData.email}
                                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                style={{ width: '100%', background: '#112240', border: '1px solid #233554', borderRadius: '10px', padding: '12px 16px', color: '#e6f1ff' }}
+                                style={{
+                                    width: '100%',
+                                    background: '#112240',
+                                    border: '1px solid #233554',
+                                    borderRadius: '10px',
+                                    padding: '12px 16px',
+                                    color: '#e6f1ff',
+                                    outline: 'none',
+                                }}
                             />
                         </div>
 
+                        {/* Phone Number */}
                         <div className="space-y-2">
-                            <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6' }}>Phone Number</label>
+                            <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                Phone Number
+                            </label>
                             <input
                                 required
                                 type="tel"
                                 placeholder="+91 00000 00000"
                                 value={formData.phone}
                                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                style={{ width: '100%', background: '#112240', border: '1px solid #233554', borderRadius: '10px', padding: '12px 16px', color: '#e6f1ff' }}
+                                style={{
+                                    width: '100%',
+                                    background: '#112240',
+                                    border: '1px solid #233554',
+                                    borderRadius: '10px',
+                                    padding: '12px 16px',
+                                    color: '#e6f1ff',
+                                    outline: 'none',
+                                }}
                             />
                         </div>
 
+                        {/* Educational Class */}
                         <div className="space-y-2">
-                            <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6' }}>Educational Class</label>
+                            <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                                Educational Class
+                            </label>
                             <select
                                 required
                                 value={formData.class}
                                 onChange={(e) => setFormData({ ...formData, class: e.target.value, course_id: '' })}
-                                style={{ width: '100%', background: '#112240', border: '1px solid #233554', borderRadius: '10px', padding: '12px 16px', color: '#e6f1ff' }}
+                                style={{
+                                    width: '100%',
+                                    background: '#112240',
+                                    border: '1px solid #233554',
+                                    borderRadius: '10px',
+                                    padding: '12px 16px',
+                                    color: '#e6f1ff',
+                                    cursor: 'pointer',
+                                    outline: 'none',
+                                }}
                             >
                                 <option value="">Select your class</option>
                                 <option value="Class 1 - 4">Class 1 - 4</option>
@@ -224,8 +283,11 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
                         </div>
                     </div>
 
+                    {/* Course Selection */}
                     <div className="space-y-2">
-                        <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6' }}>Choose Your Course</label>
+                        <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            Choose Your Course
+                        </label>
                         <div className="grid grid-cols-1 gap-3">
                             {filteredCourses.map((course) => (
                                 <div
@@ -240,30 +302,63 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
                                         display: 'flex',
                                         justifyContent: 'space-between',
                                         alignItems: 'center',
+                                        transition: 'all 0.2s',
                                     }}
                                 >
-                                    <div>
-                                        <div style={{ color: '#e6f1ff', fontWeight: 600 }}>{course.name}</div>
-                                        <div style={{ color: '#8892b0', fontSize: '12px' }}>{course.duration_weeks} Weeks</div>
+                                    <div className="flex items-center gap-3">
+                                        <div style={{ 
+                                            width: '10px', 
+                                            height: '10px', 
+                                            borderRadius: '50%', 
+                                            background: formData.course_id === course.id ? '#4f46e5' : '#233554' 
+                                        }} />
+                                        <div>
+                                            <div style={{ color: '#e6f1ff', fontWeight: 600, fontSize: '15px' }}>{course.name}</div>
+                                            <div style={{ color: '#8892b0', fontSize: '12px' }}>
+                                                {course.duration_weeks} Weeks
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div style={{ color: '#a5b4fc', fontWeight: 700 }}>₹{course.fee}</div>
+                                    <div style={{ color: '#a5b4fc', fontWeight: 700, fontSize: '18px' }}>
+                                        ₹{course.fee}
+                                    </div>
                                 </div>
                             ))}
                         </div>
                     </div>
 
+                    {/* Referral Code */}
                     <div className="space-y-3 pt-2">
-                        <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6' }}>Mentor Referral Code</label>
-                        <input
-                            type="text"
-                            placeholder="Optional"
-                            value={formData.mentor_code}
-                            onChange={(e) => setFormData({ ...formData, mentor_code: e.target.value })}
-                            style={{ width: '100%', background: '#112240', border: '1px solid #233554', borderRadius: '10px', padding: '12px 16px', color: '#e6f1ff' }}
-                        />
-                        {referrer && <div className="text-sm text-emerald-400">✓ {referrer.name}</div>}
+                        <label style={{ fontSize: '14px', fontWeight: 600, color: '#ccd6f6', display: 'flex', alignItems: 'center', gap: '8px' }}>
+                            Mentor Referral Code
+                        </label>
+                        <div className="flex flex-col gap-2">
+                            <input
+                                type="text"
+                                placeholder="Enter Referral Code (Optional)"
+                                value={formData.mentor_code}
+                                onChange={(e) => setFormData({ ...formData, mentor_code: e.target.value })}
+                                style={{
+                                    width: '100%',
+                                    background: '#112240',
+                                    border: '1px solid #233554',
+                                    borderRadius: '10px',
+                                    padding: '12px 16px',
+                                    color: '#e6f1ff',
+                                    outline: 'none',
+                                    fontWeight: 700,
+                                }}
+                            />
+                            {referrer && (
+                                <div className="text-sm font-medium text-emerald-400">
+                                    ✓ Found: {referrer.name}
+                                </div>
+                            )}
+                            {mentorError && <div className="text-sm font-medium text-red-400">{mentorError}</div>}
+                        </div>
                     </div>
 
+                    {/* Submit Button */}
                     <button
                         type="submit"
                         disabled={isSubmitting}
@@ -274,12 +369,14 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
                             fontWeight: 700,
                             borderRadius: '10px',
                             border: 'none',
-                            background: isSubmitting ? '#233554' : 'linear-gradient(135deg, #4f46e5, #7c3aed)',
-                            color: '#ffffff',
                             cursor: isSubmitting ? 'not-allowed' : 'pointer',
+                            background: isSubmitting ? '#233554' : 'linear-gradient(135deg, #4f46e5, #7c3aed)',
+                            color: isSubmitting ? '#8892b0' : '#ffffff',
+                            transition: 'all 0.2s',
+                            boxShadow: '0 4px 14px rgba(79, 70, 229, 0.4)',
                         }}
                     >
-                        {isSubmitting ? 'Loading Gateway...' : 'Proceed to Payment'}
+                        {isSubmitting ? 'Initializing Gateway...' : 'Proceed to Payment'}
                     </button>
                 </form>
             </div>
