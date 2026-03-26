@@ -153,141 +153,148 @@ export default function Home() {
         {/* Decorative rings (lighter) */}
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 700, height: 700, borderRadius: "50%", border: `1px solid rgba(194, 160, 85, 0.06)`, pointerEvents: "none" }} />
         <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 500, height: 500, borderRadius: "50%", border: `1px solid rgba(194, 160, 85, 0.08)`, pointerEvents: "none" }} />
-        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%,-50%)", width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle, rgba(194,160,85,0.05) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-        <div className="container-main" style={{ paddingTop: "9rem", paddingBottom: "6rem", position: "relative", zIndex: 10 }}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+        <div className="container-main" style={{ paddingTop: "7rem", paddingBottom: "6rem", position: "relative", zIndex: 10 }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* Left Column: Text */}
-            <div className="text-center lg:text-left">
+            <div className="text-left">
               {/* Admissions Badge */}
-              <div className="flex justify-center lg:justify-start items-center gap-4 mb-8 animation-fade-up">
-                <div style={{ background: "#ffffff", border: "1px solid #e5e7eb", padding: "0.4rem 1rem", borderRadius: "100px", display: "flex", alignItems: "center", gap: "0.5rem", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
-                  <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#c2a055" }}></div>
-                  <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#4b5563" }}>Admission Open 2026</span>
+              <div className="flex justify-start items-center gap-4 mb-10 animation-fade-up">
+                <div style={{ background: "#ffffff", border: "1px solid #f3f4f6", padding: "0.5rem 1.25rem", borderRadius: "100px", display: "flex", alignItems: "center", gap: "0.6rem", boxShadow: "0 2px 10px rgba(0,0,0,0.03)" }}>
+                  <div style={{ width: 7, height: 7, borderRadius: "50%", background: "#c2a055" }}></div>
+                  <span style={{ fontSize: "0.85rem", fontWeight: 600, color: "#9ca3af" }}>Admissions Open 2025-26</span>
                 </div>
-                <p className="section-eyebrow hidden sm:block" style={{ color: C.textMuted, margin: 0, fontWeight: 600, letterSpacing: "0.05em", fontSize: "0.75rem" }}>
-                  CALICUT · KERALA · GLOBAL
-                </p>
               </div>
 
               {/* H1 */}
-              <h1 className="font-display" style={{ fontSize: "clamp(2.5rem, 8vw, 4.5rem)", fontWeight: 800, lineHeight: 1.1, color: C.navyDark, marginBottom: "2rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both", letterSpacing: "-0.03em" }}>
-                Empowering <br className="hidden md:block" />innovative minds <br />
-                <span className="text-gradient-primary">for sustainable <br className="hidden md:block" />futures.</span>
+              <h1 className="font-display" style={{ fontSize: "clamp(2.8rem, 6vw, 4.2rem)", fontWeight: 800, lineHeight: 1.05, color: "#111827", marginBottom: "2rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both", letterSpacing: "-0.04em" }}>
+                Empowering <br />
+                innovative minds <br />
+                <span style={{ color: "#c2a055" }}>for sustainable <br />futures.</span>
               </h1>
 
+              {/* Description */}
+              <p className="font-body text-gray-500 mb-10 max-w-xl animation-fade-up" style={{ fontSize: "1.1rem", lineHeight: 1.7, animationDelay: "0.35s" }}>
+                AILT Global Academy nurtures creative, critical thinkers for global challenges through interdisciplinary, project-based learning and community engagement focused on sustainability and technological innovation.
+              </p>
+
               {/* CTAs */}
-              <div className="flex flex-wrap justify-center lg:justify-start items-center gap-4 mb-12 animation-fade-up">
+              <div className="flex flex-wrap items-center gap-5 mb-12 animation-fade-up">
                 <Link href="/apply">
-                  <button className="btn-gold" style={{ padding: "0.875rem 1.75rem", fontSize: "0.95rem", backgroundColor: "#0f172a", color: "#fff", display: "flex", alignItems: "center", gap: "0.5rem", borderRadius: "8px", border: "none" }}>
-                    Start Application <ArrowRight size={16} color="#fff" />
+                  <button className="btn-gold" style={{ padding: "1.1rem 2.2rem", fontSize: "1rem", backgroundColor: "#0f172a", color: "#fff", display: "flex", alignItems: "center", gap: "0.75rem", borderRadius: "12px", border: "none", fontWeight: 700 }}>
+                    Start Application <ArrowRight size={18} color="#fff" />
                   </button>
                 </Link>
-                <Link href="/courses">
-                  <button className="btn-outline" style={{ padding: "0.875rem 1.75rem", fontSize: "0.95rem", border: "1px solid rgba(0,0,0,0.1)", borderRadius: "8px", color: C.navyDark, backgroundColor: "transparent" }}>
-                    Explore Courses
+                <Link href="/campus">
+                  <button className="btn-outline" style={{ padding: "1.1rem 2.2rem", fontSize: "1rem", border: "1px solid #f3f4f6", borderRadius: "12px", color: "#111827", backgroundColor: "#fff", fontWeight: 600, boxShadow: "0 1px 2px rgba(0,0,0,0.05)" }}>
+                    Explore Campus
                   </button>
                 </Link>
               </div>
-
-              {/* Trust marks (Hidden for now) */}
-              {/* <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "0.75rem", opacity: 0.7, animation: "fadeUp 1s ease 0.75s both" }}>
-                {["Cambridge Pathway", "KSUM Partner", "Startup India", "Atal Innovation Mission"].map(m => (
-                  <span key={m} className="font-mono-brand" style={{ fontSize: "0.80rem", letterSpacing: "0.05em", textTransform: "uppercase", color: C.textMuted, border: `1px solid rgba(0,0,0,0.1)`, padding: "0.35rem 0.9rem", borderRadius: "100px", backgroundColor: "#fff" }}>
-                    {m}
-                  </span>
-                ))}
-              </div> */}
             </div>
 
-            {/* Right Column: Dynamic Image Slider */}
-            <div style={{ position: "relative", animation: "fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s both", display: "flex", justifyContent: "center", width: "100%" }}>
-              {/* Frame Container */}
-              <div style={{ position: "relative", backgroundColor: "#FFFFFF", padding: "12px", borderRadius: "32px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.05)", width: "100%", maxWidth: "560px" }}>
-                {/* Floating Cards (Sticky Note Feature) - Optimized for Mobile */}
-                <div className="hidden lg:block">
-                  <FloatingCard
-                    icon={<div className="w-10 h-10 bg-gradient-to-br from-[#c2a055] to-[#a68940] rounded-xl flex items-center justify-center text-white shadow-lg"><Star size={20} fill="currentColor" /></div>}
-                    title="Advanced AI Lab"
-                    subtitle="STATE OF THE ART"
-                    style={{ top: "10%", left: "-10%", zIndex: 50 }}
-                  />
-                  <FloatingCard
-                    icon={<div className="flex -space-x-3"><div className="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs font-bold text-gray-400">S1</div><div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-bold text-gray-400">S2</div><div className="w-10 h-10 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs font-bold text-gray-400">S3</div></div>}
-                    title="4k+ Students"
-                    subtitle="Worldwide"
-                    style={{ bottom: "15%", right: "-12%", zIndex: 50 }}
-                    delay="1.5s"
-                  />
-                </div>
-                {/* Mobile version of floating cards - more compact */}
-                <div className="lg:hidden flex justify-center gap-4 mt-8 absolute -bottom-10 left-0 right-0 z-50">
-                  <FloatingCard
-                    icon={<div className="w-8 h-8 bg-gradient-to-br from-[#c2a055] to-[#a68940] rounded-lg flex items-center justify-center text-white shadow-md"><Star size={16} fill="currentColor" /></div>}
-                    title="AI Lab"
-                    subtitle="PREMIUM"
-                    style={{ position: "relative", padding: "0.5rem 1rem", scale: "0.9" }}
-                  />
-                  <FloatingCard
-                    icon={<div className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-[10px] font-bold">4k</div>}
-                    title="4k+ Join"
-                    subtitle="Learners"
-                    style={{ position: "relative", padding: "0.5rem 1rem", scale: "0.9" }}
-                    delay="1s"
-                  />
-                </div>
+            {/* Right Column: Dynamic Image Frame */}
+            <div style={{ position: "relative", animation: "fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s both" }}>
+              {/* Main Image Container */}
+              <div style={{ 
+                position: "relative", 
+                backgroundColor: "#FFFFFF", 
+                padding: "16px", 
+                borderRadius: "48px", 
+                boxShadow: "0 40px 80px -20px rgba(0,0,0,0.12)", 
+                border: "1px solid rgba(0,0,0,0.04)",
+                width: "100%",
+                maxWidth: "640px",
+                margin: "0 auto"
+              }}>
                 <div
-                  className="hero-slider-container shadow-2xl"
+                  className="hero-slider-container"
                   style={{
                     position: "relative",
                     width: "100%",
-                    aspectRatio: "4/3",
-                    borderRadius: "2rem",
+                    aspectRatio: "1/1",
+                    borderRadius: "36px",
                     overflow: "hidden",
-                    backgroundColor: "#f0f0f0", // Placeholder color during load
+                    backgroundColor: "#f9fafb",
                   }}
                 >
-                  <div
-                    className="relative w-full h-full"
-                    style={{ transition: "all 0.4s ease-out" }}
-                  >
-                        {heroImages.map((img, i) => (
-                          <div
-                            key={i}
-                            className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
-                            style={{ opacity: currentSlide === i ? 1 : 0 }}
-                          >
-                            <Image
-                              src={img}
-                              alt={`AyaTech slide ${i + 1}`}
-                              fill
-                              priority={i === 0}
-                              style={{ objectFit: "cover" }}
-                              sizes="(max-width: 768px) 100vw, 540px"
-                            />
-                              <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent"></div>
-                          </div>
-                        ))}
+                  <div className="relative w-full h-full">
+                    {heroImages.map((img, i) => (
+                      <div
+                        key={i}
+                        className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
+                        style={{ opacity: currentSlide === i ? 1 : 0 }}
+                      >
+                        <Image
+                          src={img}
+                          alt={`AILT Academy slide ${i + 1}`}
+                          fill
+                          priority={i === 0}
+                          style={{ objectFit: "cover" }}
+                          sizes="(max-width: 1024px) 100vw, 640px"
+                        />
+                      </div>
+                    ))}
                   </div>
 
-                  {/* Slider Dots */}
-                  <div style={{ position: "absolute", bottom: "1.5rem", left: "50%", transform: "translateX(-50%)", display: "flex", gap: "0.5rem", zIndex: 20 }}>
+                  {/* Slider Dots (Horizontal Pill Style) */}
+                  <div style={{ position: "absolute", bottom: "1.5rem", right: "2rem", display: "flex", gap: "0.5rem", zIndex: 20 }}>
                     {heroImages.map((_, i) => (
                       <button
                         key={i}
                         onClick={() => setCurrentSlide(i)}
                         style={{
-                          width: i === currentSlide ? 24 : 8,
-                          height: 8,
-                          borderRadius: 4,
-                          background: i === currentSlide ? C.accentGold : "rgba(255,255,255,0.5)",
+                          width: i === currentSlide ? 28 : 10,
+                          height: 6,
+                          borderRadius: 3,
+                          background: i === currentSlide ? "#c2a055" : "rgba(0,0,0,0.1)",
                           border: "none",
                           cursor: "pointer",
-                          transition: "all 0.3s ease"
+                          transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)"
                         }}
                       />
                     ))}
                   </div>
+                </div>
+
+                {/* Floating Cards (Desktop: Sticky to sides) */}
+                <div className="hidden lg:block">
+                  <FloatingCard
+                    icon={<div className="w-12 h-12 bg-[#c2a055]/10 rounded-2xl flex items-center justify-center text-[#c2a055]"><BookOpen size={24} /></div>}
+                    title="Advanced AI Lab"
+                    subtitle="STATE OF THE ART"
+                    style={{ top: "10%", left: "-12%", boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
+                  />
+                  
+                  <FloatingCard
+                    icon={
+                      <div className="flex -space-x-3 items-center">
+                        <div className="w-10 h-10 rounded-full border-4 border-white bg-gray-100 flex items-center justify-center text-[10px] font-bold text-gray-400">S1</div>
+                        <div className="w-10 h-10 rounded-full border-4 border-white bg-gray-200 flex items-center justify-center text-[10px] font-bold text-gray-400">S2</div>
+                        <div className="w-10 h-10 rounded-full border-4 border-white bg-gray-300 flex items-center justify-center text-[10px] font-bold text-gray-400">S3</div>
+                      </div>
+                    }
+                    title="100+ Students"
+                    subtitle="JOINED THIS YEAR"
+                    style={{ bottom: "12%", right: "-8%", boxShadow: "0 20px 40px rgba(0,0,0,0.08)" }}
+                  />
+                </div>
+
+                {/* Mobile version of floating cards - more compact below the slider */}
+                <div className="lg:hidden flex justify-center gap-3 mt-6 absolute -bottom-8 left-0 right-0 z-50">
+                  <FloatingCard
+                    icon={<div className="w-8 h-8 bg-[#c2a055]/10 rounded-lg flex items-center justify-center text-[#c2a055] shadow-md"><BookOpen size={16} /></div>}
+                    title="AI Lab"
+                    subtitle="PREMIUM"
+                    style={{ position: "relative", padding: "0.5rem 1rem", scale: "0.9" }}
+                  />
+                  <FloatingCard
+                    icon={<div className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-[10px] font-bold text-gray-400">100+</div>}
+                    title="100+ Joined"
+                    subtitle="LEARNERS"
+                    style={{ position: "relative", padding: "0.5rem 1rem", scale: "0.9" }}
+                    delay="1s"
+                  />
                 </div>
               </div>
             </div>
@@ -295,11 +302,11 @@ export default function Home() {
         </div>
 
         {/* Scroll cue */}
-        <div style={{ position: "absolute", bottom: "2rem", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem", opacity: 0.5 }}>
-          <span className="font-mono-brand" style={{ fontSize: "0.85rem", letterSpacing: "0.2em", color: C.textMuted }}>SCROLL</span>
-          <div style={{ width: 1, height: 40, background: `linear-gradient(${C.textMuted}, transparent)` }} />
+        <div style={{ position: "absolute", bottom: "3rem", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center", gap: "0.75rem", opacity: 0.3 }}>
+          <span style={{ fontSize: "0.7rem", fontWeight: 600, letterSpacing: "0.3em", color: "#6b7280" }}>SCROLL</span>
+          <div style={{ width: 1, height: 48, background: "linear-gradient(#9ca3af, transparent)" }} />
         </div>
-            </section>
+      </section>
 
       {/* ═══ STATS ═══ */}
       <section ref={statsRef} style={{ borderTop: "1px solid rgba(0,0,0,0.06)", borderBottom: "1px solid rgba(0,0,0,0.06)", background: C.white, padding: "3.5rem 0" }}>
@@ -405,7 +412,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-            </section>
+      </section>
 
       {/* ═══ FINAL CTA ═══ */}
       <section className="section-pad" style={{ paddingTop: 0 }}>
