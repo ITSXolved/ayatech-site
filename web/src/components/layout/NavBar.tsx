@@ -69,7 +69,7 @@ export default function NavBar() {
                         </div>
                         <Link href="/apply">
                             <button className="btn-gold" style={{ padding: "0.6rem 1.5rem", fontSize: "0.9rem", fontWeight: 600, backgroundColor: "#c2a055", color: "#FFFFFF", borderRadius: "8px", border: "none", cursor: "pointer" }}>
-                                Apply Now
+                                JOIN AYATECH
                             </button>
                         </Link>
                     </div>
