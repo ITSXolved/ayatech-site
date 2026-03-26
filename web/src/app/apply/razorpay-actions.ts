@@ -19,7 +19,10 @@ export async function createRazorpayOrder(applicationId: string) {
         .select(`
       id,
       course_id,
-      courses ( fee )
+      student_name,
+      email,
+      phone,
+      courses ( fee, name )
     `)
         .eq('id', applicationId)
         .single()
@@ -37,22 +40,37 @@ export async function createRazorpayOrder(applicationId: string) {
     }
 
     try {
-        const options = {
+        // 2. Generate Razorpay Payment Link (This is unblockable)
+        const paymentLinkOptions = {
             amount: Math.round(Number(amountToCharge) * 100),
             currency: 'INR',
-            receipt: `app_${applicationId.replace(/-/g, '').substring(0, 30)}`,
+            accept_partial: false,
+            reference_id: applicationId,
+            description: `Course Enrollment: ${course?.name}`,
+            customer: {
+                name: application.student_name || 'Student',
+                email: application.email || 'support@ayatech.org',
+                contact: application.phone || '0000000000'
+            },
+            notify: {
+                sms: true,
+                email: true
+            },
+            reminder_enable: true,
             notes: {
                 application_id: applicationId
-            }
+            },
+            callback_url: `https://ayatech.org/payment-success?application_id=${applicationId}`,
+            callback_method: 'get'
         }
 
-        const order = await razorpay.orders.create(options)
+        const paymentLink = await (razorpay as any).paymentLink.create(paymentLinkOptions)
 
         return {
             success: true,
-            orderId: order.id,
-            amount: options.amount,
-            key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || ''
+            payment_link: paymentLink.short_url,
+            orderId: paymentLink.id,
+            amount: paymentLinkOptions.amount
         }
     } catch (err: unknown) {
         console.error('Razorpay Error:', err)

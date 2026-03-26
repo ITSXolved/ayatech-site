@@ -92,16 +92,24 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
             if (orderResult.error || !orderResult.orderId) throw new Error(orderResult.error)
 
             // 2. THE BRIDGE: Jump to the whitelisted main domain
-            const bridgeUrl = new URL('https://ayatech.org/checkout')
-            bridgeUrl.searchParams.set('order_id', orderResult.orderId)
-            bridgeUrl.searchParams.set('amount', (orderResult.amount / 100).toString())
-            bridgeUrl.searchParams.set('application_id', appId)
-            bridgeUrl.searchParams.set('name', formData.student_name)
-            bridgeUrl.searchParams.set('email', formData.email)
-            bridgeUrl.searchParams.set('phone', formData.phone)
-            bridgeUrl.searchParams.set('course_name', selectedCourse.name)
+            // 3. Redirect to UNBLOCKABLE Razorpay Payment Link
+            if (orderResult.payment_link) {
+                window.location.href = orderResult.payment_link;
+                return;
+            }
 
-            window.location.href = bridgeUrl.toString()
+            // Fallback for old orders
+            const queryParams = new URLSearchParams({
+                order_id: orderResult.orderId,
+                amount: (orderResult.amount / 100).toString(),
+                application_id: appId,
+                name: formData.student_name,
+                email: formData.email,
+                phone: formData.phone,
+                course_name: selectedCourse.name
+            });
+
+            window.location.href = `https://ayatech.org/checkout?${queryParams.toString()}`;
         } catch (err: any) {
             console.error(err)
             setErrorMessage(err.message || "Initialization failed.")

@@ -158,26 +158,26 @@ export default function Home() {
         <div className="container-main" style={{ paddingTop: "9rem", paddingBottom: "6rem", position: "relative", zIndex: 10 }}>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center">
             {/* Left Column: Text */}
-            <div style={{ textAlign: "left" }}>
+            <div className="text-center lg:text-left">
               {/* Admissions Badge */}
-              <div style={{ display: "flex", gap: "1rem", alignItems: "center", marginBottom: "2rem", animation: "fadeUp 0.6s cubic-bezier(0.16,1,0.3,1) 0.05s both" }}>
-                <div style={{ background: "#ffffff", border: "1px solid #e5e7eb", padding: "0.35rem 1rem", borderRadius: "100px", display: "flex", alignItems: "center", gap: "0.5rem", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
+              <div className="flex justify-center lg:justify-start items-center gap-4 mb-8 animation-fade-up">
+                <div style={{ background: "#ffffff", border: "1px solid #e5e7eb", padding: "0.4rem 1rem", borderRadius: "100px", display: "flex", alignItems: "center", gap: "0.5rem", boxShadow: "0 2px 4px rgba(0,0,0,0.02)" }}>
                   <div style={{ width: 6, height: 6, borderRadius: "50%", background: "#c2a055" }}></div>
-                  <span style={{ fontSize: "0.8rem", fontWeight: 600, color: "#6b7280" }}>Admission Open 2026</span>
+                  <span style={{ fontSize: "0.8rem", fontWeight: 700, color: "#4b5563" }}>Admission Open 2026</span>
                 </div>
-                <p className="section-eyebrow" style={{ color: C.textMuted, margin: 0, fontWeight: 600, letterSpacing: "0.05em", fontSize: "0.75rem" }}>
+                <p className="section-eyebrow hidden sm:block" style={{ color: C.textMuted, margin: 0, fontWeight: 600, letterSpacing: "0.05em", fontSize: "0.75rem" }}>
                   CALICUT · KERALA · GLOBAL
                 </p>
               </div>
 
               {/* H1 */}
-              <h1 className="font-display" style={{ fontSize: "clamp(2.5rem,5.5vw,4rem)", fontWeight: 800, lineHeight: 1.15, color: C.navyDark, marginBottom: "2.5rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both", letterSpacing: "-0.02em" }}>
+              <h1 className="font-display" style={{ fontSize: "clamp(2.5rem, 8vw, 4.5rem)", fontWeight: 800, lineHeight: 1.1, color: C.navyDark, marginBottom: "2rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.25s both", letterSpacing: "-0.03em" }}>
                 Empowering <br className="hidden md:block" />innovative minds <br />
-                <span style={{ color: C.accentGold }}>for sustainable <br className="hidden md:block" />futures.</span>
+                <span className="text-gradient-primary">for sustainable <br className="hidden md:block" />futures.</span>
               </h1>
 
               {/* CTAs */}
-              <div style={{ display: "flex", flexWrap: "wrap", alignItems: "center", gap: "1rem", marginBottom: "3rem", animation: "fadeUp 0.75s cubic-bezier(0.16,1,0.3,1) 0.55s both" }}>
+              <div className="flex flex-wrap justify-center lg:justify-start items-center gap-4 mb-12 animation-fade-up">
                 <Link href="/apply">
                   <button className="btn-gold" style={{ padding: "0.875rem 1.75rem", fontSize: "0.95rem", backgroundColor: "#0f172a", color: "#fff", display: "flex", alignItems: "center", gap: "0.5rem", borderRadius: "8px", border: "none" }}>
                     Start Application <ArrowRight size={16} color="#fff" />
@@ -204,36 +204,36 @@ export default function Home() {
             <div style={{ position: "relative", animation: "fadeUp 0.8s cubic-bezier(0.16,1,0.3,1) 0.35s both", display: "flex", justifyContent: "center", width: "100%" }}>
               {/* Frame Container */}
               <div style={{ position: "relative", backgroundColor: "#FFFFFF", padding: "12px", borderRadius: "32px", boxShadow: "0 25px 50px -12px rgba(0,0,0,0.15)", border: "1px solid rgba(0,0,0,0.05)", width: "100%", maxWidth: "560px" }}>
-                {/* Floating Cards (Sticky Note Feature) - Moved outside overflow:hidden */}
-                <div className="hidden md:block">
+                {/* Floating Cards (Sticky Note Feature) - Optimized for Mobile */}
+                <div className="hidden lg:block">
                   <FloatingCard
                     icon={<div className="w-10 h-10 bg-gradient-to-br from-[#c2a055] to-[#a68940] rounded-xl flex items-center justify-center text-white shadow-lg"><Star size={20} fill="currentColor" /></div>}
                     title="Advanced AI Lab"
                     subtitle="STATE OF THE ART"
-                    style={{ top: "10%", left: "-5%", zIndex: 50 }}
+                    style={{ top: "10%", left: "-10%", zIndex: 50 }}
                   />
                   <FloatingCard
                     icon={<div className="flex -space-x-3"><div className="w-10 h-10 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-xs font-bold text-gray-400">S1</div><div className="w-10 h-10 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-xs font-bold text-gray-400">S2</div><div className="w-10 h-10 rounded-full bg-gray-400 border-2 border-white flex items-center justify-center text-xs font-bold text-gray-400">S3</div></div>}
-                    title="100+ Students"
-                    subtitle="Joined this year"
+                    title="4k+ Students"
+                    subtitle="Worldwide"
                     style={{ bottom: "15%", right: "-12%", zIndex: 50 }}
                     delay="1.5s"
                   />
                 </div>
-                {/* Mobile version of floating cards - smaller and less offset */}
-                <div className="md:hidden">
+                {/* Mobile version of floating cards - more compact */}
+                <div className="lg:hidden flex justify-center gap-4 mt-8 absolute -bottom-10 left-0 right-0 z-50">
                   <FloatingCard
                     icon={<div className="w-8 h-8 bg-gradient-to-br from-[#c2a055] to-[#a68940] rounded-lg flex items-center justify-center text-white shadow-md"><Star size={16} fill="currentColor" /></div>}
                     title="AI Lab"
                     subtitle="PREMIUM"
-                    style={{ top: "0%", left: "-5%", scale: "0.8", zIndex: 50 }}
+                    style={{ position: "relative", padding: "0.5rem 1rem", scale: "0.9" }}
                   />
                   <FloatingCard
-                    icon={<div className="flex -space-x-2"><div className="w-7 h-7 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-[10px]">S1</div><div className="w-7 h-7 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center text-[10px]">S2</div></div>}
-                    title="100+ Join"
-                    subtitle="THIS YEAR"
-                    style={{ bottom: "5%", right: "-5%", scale: "0.8", zIndex: 50 }}
-                    delay="1.5s"
+                    icon={<div className="w-8 h-8 rounded-full bg-gray-200 border-2 border-white flex items-center justify-center text-[10px] font-bold">4k</div>}
+                    title="4k+ Join"
+                    subtitle="Learners"
+                    style={{ position: "relative", padding: "0.5rem 1rem", scale: "0.9" }}
+                    delay="1s"
                   />
                 </div>
                 <div

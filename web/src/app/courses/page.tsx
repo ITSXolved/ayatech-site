@@ -115,16 +115,27 @@ export default function CoursesPage() {
 
             {/* Sticky filter bar */}
             <div style={{ position: "sticky", top: 64, zIndex: 30, borderTop: "1px solid rgba(0,0,0,0.06)", borderBottom: "1px solid rgba(0,0,0,0.06)", background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", padding: "0.75rem 0" }}>
-                <div className="container-main" style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap" }}>
-                    <Filter size={14} color={C.textMuted} style={{ marginRight: "0.25rem" }} />
-                    {cats.map(cat => (
-                        <button key={cat} onClick={() => setActive(cat)} style={{ padding: "0.35rem 1rem", borderRadius: 100, fontSize: "0.85rem", fontWeight: 500, cursor: "pointer", border: "1px solid", transition: "all 0.25s", background: active === cat ? C.primaryGold : "transparent", color: active === cat ? C.white : C.textMuted, borderColor: active === cat ? C.primaryGold : "rgba(0,0,0,0.1)" }}>
-                            {cat}
-                        </button>
-                    ))}
-                    <span className="font-mono-brand" style={{ marginLeft: "auto", fontSize: "0.75rem", color: C.textMuted }}>{filtered.length} courses</span>
+                <div className="container-main" style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                    <div className="flex items-center gap-2 overflow-x-auto pb-1 hide-scrollbar" style={{ flex: 1, whiteSpace: "nowrap", paddingRight: "1rem" }}>
+                        <Filter size={14} color={C.textMuted} className="shrink-0" />
+                        {cats.map(cat => (
+                            <button key={cat} onClick={() => setActive(cat)} style={{ padding: "0.4rem 1.1rem", borderRadius: 100, fontSize: "0.85rem", fontWeight: 600, cursor: "pointer", border: "1px solid", transition: "all 0.25s", background: active === cat ? C.primaryGold : "transparent", color: active === cat ? C.white : C.textMuted, borderColor: active === cat ? C.primaryGold : "rgba(0,0,0,0.1)", flexShrink: 0 }}>
+                                {cat}
+                            </button>
+                        ))}
+                    </div>
+                    <span className="font-mono-brand hidden sm:block" style={{ fontSize: "0.75rem", color: C.textMuted }}>{filtered.length} courses</span>
                 </div>
             </div>
+            <style jsx>{`
+                .hide-scrollbar::-webkit-scrollbar {
+                    display: none;
+                }
+                .hide-scrollbar {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+            `}</style>
 
             {/* Courses grid */}
             <section style={{ padding: "3rem 0 5rem", minHeight: "400px" }}>

@@ -176,6 +176,20 @@ body {
     background-clip: text;
   }
 
+  .text-gradient-gold {
+    background: linear-gradient(135deg, #ECC94B 0%, #B38E3D 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .text-gradient-navy {
+    background: linear-gradient(135deg, #1A202C 0%, #2D3748 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .text-gradient-teal {
     background: linear-gradient(135deg, #c2a055 0%, #a68940 100%);
     /* Remapped to primary */
@@ -188,23 +202,65 @@ body {
   .container-main {
     max-width: 1280px;
     margin: 0 auto;
-    padding-left: 2rem;
-    padding-right: 2rem;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  @media (min-width: 768px) {
+    .container-main {
+      padding-left: 2rem;
+      padding-right: 2rem;
+    }
   }
 
   .section-pad {
-    padding-top: 5rem;
-    padding-bottom: 5rem;
+    padding-top: 3.5rem;
+    padding-bottom: 3.5rem;
+  }
+
+  @media (min-width: 768px) {
+    .section-pad {
+      padding-top: 6rem;
+      padding-bottom: 6rem;
+    }
+  }
+
+  h1, h2, h3 {
+    text-wrap: balance;
+  }
+
+  .grid-responsive {
+    display: grid;
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+    gap: 1.5rem;
+  }
+
+  @media (min-width: 640px) {
+    .grid-responsive {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .grid-responsive {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
   }
 
   /* Section eyebrow label */
   .section-eyebrow {
     font-family: 'JetBrains Mono', monospace;
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     letter-spacing: 0.15em;
     text-transform: uppercase;
     color: #c2a055;
-    font-weight: 600;
+    font-weight: 700;
+  }
+
+  @media (min-width: 768px) {
+    .section-eyebrow {
+      font-size: 0.95rem;
+    }
   }
 
   /* Stat number */

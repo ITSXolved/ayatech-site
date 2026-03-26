@@ -102,26 +102,26 @@ export default function Footer() {
                 </div>
 
                 {/* New Consultation Section */}
-                <div className="flex items-start gap-4 mb-10"> {/* Added margin-bottom for spacing */}
-                    <div className="w-12 h-12 rounded-xl bg-[rgba(194,160,85,0.1)] flex items-center justify-center shrink-0 border border-[rgba(194,160,85,0.2)]">
+                <div className="flex flex-col sm:flex-row items-start gap-5 mb-12 p-6 rounded-2xl bg-white/5 border border-white/10">
+                    <div className="w-12 h-12 rounded-xl bg-[#c2a055]/10 flex items-center justify-center shrink-0 border border-[#c2a055]/20">
                         <Phone className="text-[#c2a055]" size={20} />
                     </div>
                     <div>
-                        <h3 className="font-bold text-white mb-1">Book Free Consultation</h3> {/* Changed text color to white for dark background */}
-                        <p className="text-sm text-gray-400 mb-2">Talk to our mentors and get a personalised recommendation.</p> {/* Changed text color to gray-400 */}
+                        <h3 className="font-bold text-white text-lg mb-1">Book Free Consultation</h3>
+                        <p className="text-sm text-gray-400 mb-4 max-w-md">Talk to our mentors and get a personalised recommendation for your tech career.</p>
                         <a
                             href="https://wa.me/919037665777"
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 py-2 px-4 bg-[#c2a055] text-white rounded-lg font-bold hover:bg-[#a68940] transition-colors shadow-sm text-sm"
+                            className="inline-flex items-center gap-2 py-2.5 px-6 bg-[#c2a055] text-white rounded-lg font-bold hover:bg-[#a68940] transition-all shadow-lg hover:shadow-[#c2a055]/20 text-sm"
                         >
-                            Book Free Consultation <ChevronRight size={16} />
+                            Message on WhatsApp <ChevronRight size={16} />
                         </a>
                     </div>
                 </div>
 
                 {/* Contact strip */}
-                <div className="border-t border-white/10 py-6 grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div className="border-t border-white/10 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
                     {[
                         {
                             Icon: MapPin,
@@ -135,35 +135,37 @@ export default function Footer() {
                         },
                         {
                             Icon: Phone,
-                            text: "9037665777",
-                            href: "tel:9037665777"
+                            text: "+91 90376 65777",
+                            href: "tel:+919037665777"
                         },
                     ].map(({ Icon, text, href }, i) => (
                         <a
                             key={i}
                             href={href}
-                            className="flex items-center gap-2 text-gray-400 text-sm hover:text-white transition-colors"
+                            className="flex items-start gap-3 text-gray-400 text-sm hover:text-white transition-colors group"
                         >
-                            <Icon size={14} className="shrink-0 text-gold-400 opacity-80" />
-                            <span>{text}</span>
+                            <div className="mt-1 w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-[#c2a055]/10 transition-colors">
+                                <Icon size={14} className="text-[#c2a055]" />
+                            </div>
+                            <span className="leading-relaxed">{text}</span>
                         </a>
                     ))}
                 </div>
 
                 {/* Bottom */}
-                <div className="border-t border-white/10 py-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-gray-500">
-                    <p>© 2026 AyaTech. All rights reserved. Professional Theme.</p>
-                    <div className="flex gap-4">
-                        <Link href="/privacy-policy" className="hover:text-white transition-colors">
+                <div className="border-t border-white/10 py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-gray-500">
+                    <p className="text-center md:text-left">© {new Date().getFullYear()} AyaTech. All rights reserved. Professional Theme.</p>
+                    <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
+                        <Link href="/privacy-policy" className="hover:text-white transition-colors whitespace-nowrap">
                             Privacy Policy
                         </Link>
-                        <Link href="/terms-and-conditions" className="hover:text-white transition-colors">
+                        <Link href="/terms-and-conditions" className="hover:text-white transition-colors whitespace-nowrap">
                             Terms of Use
                         </Link>
-                        <Link href="/refund-policy" className="hover:text-white transition-colors">
+                        <Link href="/refund-policy" className="hover:text-white transition-colors whitespace-nowrap">
                             Refund Policy
                         </Link>
-                        <Link href="/shipping-policy" className="hover:text-white transition-colors">
+                        <Link href="/shipping-policy" className="hover:text-white transition-colors whitespace-nowrap">
                             Shipping Policy
                         </Link>
                     </div>
