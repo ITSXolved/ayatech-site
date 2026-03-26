@@ -187,7 +187,7 @@ export default function Home() {
                 </Link>
                 <Link href="/campus">
                   <button className="btn-outline" style={{ padding: "1.1rem 2.2rem", fontSize: "1rem", border: "1px solid #f3f4f6", borderRadius: "12px", color: "#111827", backgroundColor: "#fff", fontWeight: 600, boxShadow: "0 1px 2px rgba(0,0,0,0.05)" }}>
-                    Explore Campus
+                    See Our Campus
                   </button>
                 </Link>
               </div>
