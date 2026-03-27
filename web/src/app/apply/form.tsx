@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 import { createRazorpayOrder } from './razorpay-actions'
-import { saveApplicationDraft, getMentorReferrer } from './actions'
+import { saveApplicationDraft, lookupReferrer } from './actions'
 import { useDebounce } from '@/hooks/use-debounce'
 import { Loader2 } from 'lucide-react'
 
@@ -28,6 +28,7 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
     const [mentorError, setMentorError] = useState<string | null>(null)
     const [saveStatus, setSaveStatus] = useState<'idle' | 'saving' | 'saved' | 'error'>('idle')
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
+    const [applicationId, setApplicationId] = useState<string | null>(null)
 
     const [formData, setFormData] = useState({
         student_name: '',
@@ -48,8 +49,16 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
     const handleSaveDraft = async () => {
         setSaveStatus('saving')
         try {
-            await saveApplicationDraft(formData)
-            setSaveStatus('saved')
+            const result = await saveApplicationDraft(applicationId, {
+                ...formData,
+                state: 'Kerala' // Providing a default state as required by the action
+            })
+            if (result.success && result.id) {
+                setApplicationId(result.id)
+                setSaveStatus('saved')
+            } else {
+                setSaveStatus('error')
+            }
         } catch (error) {
             setSaveStatus('error')
         }
@@ -59,7 +68,7 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
         if (!code) return
         setMentorLoading(true)
         try {
-            const data = await getMentorReferrer(code)
+            const data = await lookupReferrer(code)
             if (data) setReferrer(data as any)
             else setMentorError('Invalid code')
         } catch (err) {
@@ -85,8 +94,13 @@ export default function ApplicationForm({ courses }: ApplicationFormProps) {
             if (!selectedCourse) return
 
             // 1. Create Application and Order
-            const draftResult = await saveApplicationDraft(formData)
+            const draftResult = await saveApplicationDraft(applicationId, {
+                ...formData,
+                state: 'Kerala'
+            })
             const appId = (draftResult as any)?.id
+            if (!appId) throw new Error("Failed to create application ID")
+            setApplicationId(appId)
             const orderResult = await createRazorpayOrder(appId)
 
             if (orderResult.error || !orderResult.orderId) throw new Error(orderResult.error)

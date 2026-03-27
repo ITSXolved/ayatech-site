@@ -4,7 +4,9 @@
 /* ─── Tailwind v4 Theme Tokens ─── */
 @theme {
   /* Colors */
-  --color-primary-gold: #b38e3d; /* Darkened from #c2a055 for better contrast */
+  --color-primary: #b38e3d; /* AyaTech Gold */
+  --color-primary-dark: #96752f;
+  --color-accent: #ECC94B; /* Lighter gold for gradients */
   --color-gold-hover: #96752f;
   --color-navy-dark: #1a202c;
   --color-navy-light: #2a3441;
@@ -24,8 +26,7 @@
   /* Remapped */
 
   /* Fonts */
-  --font-display: 'Cormorant Garamond', Georgia, serif;
-  /* Consider dropping if Coursera style strictly wants sans */
+  --font-display: 'Outfit', system-ui, sans-serif;
   --font-body: 'Outfit', system-ui, sans-serif;
   --font-mono-brand: 'JetBrains Mono', monospace;
 
@@ -34,9 +35,26 @@
   --animate-pulse-primary: pulsePrimary 2s ease-in-out infinite;
   --animate-float: float 6s ease-in-out infinite;
   --animate-fade-up: fadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-up: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-slide-down: slideDown 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  --animate-fade-in: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ─── Keyframes ─── */
+@keyframes slideUp {
+  0% { opacity: 0; transform: translateY(40px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideDown {
+  0% { opacity: 0; transform: translateY(-20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
 @keyframes pulsePrimary {
 
   0%,

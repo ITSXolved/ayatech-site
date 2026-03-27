@@ -1,33 +1,24 @@
 import type { Metadata } from "next";
+import { Inter, Outfit } from 'next/font/google';
 import "./globals.css";
-import NavBar from "@/components/layout/NavBar";
-import Footer from "@/components/layout/Footer";
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-sans',
+  display: 'swap',
+});
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-display',
+  display: 'swap',
+});
 
 export const metadata: Metadata = {
-  title: "AyaTech — Empowering Innovation. Building Futures.",
-  description:
-    "Live tech courses, Cambridge IGCSE online school & maker spaces from Calicut, Kerala. From ₹999. Join 3,700+ learners in 30+ countries.",
-  keywords: [
-    "AyaTech",
-    "online courses",
-    "IGCSE school",
-    "tinkering kits",
-    "AI courses",
-    "coding bootcamp",
-    "Kerala edtech",
-    "Calicut",
-  ],
+  title: "AyaTech Global Academy — Empowering Next-Gen Innovators",
+  description: "Join AyaTech Global Academy for live courses in AI, coding, design, and hardware. World-class technical mentorship and IGCSE school programs.",
   icons: {
-    icon: "/logo_transparent.png",
-    shortcut: "/logo_transparent.png",
-    apple: "/logo_transparent.png",
-  },
-  openGraph: {
-    title: "AyaTech — Empowering Innovation. Building Futures.",
-    description:
-      "Live courses in AI, coding, design, and hardware. IGCSE school. Tinkering labs. From Calicut, Kerala, to the world.",
-    type: "website",
-    locale: "en_IN",
+    icon: "/favicon.ico",
   },
 };
 
@@ -37,13 +28,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <head />
-      <body>
+    <html lang="en" className="scroll-smooth">
+      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased text-gray-900`}>
         <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
-        <NavBar />
-        <main>{children}</main>
-        <Footer />
+        {children}
       </body>
     </html>
   );
