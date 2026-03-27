@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/components/layout/NavBar";
 import Footer from "@/components/layout/Footer";
-import WhatsAppAssistant from "@/components/WhatsAppAssistant";
 
 export const metadata: Metadata = {
   title: "AyaTech — Empowering Innovation. Building Futures.",
@@ -44,7 +43,6 @@ export default function RootLayout({
         <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
         <NavBar />
         <main>{children}</main>
-        <WhatsAppAssistant />
         <Footer />
       </body>
     </html>
