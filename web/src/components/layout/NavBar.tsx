@@ -1,180 +1,121 @@
-"use client";
-import { useState, useEffect } from "react";
+'use client';
+
 import Link from "next/link";
-import Image from "next/image";
-import { ChevronRight, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import { Search, ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 
-const C = {
-// ... existing constants ...
-    primaryBlue: "#c2a055",
-    navyDark: "#1a202c",
-    bgLight: "#f9fafb",
-    white: "#FFFFFF",
-    textMuted: "#4b5563",
-    accentGold: "#c2a055",
-};
+/**
+ * NavBar - High conversion navigation menu with premium aesthetics
+ */
 
-// ... navLinks constant ...
 const navLinks: { label: string; href: string }[] = [
     { label: "Home", href: "/" },
     { label: "Courses", href: "/courses" },
-    { label: "About", href: "/about" },
     { label: "Hackathons", href: "/hackathons" },
+    { label: "About", href: "/about" },
 ];
 
 export default function NavBar() {
     const [scrolled, setScrolled] = useState(false);
-    const [mobileOpen, setMobileOpen] = useState(false);
+    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
-        const onScroll = () => setScrolled(window.scrollY > 30);
-        window.addEventListener("scroll", onScroll, { passive: true });
-        return () => window.removeEventListener("scroll", onScroll);
+        const handleScroll = () => {
+            setScrolled(window.scrollY > 30);
+        };
+        window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
     return (
-        <>
-            <nav style={{
-                position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
-                transition: "all 0.4s cubic-bezier(0.16,1,0.3,1)",
-                padding: scrolled ? "0.75rem 0" : "1.25rem 0",
-                ...(scrolled ? {
-                    backdropFilter: "blur(12px) saturate(180%)",
-                    WebkitBackdropFilter: "blur(12px) saturate(180%)",
-                    background: "rgba(255,255,255,0.95)",
-                    borderBottom: "1px solid rgba(0,0,0,0.08)",
-                    boxShadow: "0 4px 6px -1px rgba(0,0,0,0.05)"
-                } : { background: "transparent" }),
-            }}>
-                <div className="container-main" style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-                    {/* Logo */}
-                    <Link href="/" style={{ display: "flex", alignItems: "center", gap: "0.75rem", textDecoration: "none" }}>
-                        <Image
-                            src="/logo_transparent.png"
-                            alt="AyaTech Logo"
-                            width={120}
-                            height={40}
-                            style={{ height: "42px", width: "auto" }}
-                        />
-                    </Link>
+        <header style={{
+            position: "fixed", top: 0, left: 0, right: 0, zIndex: 50,
+            padding: scrolled ? "1rem 0" : "1.25rem 0",
+            transition: "all 0.3s cubic-bezier(0.16, 1, 0.3, 1)",
+            ...(scrolled ? {
+                backgroundColor: "rgba(255, 255, 255, 0.9)",
+                backdropFilter: "blur(12px)",
+                boxShadow: "0 4px 15px -1px rgba(0, 0, 0, 0.04), 0 2px 6px -1px rgba(0, 0, 0, 0.02)",
+                borderBottom: "1px solid rgba(0, 0, 0, 0.04)",
+            } : { background: "transparent" }),
+        }}>
+            <div className="container-main flex items-center justify-between">
+                {/* Logo Section */}
+                <Link href="/" className="flex items-center gap-2 md:gap-3 group">
+                    <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-[#0056D2] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform" style={{ boxShadow: "0 8px 16px -4px rgba(0, 86, 210, 0.3)" }}>
+                        <span className="font-display font-bold text-white text-xl">A</span>
+                    </div>
+                    <div>
+                        <div className="font-display font-bold text-lg leading-none tracking-tight" style={{ color: "#1F2432" }}>AyaTech</div>
+                        <div className="font-mono-custom text-[9px] uppercase tracking-widest mt-1" style={{ color: "#c2a055" }}>Global Academy</div>
+                    </div>
+                </Link>
 
-                    {/* Right side nav + CTA */}
-                    <div style={{ alignItems: "center", gap: "2rem" }} className="hidden lg:flex">
-                        <div style={{ display: "flex", alignItems: "center", gap: "1.5rem" }}>
-                            {navLinks.map(link => (
-                                <Link key={link.href} href={link.href} className="nav-link" style={{ color: C.textMuted, fontSize: "0.95rem", fontWeight: 500 }}>
+                {/* Primary Nav Items */}
+                <nav className="hidden lg:flex items-center gap-10">
+                    {navLinks.map((link) => (
+                        <Link 
+                            key={link.label}
+                            href={link.href}
+                            className="nav-link font-semibold text-sm tracking-wide bg-[#1F2432]/5 hover:bg-[#1F2432]/10 py-1.5 px-3 rounded-lg transition-all"
+                            style={{ color: "#1F2432" }}
+                        >
+                            {link.label}
+                        </Link>
+                    ))}
+                    <Link href="/apply">
+                        <button className="btn-gold text-xs px-6 py-2.5 shadow-md flex items-center gap-2">
+                            Apply Now <ArrowRight size={14} />
+                        </button>
+                    </Link>
+                </nav>
+
+                {/* Mobile Trigger */}
+                <button 
+                    className="lg:hidden w-10 h-10 rounded-lg flex items-center justify-center p-0 transition-colors"
+                    onClick={() => setMobileMenuOpen(true)}
+                    style={{ backgroundColor: "rgba(31, 36, 50, 0.05)" }}
+                >
+                    <Menu size={24} style={{ color: "#1F2432" }} />
+                </button>
+            </div>
+
+            {/* Mobile Sidebar */}
+            {mobileMenuOpen && (
+                <div className="fixed inset-0 z-[60] lg:hidden backdrop-blur-md" style={{ backgroundColor: "rgba(31, 36, 50, 0.1)" }}>
+                    <div className="ml-auto h-full w-[280px] bg-white shadow-2xl p-6 flex flex-col" style={{ animation: "slideLeft 0.4s var(--ease) both" }}>
+                        <button 
+                            className="self-end p-2 mb-8 rounded-lg bg-[#F5F7F8]"
+                            onClick={() => setMobileMenuOpen(false)}
+                        >
+                            <X size={20} style={{ color: "#1F2432" }} />
+                        </button>
+
+                        <div className="flex flex-col gap-1.5 flex-1">
+                            {navLinks.map((link) => (
+                                <Link 
+                                    key={link.label}
+                                    href={link.href}
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="p-4 rounded-xl font-bold flex items-center justify-between transition-colors hover:bg-[#F5F7F8]"
+                                    style={{ color: "#1F2432" }}
+                                >
                                     {link.label}
+                                    <ChevronDown size={14} className="-rotate-90 opacity-40" />
                                 </Link>
                             ))}
                         </div>
-                        <Link href="/apply">
-                            <button className="btn-gold" style={{ padding: "0.6rem 1.5rem", fontSize: "0.9rem", fontWeight: 600, backgroundColor: "#c2a055", color: "#FFFFFF", borderRadius: "8px", border: "none", cursor: "pointer" }}>
-                                JOIN AYATECH
+
+                        <Link href="/apply" onClick={() => setMobileMenuOpen(false)} className="mt-auto">
+                            <button className="btn-gold w-full py-4 text-sm font-bold shadow-lg">
+                                Enrol Now
                             </button>
                         </Link>
                     </div>
-
-                    {/* Mobile hamburger */}
-                    <button
-                        onClick={() => setMobileOpen(!mobileOpen)}
-                        style={{ background: "none", border: "none", cursor: "pointer", color: C.navyDark, padding: "0.5rem", zIndex: 100 }}
-                        className="lg:hidden flex items-center justify-center"
-                        aria-label="Menu"
-                    >
-                        {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
+                    {/* Overlay Click Target */}
+                    <div className="absolute inset-0 -z-10" onClick={() => setMobileMenuOpen(false)} />
                 </div>
-            </nav>
-
-            {/* Mobile drawer with AnimatePresence */}
-            <AnimatePresence>
-                {mobileOpen && (
-                    <motion.div 
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.2 }}
-                        style={{ position: "fixed", inset: 0, zIndex: 45 }}
-                    >
-                        {/* Overlay */}
-                        <div 
-                            style={{ position: "absolute", inset: 0, background: "rgba(26, 32, 44, 0.4)", backdropFilter: "blur(6px)" }} 
-                            onClick={() => setMobileOpen(false)} 
-                        />
-                        
-                        {/* Drawer Content */}
-                        <motion.div 
-                            initial={{ x: "100%" }}
-                            animate={{ x: 0 }}
-                            exit={{ x: "100%" }}
-                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
-                            style={{ 
-                                position: "absolute", top: 0, right: 0, bottom: 0, 
-                                width: "min(300px, 85vw)", background: C.white, 
-                                borderLeft: "1px solid rgba(0,0,0,0.08)", 
-                                padding: "6rem 2rem 2rem", 
-                                boxShadow: "-15px 0 40px rgba(0,0,0,0.1)",
-                                display: "flex",
-                                flexDirection: "column"
-                            }}
-                        >
-                            <div style={{ display: "flex", flexDirection: "column", gap: "0.5rem" }}>
-                                {navLinks.map((link, i) => (
-                                    <motion.div
-                                        key={link.href}
-                                        initial={{ opacity: 0, x: 20 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ delay: 0.1 + (i * 0.05) }}
-                                    >
-                                        <Link 
-                                            href={link.href} 
-                                            onClick={() => setMobileOpen(false)} 
-                                            style={{ 
-                                                display: "flex", alignItems: "center", justifyContent: "space-between", 
-                                                padding: "1rem", borderRadius: 12, color: C.navyDark, 
-                                                textDecoration: "none", fontWeight: 700, fontSize: "1.1rem",
-                                                background: "rgba(0,0,0,0.02)",
-                                                transition: "all 0.2s" 
-                                            }}
-                                        >
-                                            {link.label}
-                                            <ChevronRight size={18} color={C.primaryBlue} />
-                                        </Link>
-                                    </motion.div>
-                                ))}
-                            </div>
-                            
-                            <motion.div 
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.3 }}
-                                style={{ marginTop: "auto", paddingTop: "2rem", borderTop: "1px solid rgba(0,0,0,0.06)" }}
-                            >
-                                <Link href="/apply" onClick={() => setMobileOpen(false)}>
-                                    <button className="btn-gold" style={{ width: "100%", justifyContent: "center", padding: "1rem", borderRadius: "12px", fontSize: "1.1rem" }}>
-                                        Apply Now
-                                    </button>
-                                </Link>
-                                <p style={{ textAlign: "center", fontSize: "0.85rem", color: C.textMuted, marginTop: "1.5rem" }}>
-                                    Join 3,700+ global learners
-                                </p>
-                            </motion.div>
-                        </motion.div>
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
-            <style>{`
-        @media (max-width: 1024px) {
-          .hidden-mobile { display: none !important; }
-          .show-mobile { display: flex !important; }
-        }
-        @media (min-width: 1025px) {
-          .show-mobile { display: none !important; }
-        }
-      `}</style>
-        </>
+            )}
+        </header>
     );
 }
-

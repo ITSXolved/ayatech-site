@@ -1,23 +1,17 @@
-import Link from "next/link";
-import Image from "next/image";
-import {
-    MapPin,
-    Mail,
-    Phone,
-    Twitter,
-    Instagram,
-    Linkedin,
-    Youtube,
-    Facebook,
-    ChevronRight,
-} from "lucide-react";
+'use client';
 
-const links = {
+import Link from "next/link";
+import { Github, Twitter, Linkedin, Mail, Phone, MapPin, ExternalLink, ArrowUpRight } from "lucide-react";
+
+/**
+ * Modern Premium Footer - Built with high-fidelity design tokens
+ */
+
+const footerLinks = {
     programs: [
         { label: "Online Courses", href: "/courses" },
-        // { label: "IGCSE School", href: "/igcse-school" },
-        { label: "Entrepreneurship Centre", href: "/gvedc" },
         { label: "Hackathons", href: "/hackathons" },
+        { label: "Entrepreneurship Centre", href: "/gvedc" },
     ],
     company: [
         { label: "About AyaTech", href: "/about" },
@@ -27,71 +21,78 @@ const links = {
         { label: "Press Kit", href: "/press" },
     ],
     resources: [
-        // { label: "Tinkering Store", href: "/store" },
         { label: "Student Dashboard", href: "/dashboard" },
         { label: "Blog", href: "/blog" },
-        { label: "FAQs", href: "/faq" },
+        { label: "Community", href: "/community" },
+        { label: "FAQs", href: "/contact#faq" },
     ],
 };
 
+const socialLinks = [
+    { icon: Linkedin, href: "https://linkedin.com", label: "LinkedIn" },
+    { icon: Mail, href: "mailto:ayatectechnicalschool@gmail.com", label: "Email" },
+    { icon: Phone, href: "tel:9037665777", label: "Call Us" },
+];
+
 export default function Footer() {
     return (
-        <footer className="footer-bg">
-            <div className="container-main">
-                {/* Top */}
-                <div className="py-16 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10">
-                    {/* Brand */}
-                    <div className="lg:col-span-2">
-                        <Link href="/" className="flex items-center mb-4">
-                            <div style={{ background: '#FFFFFF', padding: '0.5rem 1rem', borderRadius: '8px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 4px 6px rgba(0,0,0,0.1)' }}>
-                                <Image
-                                    src="/logo_transparent.png"
-                                    alt="AyaTech Logo"
-                                    width={110}
-                                    height={36}
-                                    className="h-8 w-auto"
-                                />
+        <footer className="footer-premium pt-24 pb-12 overflow-hidden" 
+            style={{ 
+                backgroundColor: "#1F2432", 
+                borderTop: "1px solid rgba(255,255,255,0.08)",
+                background: "linear-gradient(180deg, #1F2432 0%, #151923 100%)"
+            }}
+        >
+            <div className="container-main relative z-10">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 lg:gap-8 mb-20">
+                    
+                    {/* Brand Column */}
+                    <div className="lg:col-span-2 max-w-sm">
+                        <Link href="/" className="inline-flex items-center gap-3 mb-8 group">
+                            <div className="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/10 group-hover:scale-105 transition-transform" style={{ backdropFilter: "blur(8px)" }}>
+                                <span className="font-display font-bold text-white text-2xl">A</span>
+                            </div>
+                            <div>
+                                <div className="font-display font-bold text-xl text-white leading-none">AyaTech</div>
+                                <div className="font-mono-custom text-[10px] uppercase tracking-[0.2em] mt-1 text-[#c2a055] opacity-90 font-bold">Global Academy</div>
                             </div>
                         </Link>
-                        <p className="text-gray-400 text-sm leading-relaxed mb-6 max-w-xs">
-                            Empowering the next generation of innovators through live courses
-                            and world-class technical mentorship.
+                        <p className="text-[#6A7081] leading-relaxed mb-10 text-[15px]" style={{ color: "rgba(255,255,255,0.6)" }}>
+                            Democratising elite technology education across India and the GCC. 
+                            From IGCSE pathways to industrial IoT, we build the next generation of global innovators.
                         </p>
-                        <div className="flex gap-3">
-                            {[
-                                { Icon: Instagram, href: "https://www.instagram.com/ayadicloudversity/?hl=en" },
-                                { Icon: Facebook, href: "https://www.facebook.com/people/Ayadi-Cloudversity/61573185167388/" },
-                                { Icon: Youtube, href: "https://www.youtube.com/channel/UCXbWhD_Cw4i7atIDJjGttaQ" },
-                                // { Icon: Twitter, href: "#" },
-                                // { Icon: Linkedin, href: "#" },
-                            ].map(({ Icon, href }, i) => (
-                                <a
-                                    key={i}
-                                    href={href}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="w-9 h-9 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:border-white/30 transition-all"
-                                >
-                                    <Icon size={15} />
-                                </a>
-                            ))}
+                        <div className="flex gap-4">
+                            {socialLinks.map((social) => {
+                                const Icon = social.icon;
+                                return (
+                                    <Link 
+                                        key={social.label} 
+                                        href={social.href} 
+                                        className="h-11 w-11 rounded-xl flex items-center justify-center transition-all bg-white/5 border border-white/5 hover:bg-white/10 hover:border-white/20"
+                                        aria-label={social.label}
+                                    >
+                                        <Icon size={18} className="text-white opacity-60" />
+                                    </Link>
+                                );
+                            })}
                         </div>
                     </div>
 
-                    {/* Links */}
-                    {Object.entries(links).map(([key, items]) => (
-                        <div key={key}>
-                            <h4 className="font-semibold text-white text-sm uppercase tracking-wider mb-4 capitalize">
-                                {key === "programs" ? "Programs" : key === "company" ? "Company" : "Resources"}
-                            </h4>
-                            <ul className="flex flex-col gap-2">
-                                {items.map((item) => (
-                                    <li key={item.href}>
-                                        <Link
-                                            href={item.href}
-                                            className="text-gray-400 text-sm hover:text-white transition-colors"
+                    {/* Quick Link Groups */}
+                    {Object.entries(footerLinks).map(([title, links]) => (
+                        <div key={title} className="flex flex-col gap-6">
+                            <h4 className="text-white font-display font-bold text-sm uppercase tracking-widest opacity-40">{title}</h4>
+                            <ul className="flex flex-col gap-4">
+                                {links.map((link) => (
+                                    <li key={link.label}>
+                                        <Link 
+                                            href={link.href} 
+                                            className="text-sm font-semibold transition-colors flex items-center group whitespace-nowrap"
+                                            style={{ color: "rgba(255,255,255,0.5)" }}
                                         >
-                                            {item.label}
+                                            <span className="group-hover:text-white group-hover:translate-x-1 transition-all inline-flex items-center gap-1.5 leading-none">
+                                                {link.label}
+                                            </span>
                                         </Link>
                                     </li>
                                 ))}
@@ -100,73 +101,14 @@ export default function Footer() {
                     ))}
                 </div>
 
-                {/* New Consultation Section */}
-                <div className="flex flex-col sm:flex-row items-start gap-5 mb-12 p-6 rounded-2xl bg-white/5 border border-white/10">
-                    <div className="w-12 h-12 rounded-xl bg-[#c2a055]/10 flex items-center justify-center shrink-0 border border-[#c2a055]/20">
-                        <Phone className="text-[#c2a055]" size={20} />
-                    </div>
-                    <div>
-                        <h3 className="font-bold text-white text-lg mb-1">Book Free Consultation</h3>
-                        <p className="text-sm text-gray-400 mb-4 max-w-md">Talk to our mentors and get a personalised recommendation for your tech career.</p>
-                        <a
-                            href="https://wa.me/919037665777"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 py-2.5 px-6 bg-[#c2a055] text-white rounded-lg font-bold hover:bg-[#a68940] transition-all shadow-lg hover:shadow-[#c2a055]/20 text-sm"
-                        >
-                            Message on WhatsApp <ChevronRight size={16} />
-                        </a>
-                    </div>
-                </div>
-
-                {/* Contact strip */}
-                <div className="border-t border-white/10 py-8 grid grid-cols-1 lg:grid-cols-3 gap-6">
-                    {[
-                        {
-                            Icon: MapPin,
-                            text: "Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032",
-                            href: "https://maps.google.com/?q=Door No. 63/2243-L, Orbitz Complex, Jafarkhan Colony Road, Mavoor Road, Calicut Beach, Kozhikode, Kerala, India - 673032"
-                        },
-                        {
-                            Icon: Mail,
-                            text: "ayatectechnicalschool@gmail.com",
-                            href: "mailto:ayatectechnicalschool@gmail.com"
-                        },
-                        {
-                            Icon: Phone,
-                            text: "+91 90376 65777",
-                            href: "tel:+919037665777"
-                        },
-                    ].map(({ Icon, text, href }, i) => (
-                        <a
-                            key={i}
-                            href={href}
-                            className="flex items-start gap-3 text-gray-400 text-sm hover:text-white transition-colors group"
-                        >
-                            <div className="mt-1 w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center shrink-0 group-hover:bg-[#c2a055]/10 transition-colors">
-                                <Icon size={14} className="text-[#c2a055]" />
-                            </div>
-                            <span className="leading-relaxed">{text}</span>
-                        </a>
-                    ))}
-                </div>
-
-                {/* Bottom */}
-                <div className="border-t border-white/10 py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-gray-500">
-                    <p className="text-center md:text-left">© {new Date().getFullYear()} AyaTech. All rights reserved.</p>
-                    <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
-                        <Link href="/privacy-policy" className="hover:text-white transition-colors whitespace-nowrap">
-                            Privacy Policy
-                        </Link>
-                        <Link href="/terms-and-conditions" className="hover:text-white transition-colors whitespace-nowrap">
-                            Terms of Use
-                        </Link>
-                        <Link href="/refund-policy" className="hover:text-white transition-colors whitespace-nowrap">
-                            Refund Policy
-                        </Link>
-                        <Link href="/shipping-policy" className="hover:text-white transition-colors whitespace-nowrap">
-                            Shipping Policy
-                        </Link>
+                {/* Bottom Bar */}
+                <div className="pt-12 mt-12 border-t border-white/5 flex flex-col md:flex-row items-center justify-between gap-6">
+                    <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8 order-2 md:order-1">
+                        <span className="text-[13px] opacity-30 text-white font-medium">© 2026 AyaTech</span>
+                        <div className="flex gap-6">
+                            <Link href="/privacy" className="text-[13px] opacity-30 text-white hover:opacity-100 transition-opacity">Privacy Policy</Link>
+                            <Link href="/terms" className="text-[13px] opacity-30 text-white hover:opacity-100 transition-opacity">Terms of Service</Link>
+                        </div>
                     </div>
                 </div>
             </div>
