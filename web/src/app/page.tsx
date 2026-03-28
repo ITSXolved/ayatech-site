@@ -38,6 +38,7 @@ export default function Home() {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center gap-10">
               <Link href="#features" className="text-[15px] font-medium text-gray-600 hover:text-primary transition-colors">Features</Link>
+              <Link href="/hackathons" className="text-[15px] font-medium text-gray-600 hover:text-primary transition-colors">Hackathons</Link>
               <Link href="#courses" className="text-[15px] font-medium text-gray-600 hover:text-primary transition-colors">Courses</Link>
               <Link href="#about" className="text-[15px] font-medium text-gray-600 hover:text-primary transition-colors">About</Link>
               <Link
@@ -65,6 +66,7 @@ export default function Home() {
           <div className="lg:hidden absolute top-full left-0 right-0 bg-white border-b border-gray-100 shadow-xl p-6 animate-slide-down">
             <div className="flex flex-col gap-5">
               <Link href="#features" onClick={() => setIsMenuOpen(false)} className="text-base font-medium text-gray-600">Features</Link>
+              <Link href="/hackathons" onClick={() => setIsMenuOpen(false)} className="text-base font-medium text-gray-600">Hackathons</Link>
               <Link href="#courses" onClick={() => setIsMenuOpen(false)} className="text-base font-medium text-gray-600">Courses</Link>
               <Link href="#about" onClick={() => setIsMenuOpen(false)} className="text-base font-medium text-gray-600">About</Link>
               <Link
@@ -168,6 +170,7 @@ export default function Home() {
               <h4 className="text-sm font-bold tracking-widest uppercase text-white/50 mb-6">Programs</h4>
               <ul className="space-y-4 text-gray-400">
                 <li><Link href="/" className="hover:text-primary transition-colors">Online Courses</Link></li>
+                <li><Link href="/hackathons" className="hover:text-primary transition-colors">Hackathons & Events</Link></li>
                 <li><Link href="/" className="hover:text-primary transition-colors">IGCSE Online School</Link></li>
                 <li><Link href="/" className="hover:text-primary transition-colors">Tinkering Labs</Link></li>
               </ul>
