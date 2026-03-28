@@ -16,9 +16,8 @@ const links = {
     programs: [
         { label: "Online Courses", href: "/courses" },
         // { label: "IGCSE School", href: "/igcse-school" },
-        // { label: "Tinkering Centres", href: "/tinkering" },
         { label: "Entrepreneurship Centre", href: "/gvedc" },
-        // { label: "Hackathons", href: "/hackathons" },
+        { label: "Hackathons", href: "/hackathons" },
     ],
     company: [
         { label: "About AyaTech", href: "/about" },
@@ -154,7 +153,7 @@ export default function Footer() {
 
                 {/* Bottom */}
                 <div className="border-t border-white/10 py-8 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-gray-500">
-                    <p className="text-center md:text-left">© {new Date().getFullYear()} AyaTech. All rights reserved. Professional Theme.</p>
+                    <p className="text-center md:text-left">© {new Date().getFullYear()} AyaTech. All rights reserved.</p>
                     <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
                         <Link href="/privacy-policy" className="hover:text-white transition-colors whitespace-nowrap">
                             Privacy Policy

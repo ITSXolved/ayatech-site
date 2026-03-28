@@ -20,6 +20,7 @@ const navLinks: { label: string; href: string }[] = [
     { label: "Home", href: "/" },
     { label: "Courses", href: "/courses" },
     { label: "About", href: "/about" },
+    { label: "Hackathons", href: "/hackathons" },
 ];
 
 export default function NavBar() {
