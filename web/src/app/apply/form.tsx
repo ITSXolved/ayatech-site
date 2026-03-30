@@ -128,7 +128,7 @@ export default function ApplicationForm({ courses, initialData, initialId, initi
                 course_name: selectedCourse.name
             });
 
-            window.location.href = `https://ayatech.org/checkout?${queryParams.toString()}`;
+            window.location.href = `https://www.ayatech.org/checkout?${queryParams.toString()}`;
         } catch (err: any) {
             console.error(err)
             setErrorMessage(err.message || "Initialization failed.")
