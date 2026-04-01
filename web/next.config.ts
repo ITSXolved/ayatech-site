@@ -4,15 +4,9 @@ const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  async redirects() {
-    return [
-      {
-        source: '/apply',
-        destination: 'https://erp.ayatech.org/apply',
-        permanent: false, // Use false in case we change it back
-      },
-    ];
-  },
+  // Removed redirect to fix Razorpay domain whitelist issues
+  // Enrollment form should be served from ayatech.org directly
+
 };
 
 export default nextConfig;

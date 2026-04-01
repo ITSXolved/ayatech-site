@@ -39,13 +39,13 @@ function CheckoutContent() {
                     order_id: orderId,
                     handler: async function (response: any) {
                         try {
-                            const result = await verifyRazorpayPayment({
-                                orderId: orderId,
-                                paymentId: response.razorpay_payment_id,
-                                signature: response.razorpay_signature,
-                                applicationId: applicationId || '',
-                                amount: parseInt(amount) * 100
-                            });
+                            const result = await verifyRazorpayPayment(
+                                response.razorpay_payment_id,
+                                orderId,
+                                response.razorpay_signature,
+                                applicationId || '',
+                                parseInt(amount) * 100
+                            );
 
                             if (result.success) {
                                 router.push(`/payment-success?paymentId=${response.razorpay_payment_id}&course=${encodeURIComponent(courseName || 'Course')}&name=${encodeURIComponent(name || '')}`);

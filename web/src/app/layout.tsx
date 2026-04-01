@@ -22,6 +22,8 @@ export const metadata: Metadata = {
   },
 };
 
+import WhatsAppButton from "@/components/layout/WhatsAppButton";
+
 export default function RootLayout({
   children,
 }: {
@@ -29,9 +31,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased text-gray-900`}>
+      <body className={`${inter.variable} ${outfit.variable} font-sans antialiased text-gray-900 overflow-x-hidden`}>
         <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
         {children}
+        <WhatsAppButton />
       </body>
     </html>
   );

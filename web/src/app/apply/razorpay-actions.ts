@@ -6,9 +6,10 @@ import crypto from 'crypto'
 import { createClient as createSupabaseClient } from '@supabase/supabase-js'
 
 const razorpay = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY_ID || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || '',
-    key_secret: process.env.RAZORPAY_KEY_SECRET || ''
+    key_id: process.env.RAZORPAY_KEY_ID || process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID || 'rzp_live_SQdSBMmgL1mZZa',
+    key_secret: process.env.RAZORPAY_KEY_SECRET || 'Sew2homjpULowkPhqxOsSS47'
 })
+
 
 export async function createRazorpayOrder(applicationId: string) {
     const supabase = await createClient()
