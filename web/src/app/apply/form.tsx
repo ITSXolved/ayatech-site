@@ -174,9 +174,27 @@ export default function ApplicationForm({ courses, initialData, initialId, initi
                         <div className="space-y-1.5">
                             <label className="text-xs font-bold uppercase tracking-wider text-gray-400 ml-1">Student Class</label>
                             <select required value={formData.class} onChange={e => setFormData({ ...formData, class: e.target.value, course_id: '' })} className="w-full bg-gray-50 text-gray-900 px-4 py-3.5 rounded-2xl border border-gray-200 outline-none focus:border-[#c2a055] focus:ring-4 focus:ring-[#c2a055]/5 transition-all cursor-pointer">
-                                <option value="">Select Class</option>
-                                <option value="Graduate">Graduate</option>
-                                <option value="Engineer">Engineer</option>
+                                <option value="">Select Level...</option>
+                                <optgroup label="School Level">
+                                    <option value="1st">1st Grade</option>
+                                    <option value="2nd">2nd Grade</option>
+                                    <option value="3rd">3rd Grade</option>
+                                    <option value="4th">4th Grade</option>
+                                    <option value="5th">5th Grade</option>
+                                    <option value="6th">6th Grade</option>
+                                    <option value="7th">7th Grade</option>
+                                    <option value="8th">8th Grade</option>
+                                    <option value="9th">9th Grade</option>
+                                    <option value="10th">10th Grade</option>
+                                </optgroup>
+                                <optgroup label="Higher Secondary">
+                                    <option value="11th">11th Grade</option>
+                                    <option value="12th">12th Grade</option>
+                                </optgroup>
+                                <optgroup label="Advanced">
+                                    <option value="Graduate">Graduate</option>
+                                    <option value="Post Graduate">Post Graduate</option>
+                                </optgroup>
                             </select>
                         </div>
                     </div>
