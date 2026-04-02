@@ -161,7 +161,7 @@ export default function CoursesPage() {
                                 return (
                                     <div key={c.id + i} className="course-card" style={{ padding: "1.75rem", animation: `fadeUp 0.5s cubic-bezier(0.16,1,0.3,1) ${i * 0.05}s both` }}>
                                         <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1.25rem" }}>
-                                            <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,86,210,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: "0.9rem", color: C.primaryGold }}>
+                                            <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(0,86,210,0.1)", display: "flex", alignItems: "center", justifyContent: "center", fontFamily: "JetBrains Mono, monospace", fontWeight: 700, fontSize: "0.9rem", color: C.primaryGold }}>
                                                 {c.id}
                                             </div>
                                             {c.live ? (
@@ -171,7 +171,7 @@ export default function CoursesPage() {
                                             )}
                                         </div>
 
-                                        <span style={{ fontSize: "0.85rem", padding: "0.2rem 0.65rem", borderRadius: 100, background: lc.bg, border: `1px solid ${lc.border}`, color: lc.text, display: "inline-block", marginBottom: "0.75rem", fontFamily: "'JetBrains Mono',monospace" }}>
+                                        <span style={{ fontSize: "0.85rem", padding: "0.2rem 0.65rem", borderRadius: 100, background: lc.bg, border: `1px solid ${lc.border}`, color: lc.text, display: "inline-block", marginBottom: "0.75rem", fontFamily: "JetBrains Mono, monospace" }}>
                                             {c.level}
                                         </span>
 

@@ -45,7 +45,16 @@ const labelStyle = {
 
 interface ApplicationFormProps {
     courses: { id: string; name: string; fee: number }[]
-    initialData?: any
+    initialData?: {
+        student_name?: string
+        email?: string
+        phone?: string
+        state?: string
+        class?: string
+        course_id?: string
+        mentors?: { mentor_code: string }
+        course_managers?: { mentor_code: string }
+    }
     initialId?: string
     initialCourseName?: string
 }
@@ -164,9 +173,10 @@ export default function ApplicationForm({ courses, initialData, initialId, initi
 
             // Redirect to Razorpay Hosted Link (Bypasses whitelisting issues)
             window.location.href = orderResult.payment_link;
-        } catch (err: any) {
+        } catch (err: unknown) {
             console.error(err)
-            setErrorMessage(err.message || 'Initialization failed.')
+            const msg = err instanceof Error ? err.message : 'Initialization failed.'
+            setErrorMessage(msg)
             setIsSubmitting(false)
             setSaveStatus('idle')
         }
