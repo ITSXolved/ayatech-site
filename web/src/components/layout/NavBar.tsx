@@ -11,7 +11,6 @@ import { Search, ChevronDown, Menu, X, ArrowRight } from "lucide-react";
 const navLinks: { label: string; href: string }[] = [
     { label: "Home", href: "/" },
     { label: "Courses", href: "/courses" },
-    { label: "Hackathons", href: "/hackathons" },
     { label: "About", href: "/about" },
 ];
 
