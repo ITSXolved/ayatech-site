@@ -76,6 +76,15 @@ export async function POST(req: NextRequest) {
         console.error('Webhook Application Update Error:', appError);
       }
 
+      // --- NEW: TRIGGER AUTOMATION (LMS + EMAILS + COMMISSIONS) ---
+      try {
+        const { processApplicationAutomation } = await import('@/lib/automation');
+        await processApplicationAutomation(applicationId);
+        console.log(`Successfully completed automation for Application: ${applicationId}`);
+      } catch (autoErr) {
+        console.error('Webhook Automation Error:', autoErr);
+      }
+
       console.log(`Successfully processed payment for Application: ${applicationId}`);
     }
 

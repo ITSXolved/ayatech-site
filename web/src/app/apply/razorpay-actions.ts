@@ -10,11 +10,18 @@ const razorpay = new Razorpay({
     key_secret: process.env.RAZORPAY_KEY_SECRET || 'Sew2homjpULowkPhqxOsSS47'
 })
 
+// Service Role client for bypass RLS
+function getAdminClient() {
+    return createSupabaseClient(
+        process.env.NEXT_PUBLIC_SUPABASE_URL!,
+        process.env.SUPABASE_SERVICE_ROLE_KEY!
+    )
+}
 
 export async function createRazorpayOrder(applicationId: string) {
     const supabase = await createClient()
 
-    // 1. Fetch application and related course fee
+    // 1. Fetch application and related course fee + student info
     const { data: application, error: appError } = await supabase
         .from('applications')
         .select(`
@@ -33,21 +40,23 @@ export async function createRazorpayOrder(applicationId: string) {
         return { error: 'Application not found or invalid.' }
     }
 
+    // Next.js array normalization for joins
     const course = Array.isArray(application.courses) ? application.courses[0] : application.courses
-    const amountToCharge = (course as { fee?: number } | null)?.fee
+    const amountToCharge = (course as { fee?: number; name?: string } | null)?.fee
+    const courseName = (course as { fee?: number; name?: string } | null)?.name
 
     if (!amountToCharge) {
         return { error: 'Invalid course fee.' }
     }
 
     try {
-        // 2. Generate Razorpay Payment Link (This is unblockable)
+        // 2. Create Razorpay Payment Link (hosted on Razorpay's domain — NO whitelist issues)
         const paymentLinkOptions = {
             amount: Math.round(Number(amountToCharge) * 100),
             currency: 'INR',
             accept_partial: false,
             reference_id: applicationId,
-            description: `Course Enrollment: ${course?.name}`,
+            description: `Course Enrollment: ${courseName || 'Course'}`,
             customer: {
                 name: application.student_name || 'Student',
                 email: application.email || 'support@ayatech.org',
@@ -79,14 +88,6 @@ export async function createRazorpayOrder(applicationId: string) {
     }
 }
 
-// Service Role client for bypassing RLS
-function getAdminClient() {
-    return createSupabaseClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.SUPABASE_SERVICE_ROLE_KEY!
-    )
-}
-
 export async function verifyRazorpayPayment(
     paymentId: string,
     orderId: string,
@@ -97,7 +98,7 @@ export async function verifyRazorpayPayment(
     try {
         const body = orderId + "|" + paymentId;
         const expectedSignature = crypto
-            .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET || '')
+            .createHmac('sha256', process.env.RAZORPAY_KEY_SECRET || 'Sew2homjpULowkPhqxOsSS47')
             .update(body)
             .digest('hex');
 
@@ -107,7 +108,7 @@ export async function verifyRazorpayPayment(
 
         const supabaseAdmin = getAdminClient()
 
-        // Idempotent check — if payment_id already recorded, skip
+        // Idempotent Check
         const { data: existingPayment } = await supabaseAdmin
             .from('payments')
             .select('id')
@@ -118,7 +119,7 @@ export async function verifyRazorpayPayment(
             return { success: true, status: 'already_processed' }
         }
 
-        // 1. Upsert Payment Record (handles both pre-existing Pending records and fresh inserts)
+        // 1. Upsert Payment Record (handles pre-created Pending records)
         const { error: paymentError } = await supabaseAdmin
             .from('payments')
             .upsert({
@@ -145,9 +146,42 @@ export async function verifyRazorpayPayment(
             return { error: 'Failed to update application status.' }
         }
 
+        // 3. Automation (Canvas LMS & Emails)
+        const { processApplicationAutomation } = await import('@/lib/automation')
+        await processApplicationAutomation(applicationId)
+
         return { success: true }
     } catch (error) {
         console.error('Verify Payment Error:', error)
         return { error: 'Server error during verification.' }
+    }
+}
+
+// ⚠️ TEST-ONLY: Bypasses payment, directly marks as enrolled & triggers automation
+export async function bypassPaymentForTest(applicationId: string) {
+    const supabaseAdmin = getAdminClient()
+    try {
+        const mockPaymentId = `test_pay_${Date.now()}`
+        const mockOrderId = `test_order_${Date.now()}`
+
+        await supabaseAdmin.from('payments').insert([{
+            application_id: applicationId,
+            razorpay_order_id: mockOrderId,
+            razorpay_payment_id: mockPaymentId,
+            amount: 1, // ₹1 dummy amount
+            status: 'Successful'
+        }])
+
+        await supabaseAdmin.from('applications')
+            .update({ status: 'Enrolled' })
+            .eq('id', applicationId)
+
+        const { processApplicationAutomation } = await import('@/lib/automation')
+        await processApplicationAutomation(applicationId)
+
+        return { success: true }
+    } catch (err) {
+        console.error('Test bypass error:', err)
+        return { error: 'Test bypass failed' }
     }
 }

@@ -55,6 +55,8 @@ const levelColors: Record<string, { text: string; bg: string; border: string }> 
 
 const cats = ["All", "AI", "Coding", "Design", "Hardware"];
 
+import { getActiveCourses } from "../apply/actions";
+
 export default function CoursesPage() {
     const [active, setActive] = useState("All");
     const [lmsCourses, setLmsCourses] = useState<any[]>([]);
@@ -64,25 +66,32 @@ export default function CoursesPage() {
     useEffect(() => {
         async function loadCourses() {
             try {
-                const data = await fetchLMSCourses();
+                // Fetch from Supabase (the "approved" courses)
+                const data = await getActiveCourses();
                 if (Array.isArray(data) && data.length > 0) {
-                    const mapped = data.map((c: CanvasCourse, i: number) => ({
-                        id: String(c.id).slice(-2),
-                        title: c.name,
-                        duration: "Self-Paced / Mentor Led", // Default since Canvas might not have this in a standard field
-                        price: "Contact for Price", // Default
-                        level: "All Levels",
-                        format: "LMS Integrated",
-                        live: c.workflow_state === "available" || c.workflow_state === "published",
-                        cat: "Technology", // Default
-                        originalId: c.id
-                    }));
+                    const mapped = data.map((c: any, i: number) => {
+                        // Match with static data if possible to keep metadata
+                        const staticMatch = allCourses.find(sc => sc.title.toLowerCase() === c.name.toLowerCase());
+                        
+                        return {
+                            id: String(i + 1).padStart(2, '0'),
+                            title: c.name,
+                            duration: staticMatch?.duration || "Self-Paced / Mentor Led",
+                            price: `₹${c.fee}`,
+                            amount: Number(c.fee),
+                            level: staticMatch?.level || "All Levels",
+                            format: staticMatch?.format || "Live + Recorded",
+                            live: true,
+                            cat: staticMatch?.cat || "Technology",
+                            originalId: c.id
+                        };
+                    });
                     setLmsCourses(mapped);
                 } else {
                     setLmsCourses(allCourses); // Fallback to static
                 }
             } catch (err) {
-                console.error(err);
+                console.error("Failed to load courses from database:", err);
                 setLmsCourses(allCourses);
             } finally {
                 setLoading(false);

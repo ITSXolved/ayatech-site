@@ -6,7 +6,7 @@ export async function getActiveCourses() {
     const supabase = await createClient()
     const { data, error } = await supabase
         .from('courses')
-        .select('id, name, fee, course_groups')
+        .select('id, name, fee, category')
         .eq('is_active', true)
         .is('deleted_at', null)
         .order('name')
@@ -35,7 +35,7 @@ export async function lookupReferrer(code: string) {
             const user = Array.isArray(mentorData.users) ? mentorData.users[0] : mentorData.users
             return {
                 id: mentorData.id,
-                name: (user as { full_name?: string })?.full_name || 'Unknown Mentor',
+                name: user?.full_name || 'Unknown Mentor',
                 type: 'mentor' as const
             }
         }
@@ -51,7 +51,7 @@ export async function lookupReferrer(code: string) {
             const user = Array.isArray(managerData.users) ? managerData.users[0] : managerData.users
             return {
                 id: managerData.id,
-                name: (user as { full_name?: string })?.full_name || 'Unknown Manager',
+                name: user?.full_name || 'Unknown Manager',
                 type: 'manager' as const
             }
         }
@@ -63,33 +63,6 @@ export async function lookupReferrer(code: string) {
     }
 }
 
-export async function getApplication(id: string) {
-    if (!id) return null
-
-    try {
-        const supabase = await createClient()
-        const { data, error } = await supabase
-            .from('applications')
-            .select(`
-                *,
-                mentors:mentor_id ( mentor_code, users:user_id ( full_name ) ),
-                course_managers:course_manager_id ( mentor_code, users:user_id ( full_name ) )
-            `)
-            .eq('id', id)
-            .single()
-
-        if (error) {
-            console.error('Error fetching application:', error)
-            return null
-        }
-
-        return data
-    } catch (err) {
-        console.error('Exception during getApplication:', err)
-        return null
-    }
-}
-
 export async function saveApplicationDraft(
     applicationId: string | null,
     formData: {
@@ -97,8 +70,8 @@ export async function saveApplicationDraft(
         email: string
         phone: string
         state: string
+        class: string
         course_id: string
-        class?: string
         mentor_id?: string
         course_manager_id?: string
     }
@@ -106,7 +79,7 @@ export async function saveApplicationDraft(
     try {
         const supabase = await createClient()
 
-        // 1. Check for duplicate completed submissions
+        // 1. Check for duplicate completed submissions first
         if (formData.email) {
             const { data: existing, error: existErr } = await supabase
                 .from('applications')
@@ -148,6 +121,7 @@ export async function saveApplicationDraft(
             }
             return { success: true, id: applicationId }
         } else {
+            // Insert new Draft
             const { data, error } = await supabase
                 .from('applications')
                 .insert([payload])
@@ -164,4 +138,18 @@ export async function saveApplicationDraft(
         console.error('Exception during saveApplicationDraft:', err)
         return { error: 'An unexpected application exception occurred.' }
     }
+}
+
+export async function getApplication(id: string) {
+    const supabase = await createClient()
+    const { data } = await supabase
+        .from('applications')
+        .select(`
+            *,
+            mentors ( mentor_code ),
+            course_managers ( mentor_code )
+        `)
+        .eq('id', id)
+        .single()
+    return data
 }
