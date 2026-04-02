@@ -42,8 +42,8 @@ export default function NavBar() {
             <div className="container-main flex items-center justify-between">
                 {/* Logo Section */}
                 <Link href="/" className="flex items-center gap-2 md:gap-3 group">
-                    <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-[#0056D2] flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform" style={{ boxShadow: "0 8px 16px -4px rgba(0, 86, 210, 0.3)" }}>
-                        <span className="font-display font-bold text-white text-xl">A</span>
+                    <div className="w-10 h-10 md:w-11 md:h-11 rounded-xl bg-white flex items-center justify-center shadow-lg group-hover:scale-105 transition-transform overflow-hidden" style={{ boxShadow: "0 8px 16px -4px rgba(0, 86, 210, 0.3)" }}>
+                        <img src="/logo.png" alt="AyaTech Logo" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
                     </div>
                     <div>
                         <div className="font-display font-bold text-lg leading-none tracking-tight" style={{ color: "#1F2432" }}>AyaTech</div>
